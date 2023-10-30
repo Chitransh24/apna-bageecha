@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Button from '@mui/material/Button';
+import AbButton from "./components/AbButton/AbButton";
+import bgtop from "./assets/bgtop.png"
+import bgbottom from "./assets/bgbottom.png"
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <img style={{position:"fixed", top:"0", right:"0", zIndex:"-999"}} src={bgtop} alt="" />
+      <img style={{position:"fixed", left:"0", bottom:"0", zIndex:"-999"}} src={bgbottom} alt="" />
+      {/* <AbButton text ="Hello" /> */}
+      <Navbar/>
     </div>
   );
 }
