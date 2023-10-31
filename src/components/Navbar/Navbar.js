@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
 import React, { useState } from "react";
 import AbButton from "../AbButton/AbButton";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [active, setActive] = useState(0);
@@ -11,7 +12,7 @@ const Navbar = () => {
   const handleAuthActive = (index) => {
     setAuthActive(index);
   };
-  console.log(active);
+  console.log(authActive, "auth");
   return (
     <div
       style={{
@@ -134,10 +135,11 @@ const Navbar = () => {
         )}
       </div>
       <div>
-        {authActive === 0 ? (
+        <Link to="/login">
           <AbButton
             sx={{
-              color: "#FFFFFF",
+              color: authActive === 0 ? "#FFFFFF" : "#618264",
+              backgroundColor: authActive === 0 ? "#618264" : "#D0E7D2",
               borderRadius: "26px",
               height: "3rem",
               textTransform: "none",
@@ -148,47 +150,19 @@ const Navbar = () => {
               zIndex: authActive ? "" : 9,
             }}
             variant="contained"
-            onClick={() => handleAuthActive(0)}
-            text="Login"
-          />
-        ) : (
-          <AbButton
-            sx={{
-              color: "#618264",
-              borderRadius: "26px",
-              height: "3rem",
-              textTransform: "none",
-              fontSize: "18px",
-              padding: "0px 2rem",
-              position: "relative",
-              left: "30px",
-            //   zIndex: authActive ? 9909 : "",
-
+            onClick={() => {
+              handleAuthActive(0);
             }}
-            variant="contained"
-            onClick={() => handleAuthActive(0)}
             text="Login"
             color="light"
           />
-        )}
-        {authActive === 1 ? (
+        </Link>
+
+        <Link to="/signup">
           <AbButton
             sx={{
               color: "#FFFFFF",
-              borderRadius: "26px",
-              height: "3rem",
-              textTransform: "none",
-              fontSize: "18px",
-              padding: "0px 2rem",
-            }}
-            variant="contained"
-            onClick={() => handleAuthActive(1)}
-            text="Signin"
-          />
-        ) : (
-          <AbButton
-            sx={{
-              color: "#618264",
+              backgroundColor: authActive === 1 ? "#618264" : "#D0E7D2",
               borderRadius: "26px",
               height: "3rem",
               textTransform: "none",
@@ -200,7 +174,7 @@ const Navbar = () => {
             text="Signin"
             color="light"
           />
-        )}
+        </Link>
       </div>
     </div>
   );

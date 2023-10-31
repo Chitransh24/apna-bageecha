@@ -1,19 +1,22 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import AbButton from "./components/AbButton/AbButton";
-import bgtop from "./assets/bgtop.png"
-import bgbottom from "./assets/bgbottom.png"
-import Navbar from "./components/Navbar/Navbar";
 
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import LandingView from "./views/Landing/LandingView";
+import { Route, Routes } from "react-router-dom";
+import Login from "./views/Login/Login";
+import Signup from "./views/Signup/Signup";
 function App() {
   return (
-    <div>
-      <img style={{position:"fixed", top:"0", right:"0", zIndex:"-999"}} src={bgtop} alt="" />
-      <img style={{position:"fixed", left:"0", bottom:"0", zIndex:"-999"}} src={bgbottom} alt="" />
-      {/* <AbButton text ="Hello" /> */}
-      <Navbar/>
-    </div>
+    <LandingView>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </LandingView>
   );
 }
 
