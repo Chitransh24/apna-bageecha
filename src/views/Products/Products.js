@@ -1,16 +1,17 @@
 import React from 'react'
-import Button from "@mui/material/Button";
-import AbButton from "./components/AbButton/AbButton";
-import bgtop from "./assets/bgtop.png";
-import bgbottom from "./assets/bgbottom.png";
-import LandingImage1 from "./assets/LandingImage1.jpeg";
-import LandingImage2 from "./assets/LandingImage2.jpeg";
-import LandingImage3 from "./assets/LandingImage3.jpeg";
-import Navbar from "./components/Navbar/Navbar";
+// import Button from "@mui/material/Button";
+// import AbButton from "./components/AbButton/AbButton";
+// import bgtop from "./assets/bgtop.png";
+// import bgbottom from "../../assets/bgbottom.png";
+import LandingImage from "../../components/LandingImage/LandingImage";
+import LandingImage1 from "../../assets/LandingImage1.jpeg";
+import LandingImage2 from "../../assets/LandingImage2.jpeg";
+import LandingImage3 from "../../assets/LandingImage3.jpeg";
+// import Navbar from "./components/Navbar/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import LandingImage from "./components/LandingImage/LandingImage";
-import Footer from "./components/Footer/Footer";
+import { Button } from '@mui/material';
+// import Footer from "./components/Footer/Footer";
 const Products = () => {
   return (
     <div>
