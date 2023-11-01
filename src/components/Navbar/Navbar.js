@@ -161,7 +161,7 @@ const Navbar = () => {
         <Link to="/signup">
           <AbButton
             sx={{
-              color: "#FFFFFF",
+              color: authActive === 1 ? "#FFFFFF" : "#618264",
               backgroundColor: authActive === 1 ? "#618264" : "#D0E7D2",
               borderRadius: "26px",
               height: "3rem",

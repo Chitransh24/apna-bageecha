@@ -7,7 +7,7 @@ import bgbottom from "../../assets/bgbottom.png";
 const LandingView = ({ children }) => {
   return (
     <div
-      style={{ display: "flex", flexDirection: " column", minHeight: "100vh" }}
+      style={{ display: "flex", flexDirection: " column", minHeight: "100vh", overflowX:"clip" }}
     >
       <Navbar />
 
