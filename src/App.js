@@ -11,7 +11,11 @@ import Navbar from "./components/Navbar/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import LandingImage from "./components/LandingImage/LandingImage";
+import VideoSection from "./components/VideoSection/Video"
+import Video from "./assets/Video.mp4"
+import About from "./components/About/About"
 import Products from "./views/Products";
+
 
 function App() {
   return (
@@ -28,8 +32,8 @@ function App() {
       />
       {/* <AbButton text ="Hello" /> */}
       <Navbar />
-      <Products src={LandingImage3} ProductName={"Name of the product"} />
-      {/* <div
+      {/* <Products src={LandingImage3} ProductName={"Name of the product"} /> */}
+      <div
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -52,9 +56,9 @@ function App() {
           src={LandingImage2}
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
         />
-      </div> */}
+      </div>
 
-      {/* <Button
+      <Button
         style={{
           fontSize: "12px",
           margin: "0 0 1rem 44rem",
@@ -90,9 +94,11 @@ function App() {
               fontSize: "10px",
             }}
             icon={faChevronRight}
-          />
+          />                              
         </div>
-      </Button> */}
+      </Button>
+            <VideoSection src={Video}/>
+            <About/>
     </div>
   );
 }
