@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, ButtonGroup, IconButton } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
 
@@ -50,7 +50,7 @@ function App({ src, ProductName }) {
           <Button
             style={{
               fontSize: "12px",
-              //   margin: "0 0 1rem 44rem",
+                marginRight: "5px",
               height: "37px",
               width: "100px",
               borderRadius: "10px",
@@ -65,25 +65,22 @@ function App({ src, ProductName }) {
           >
             Buy &#8377;350.00
           </Button>
-          <Button
-            style={{
-              fontSize: "14px",
-              marginLeft: "8px",
+            <ButtonGroup variant="contained" size="small" aria-label="outlined primary button group" style={{
+              fontSize: "12px",
               height: "37px",
-              width: "50px",
-              borderRadius: "10px",
+             borderRadius: "9px",
               backgroundColor: "#618264",
-              border: "none",
               color: "#ffffff",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              textTransform: "none",
-            }}
-          >
-            &#43; 1 &#8722;
-          </Button>
-          <div
+              border: "none",
+              textTransform: "none",}}>
+            <Button style={{border: "none", borderRadius: "10px"}}> &#43; </Button>
+                  <p>1</p>
+            <Button style={{ width: "30px", borderRadius: "10px"}}> &#8722; </Button>
+            </ButtonGroup>
+          <IconButton
             id="heart"
             style={{
               height: "37px",
@@ -99,13 +96,13 @@ function App({ src, ProductName }) {
             }}
           >
             <FontAwesomeIcon icon={faHeart} />
-          </div>
-          <div
+          </IconButton>
+          <IconButton 
             id="info"
             style={{
               height: "37px",
               width: "40px",
-              marginLeft: "20px",
+              marginLeft: "10px",
               position: "relative",
               bottom: "7rem",
               borderRadius: "10px",
@@ -117,9 +114,10 @@ function App({ src, ProductName }) {
               color: "white",
             }}
           >
-            <FontAwesomeIcon style={{}} icon={faInfo} />
+            <FontAwesomeIcon icon={faInfo} />
+          </IconButton>
+         
           </div>
-        </div>
       </div>
     </div>
   );
