@@ -32,8 +32,8 @@ function App() {
       />
       {/* <AbButton text ="Hello" /> */}
       <Navbar />
-      {/* <Products src={LandingImage3} ProductName={"Name of the product"} /> */}
-      <div
+      <Products src={LandingImage3} ProductName={"Name of the product"} />
+      {/* <div
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -56,7 +56,7 @@ function App() {
           src={LandingImage2}
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
         />
-      </div>
+      </div> */}
 
       <Button
         style={{
