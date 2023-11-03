@@ -1,12 +1,24 @@
-import { Button } from '@mui/material'
-import React from 'react'
+import { Button } from "@mui/material";
+import React from "react";
 
 const AbButton = (props) => {
-    const {text,variant,onClick, color} = props;
-    console.log(color)
+  const { text, variant, onClick, color, large } = props;
+  console.log(color);
   return (
-    <Button sx={{borderRadius: "26px", textTransform:"none"}} variant={variant ? variant :"contained"} {...props}>{text ? text :"Click Me"}</Button>
-  )
-}
+    <Button
+    onClick={onclick}
+      sx={{
+        borderRadius: "26px",
+        textTransform: "none",
+        backgroundColor: color? color :"",
+        height:large ? "3.5rem" :""
+      }}
+      variant={variant ? variant : "contained"}
+      {...props}
+    >
+      {text ? text : "Click Me"}
+    </Button>
+  );
+};
 
-export default AbButton
+export default AbButton;
