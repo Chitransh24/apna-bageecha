@@ -11,8 +11,15 @@ import LandingImage3 from "../../assets/LandingImage3.jpeg";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Button } from '@mui/material';
+import Video1 from "../../assets/Video.mp4"
+import Video from "../../components/VideoSection/Video"
+import About from "../../components/About/About"
+import SingleProduct from "./SingleProduct"
+import SampleData from "./SampleData"
 // import Footer from "./components/Footer/Footer";
 const Products = () => {
+  let {imgUrl, title, description, price,  quanitity } = SampleData[0];
+
   return (
     <div>
       <div
@@ -79,6 +86,10 @@ const Products = () => {
           /> */}
         </div>
       </Button>
+       <Video src={Video1}/>
+        <About/>
+        <SingleProduct src={LandingImage3} title={title} description={description} price={price} quanitity={quanitity} />
+
     </div>
   )
 }
