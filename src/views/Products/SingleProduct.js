@@ -3,7 +3,8 @@ import { Button, ButtonGroup, IconButton } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
 
-function App({ src, ProductName }) {
+function App(props) {
+  let {src, title,  description, price,  quanitity} = props;
   return (
     <div
       style={{
@@ -29,19 +30,19 @@ function App({ src, ProductName }) {
       <div id="productDetail" style={{ position: "relative" }}>
         <h3 style={{ color: "#618264", margin: "0.5rem 0 0 1.5rem" }}>
           {" "}
-          {ProductName}
+          {title}
         </h3>
 
         <p
           style={{
             fontSize: "12px",
             textAlign: "left",
+            height: "70px",
             margin: "0.5rem 0 0 1.5rem",
             width: "220px",
           }}
-        >
+        >   {description}
           Lorem ipsum dolor sit amet consectetur adipisicing Ullam consequuntur
-          saepe at amet consectetur adipisicing elit Lorem ipsum dolor sit amet.
         </p>
         <div
           id="buttons"
@@ -63,7 +64,7 @@ function App({ src, ProductName }) {
               textTransform: "none",
             }}
           >
-            Buy &#8377;350.00
+            Buy &#8377;{price}
           </Button>
             <ButtonGroup variant="contained" size="small" aria-label="outlined primary button group" style={{
               fontSize: "12px",
@@ -77,7 +78,7 @@ function App({ src, ProductName }) {
               border: "none",
               textTransform: "none",}}>
             <Button style={{border: "none", borderRadius: "10px"}}> &#43; </Button>
-                  <p>1</p>
+                  <p>{quanitity}</p>
             <Button style={{ width: "30px", borderRadius: "10px"}}> &#8722; </Button>
             </ButtonGroup>
           <IconButton
