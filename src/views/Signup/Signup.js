@@ -185,13 +185,7 @@ const Signup = () => {
             sx={{ fontSize: "1rem", textTransform: "none" }}
           />
         </div>
-        {/* <Button
-        onClick={() => {
-          submitHandler();
-        }}
-      >
-        madarchod
-      </Button> */}
+ 
         <AbButton
           type="contained"
           onClick={submitHandler}
