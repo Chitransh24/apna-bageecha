@@ -9,13 +9,15 @@ import Home from "./views/Home/Home";
 import Products from "./views/Products/Products";
 function App() {
   return (
-    <LandingView>
+    <LandingView
+
+    >
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/signup" element={<Signup />} /> */}
-        <Route path="/signup" element={<Products/>} />
-        <Route path="/product" element={<Products />} />
+        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/signup" element={<Products/>} /> */}
+        <Route path="/products" element={<Products />} />
       </Routes>
     </LandingView>
   );
