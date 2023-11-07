@@ -7,6 +7,10 @@ import Login from "./views/Login/Login";
 import Signup from "./views/Signup/Signup";
 import Home from "./views/Home/Home";
 import Products from "./views/Products/Products";
+import Pricing from "./views/Pricing/Pricing";
+
+
+
 function App() {
   return (
     <LandingView
@@ -16,8 +20,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/signup" element={<Products/>} /> */}
-        <Route path="/products" element={<Products />} />
+        <Route path="/pricing" element={<Pricing/>} />
+        <Route path="/product" element={<Products />} />
       </Routes>
     </LandingView>
   );
