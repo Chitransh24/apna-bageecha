@@ -38,9 +38,7 @@ const Signup = () => {
     }
     if (
       email &&
-      !email.match(
-        /^\s*\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,16})+\s*$/
-      )
+      !email.match(/^\s*\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,16})+\s*$/)
     ) {
       errors.email = "Provide a valid email";
     }
@@ -131,41 +129,41 @@ const Signup = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
+          error={!!validationErrors.email}
+          helperText={validationErrors.email}
           placeholder="Email or mobile number"
           required={true}
         />
-         {validationErrors&& validationErrors.email && (
-          <div>{validationErrors.email}</div>
-        )}
+
         <AbInput
           onChange={(e) => {
             setName(e.target.value);
           }}
           placeholder="Name"
+          error={!!validationErrors.name}
+          helperText={validationErrors.name}
         />
-        {validationErrors&& validationErrors.name && (
-          <div>{validationErrors.name}</div>
-        )}
+
         <AbInput
           onChange={(e) => {
             setPassword(e.target.value);
           }}
           placeholder="Password"
           required={true}
+          error={!!validationErrors.password}
+          helperText={validationErrors.password}
         />
-        {validationErrors&& validationErrors.password && (
-          <div>{validationErrors.password}</div>
-        )}
+
         <AbInput
           onChange={(e) => {
             setConfirmpassword(e.target.value);
           }}
           placeholder="Confirm Password"
           required={true}
+          error={!!validationErrors.cpassword}
+          helperText={validationErrors.cpassword}
         />
-        {validationErrors&& validationErrors.cpassword && (
-          <div>{validationErrors.cpassword}</div>
-        )}
+
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <FormControlLabel
             onClick={() => {
@@ -185,7 +183,7 @@ const Signup = () => {
             sx={{ fontSize: "1rem", textTransform: "none" }}
           />
         </div>
- 
+
         <AbButton
           type="contained"
           onClick={submitHandler}
