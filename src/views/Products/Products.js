@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import Button from "@mui/material/Button";
 // import AbButton from "./components/AbButton/AbButton";
 // import bgtop from "./assets/bgtop.png";
@@ -16,9 +16,22 @@ import Video from "../../components/VideoSection/Video"
 import About from "../../components/About/About"
 import SingleProduct from "./SingleProduct"
 import SampleData from "./SampleData"
+import ReactPaginate from 'react-paginate';
+import "./Product.css"
+
 // import Footer from "./components/Footer/Footer";
 const Products = () => {
-  let {imgUrl, title, description, price,  quanitity } = SampleData[0];
+  // let {imgUrl, title, description, price,  quanitity } = SampleData;
+  const [products, setProducts] = useState(SampleData)
+  const [pageNumber, setPageNumber] = useState(0);
+  const productPerPage = 4;
+  const pageVisited = pageNumber * productPerPage;
+  
+  let pageCount = Math.ceil(products.length / productPerPage);
+  const pageChange = ({ selected }) => {
+    setPageNumber(selected);
+  }
+  // console.log(products[0].title)
 
   return (
     <div>
@@ -88,8 +101,31 @@ const Products = () => {
       </Button>
        <Video src={Video1}/>
         <About/>
-        <SingleProduct src={LandingImage3} title={title} description={description} price={price} quanitity={quanitity} />
-
+        <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
+        {products
+        .slice(pageVisited, pageVisited + productPerPage)
+        .map((product) => {
+          return (
+            <>
+          
+            <SingleProduct src={product.imgUrl} title={product.title} description={product.description} price={product.price} quanitity={product.quanitity} />
+       
+            </>
+            );
+        })}
+         </div>
+      {/* <TestProduct title={title} description={description} price={price} quanitity={quanitity} /> */}
+      <ReactPaginate 
+       previousLabel={"previous"}
+       nextLabel={"next"}
+       pageCount={pageCount}
+       onPageChange={pageChange}
+       containerClassName="paginationBtns"
+       previousLinkClassName='previousBtn'
+       nextLinkClassName='nextBtn'
+       disabledClassName='paginationDisabled'
+       activeClassName='paginatonActive'
+      />
     </div>
   )
 }
