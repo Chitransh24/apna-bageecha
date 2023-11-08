@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from "react";
 // import Button from "@mui/material/Button";
 // import AbButton from "./components/AbButton/AbButton";
 // import bgtop from "./assets/bgtop.png";
@@ -10,16 +10,23 @@ import LandingImage3 from "../../assets/LandingImage3.jpeg";
 // import Navbar from "./components/Navbar/Navbar";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Button } from '@mui/material';
-import Video1 from "../../assets/Video.mp4"
-import Video from "../../components/VideoSection/Video"
-import About from "../../components/About/About"
-import SingleProduct from "./SingleProduct"
-import SampleData from "./SampleData"
+import { Button, Fade, Modal } from "@mui/material";
+import Video1 from "../../assets/Video.mp4";
+import Video from "../../components/VideoSection/Video";
+import About from "../../components/About/About";
+import SingleProduct from "./SingleProduct";
+import SampleData from "./SampleData";
+import AbButton from "../../components/AbButton/AbButton";
+import Backdrop from "@mui/material/Backdrop";
+import { Box } from "@mui/system";
+import AbModal from "../../components/AbModal/AbModal";
+import AddProduct from "./AddProduct";
+
 // import Footer from "./components/Footer/Footer";
 const Products = () => {
-  let {imgUrl, title, description, price,  quanitity } = SampleData[0];
-
+  const [open, setOpen] = useState(false);
+  let { imgUrl, title, description, price, quanitity } = SampleData[0];
+  const handleAdd = () => {};
   return (
     <div>
       <div
@@ -86,12 +93,27 @@ const Products = () => {
           /> */}
         </div>
       </Button>
-       <Video src={Video1}/>
-        <About/>
-        <SingleProduct src={LandingImage3} title={title} description={description} price={price} quanitity={quanitity} />
-
+      <Video src={Video1} />
+      <About />
+      <div style={{ textAlign: "right", margin: "5px" }}>
+        <AbButton
+          variant="contained"
+          onClick={() => setOpen(true)}
+          text="Add Products"
+        />
+      </div>
+      <AbModal  open={open} >
+        <AddProduct setOpen={setOpen}/>
+      </AbModal>
+      <SingleProduct
+        src={LandingImage3}
+        title={title}
+        description={description}
+        price={price}
+        quanitity={quanitity}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

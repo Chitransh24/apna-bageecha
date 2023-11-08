@@ -6,7 +6,7 @@ const AbButton = (props) => {
   console.log(color);
   return (
     <Button
-    onClick={onclick}
+    onClick={onClick}
       sx={{
         borderRadius: "26px",
         textTransform: "none",
