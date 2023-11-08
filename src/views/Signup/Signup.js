@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import AbButton from "../../components/AbButton/AbButton";
 import AbCheckbox from "../../components/AbCheckbox/AbCheckbox";
 import { Box } from "@mui/system";
+import { red } from "@mui/material/colors";
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -16,61 +17,79 @@ const Signup = () => {
   const [email, setEmail] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
   const [password, setPassword] = useState();
+  const [validationErrors, setValidationErrors] = useState({});
   const [remember, setRemember] = useState(false);
-  const submitHandler = async () => {
-    // setPicLoading(true);
-    console.log("hai bhai");
-    if (!name || !email || !password || !confirmpassword) {
-      const notify = () => {
-        toast.error("All Details are mandatory", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      };
-      notify();
+
+  const validateInputs = () => {
+    let errors = {};
+    if (!name || !email || !password) {
+      errors.All = "All fields are required!";
+    }
+    if (!name) {
+      errors.name = "Name is required!";
+    }
+    if (
+      password &&
+      !password.match(
+        "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{4,})"
+      )
+    ) {
+      errors.password = "Provide a valid password";
+    }
+    if (
+      email &&
+      !email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      errors.email = "Provide a valid email";
     }
     if (password !== confirmpassword) {
-      const notify = () => {
-        toast.error("Password and Confirm password did'nt match", {
-          position: toast.POSITION.TOP_RIGHT,
+      errors.cpassword = "Passwords doesnt match";
+    }
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+  const submitHandler = async () => {
+    // setPicLoading(true);
+
+    if (validateInputs()) {
+      try {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+          },
+        };
+        const { data } = await axios.post(
+          "http://localhost:5000/api/user",
+          {
+            name,
+            email,
+            password,
+          },
+          config
+        );
+        console.log(data);
+        const notify = () => {
+          toast.success("Registration Successful", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        };
+        notify();
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        // setPicLoading(false);
+        navigate("/login");
+      } catch (error) {
+        toast({
+          title: "Error Occured!",
+          description: error.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
         });
-      };
-      notify();    }
-    // console.log(name, email, password);
-    try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-      const { data } = await axios.post(
-        "http://localhost:5000/api/user",
-        {
-          name,
-          email,
-          password,
-        },
-        config
-      );
-      console.log(data);
-      const notify = () => {
-        toast.success("Registration Successful", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      };
-      notify();
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      // setPicLoading(false);
-      navigate("/login");
-    } catch (error) {
-      toast({
-        title: "Error Occured!",
-        description: error.response.data.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
-      // setPicLoading(false);
+        // setPicLoading(false);
+      }
     }
   };
   const apiCall = async () => {
@@ -108,65 +127,71 @@ const Signup = () => {
     >
       <h1 style={{ fontFamily: "Nunito" }}>Log in</h1>
       <FormControl>
-      <AbInput
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-        placeholder="Email or mobile number"
-        required={true}
-      />
-      <AbInput
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-        placeholder="Name"
-      />
-      <AbInput
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        placeholder="Password"
-        required={true}
-      />
-      <AbInput
-        onChange={(e) => {
-          setConfirmpassword(e.target.value);
-        }}
-        placeholder="Confirm Password"
-        required={true}
-      />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <FormControlLabel
-          onClick={() => {
-            setRemember(!true);
+        <AbInput
+          onChange={(e) => {
+            setEmail(e.target.value);
           }}
-          sx={{ margin: "0.5rem " }}
-          control={<AbCheckbox />}
-          label={
-            <Box component="div" sx={{ color: "#618264" }}>
-              remember me
-            </Box>
-          }
+          placeholder="Email or mobile number"
+          required={true}
         />
+         {validationErrors&& validationErrors.email && (
+          <div>{validationErrors.email}</div>
+        )}
+        <AbInput
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          placeholder="Name"
+        />
+        {validationErrors&& validationErrors.name && (
+          <div>{validationErrors.name}</div>
+        )}
+        <AbInput
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          placeholder="Password"
+          required={true}
+        />
+        {validationErrors&& validationErrors.password && (
+          <div>{validationErrors.password}</div>
+        )}
+        <AbInput
+          onChange={(e) => {
+            setConfirmpassword(e.target.value);
+          }}
+          placeholder="Confirm Password"
+          required={true}
+        />
+        {validationErrors&& validationErrors.cpassword && (
+          <div>{validationErrors.cpassword}</div>
+        )}
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <FormControlLabel
+            onClick={() => {
+              setRemember(!true);
+            }}
+            sx={{ margin: "0.5rem " }}
+            control={<AbCheckbox />}
+            label={
+              <Box component="div" sx={{ color: "#618264" }}>
+                remember me
+              </Box>
+            }
+          />
+          <AbButton
+            variant="text"
+            text="forget password?"
+            sx={{ fontSize: "1rem", textTransform: "none" }}
+          />
+        </div>
+ 
         <AbButton
-          variant="text"
-          text="forget password?"
-          sx={{ fontSize: "1rem", textTransform: "none" }}
+          type="contained"
+          onClick={submitHandler}
+          text="Sign in"
+          large={true}
         />
-      </div>
-      {/* <Button
-        onClick={() => {
-          submitHandler();
-        }}
-      >
-        madarchod
-      </Button> */}
-      <AbButton
-        type="contained"
-        onClick={submitHandler}
-        text="Sign in"
-        large={true}
-      />
       </FormControl>
       <ToastContainer />
     </div>
