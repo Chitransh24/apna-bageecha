@@ -75,6 +75,7 @@ const Signup = () => {
         };
         notify();
         localStorage.setItem("userInfo", JSON.stringify(data));
+        localStorage.setItem('token',JSON.stringify(data.token))
         // setPicLoading(false);
         navigate("/login");
       } catch (error) {

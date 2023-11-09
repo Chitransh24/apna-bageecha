@@ -1,13 +1,13 @@
 import { FormControl } from "@mui/material";
 import React, { useState } from "react";
 import { Box, styled } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close"; 
+import CloseIcon from "@mui/icons-material/Close";
 import AbInput from "../../components/AbInput/AbInput";
 import AbButton from "../../components/AbButton/AbButton";
 import AbUpload from "../../components/AbUpload/AbUpload";
 import axios from "axios";
 
-function AddProduct({setOpen}) {
+function AddProduct({ setOpen }) {
   const [productData, setProductData] = useState({});
   const [validationErrors, setValidationErrors] = useState({});
   const [file, setFile] = useState();
@@ -40,14 +40,35 @@ function AddProduct({setOpen}) {
     return Object.keys(errors).length === 0;
   };
 
-  const submitHandler =async () => {
+  const submitHandler = async () => {
     if (validateInputs()) {
-        try{
-          
+      try {
+        const token = JSON.parse(localStorage.getItem("token"));
+        console.log(token);
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        };
+        const { data } = await axios.post(
+          "http://localhost:5000/api/product/addProduct",
+          {
+            title: productData.title,
+            description: productData.description,
+            price: productData.price,
+            quantity: productData.quantity,
+            imgUrl: productData.image,
+          },
+          config
+        );
+        if (data) {
+          setFile();
+          setOpen(false);
         }
-        catch{
-
-        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -73,11 +94,13 @@ function AddProduct({setOpen}) {
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <h1 style={{ fontFamily: "Nunito" }}>Add Products</h1>
-        <CloseIcon style={{ cursor: "pointer", alignItems:'end'}} onClick={()=>
-        {
-            setOpen(false)
-            setFile()
-        }}/> 
+        <CloseIcon
+          style={{ cursor: "pointer", alignItems: "end" }}
+          onClick={() => {
+            setOpen(false);
+            setFile();
+          }}
+        />
       </div>
       <FormControl>
         <CenteredButtonContainer>

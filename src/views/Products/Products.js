@@ -21,12 +21,25 @@ import Backdrop from "@mui/material/Backdrop";
 import { Box } from "@mui/system";
 import AbModal from "../../components/AbModal/AbModal";
 import AddProduct from "./AddProduct";
+import axios from "axios";
 
 // import Footer from "./components/Footer/Footer";
 const Products = () => {
   const [open, setOpen] = useState(false);
+  const [products,setProducts]=useState([])
   let { imgUrl, title, description, price, quanitity } = SampleData[0];
-  const handleAdd = () => {};
+  const config={
+    headers:{
+      "Content-type": "application/json",
+    }
+  }
+  
+  axios.get('http://localhost:5000/api/product/allProducts',config).then((res)=>{
+    if(res.data.products)
+    {
+      setProducts(res.data.products)
+    }
+  })
   return (
     <div>
       <div
@@ -105,13 +118,17 @@ const Products = () => {
       <AbModal  open={open} >
         <AddProduct setOpen={setOpen}/>
       </AbModal>
-      <SingleProduct
-        src={LandingImage3}
-        title={title}
-        description={description}
-        price={price}
-        quanitity={quanitity}
+      {products.map((product)=>(
+        <SingleProduct
+        src={product.image}
+        title={product.title}
+        description={product.description}
+        price={product.price}
+        quanitity={product.quanitity}
+        key={product._id}
       />
+      ))}
+      
     </div>
   );
 };
