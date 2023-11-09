@@ -7,7 +7,7 @@ import LandingImage2 from "./LandingImage2.jpeg"
 
 function About() {
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f1f1f1" }}>
+    <div style={{ minHeight: "100vh",  width: "100vw", backgroundColor: "#f1f1f1" }}>
     <Heading/>
     <AboutPara1 src={image}/>
     <AboutPara2 src={LandingImage2}/>

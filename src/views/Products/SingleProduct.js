@@ -4,11 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
 
 function App(props) {
-<<<<<<< HEAD
+
   let { imgUrl, title, description, price, quanitity } = props;
-=======
-  let { src, title, description, price, quanitity } = props;
->>>>>>> 7f53d8909f35fee77e78cf5d8b8f4d66e0ce8e46
+
   return (
     <div
       style={{
@@ -48,11 +46,7 @@ function App(props) {
         >
           {" "}
           {description}
-<<<<<<< HEAD
-        
-=======
           Lorem ipsum dolor sit amet consectetur adipisicing Ullam consequuntur
->>>>>>> 7f53d8909f35fee77e78cf5d8b8f4d66e0ce8e46
         </p>
         <div
           id="buttons"
@@ -99,12 +93,8 @@ function App(props) {
             </Button>
             <p>{quanitity}</p>
             <Button style={{ width: "30px", borderRadius: "10px" }}>
-<<<<<<< HEAD
               {" "}
               &#8722;{" "}
-=======
-              &#8722;
->>>>>>> 7f53d8909f35fee77e78cf5d8b8f4d66e0ce8e46
             </Button>
           </ButtonGroup>
           <IconButton

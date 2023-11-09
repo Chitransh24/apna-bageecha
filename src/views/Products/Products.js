@@ -10,7 +10,7 @@ import LandingImage3 from "../../assets/LandingImage3.jpeg";
 // import Navbar from "./components/Navbar/Navbar";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import Video1 from "../../assets/Video.mp4"
 import Video from "../../components/VideoSection/Video"
 import About from "../../components/About/About"
@@ -18,15 +18,27 @@ import SingleProduct from "./SingleProduct"
 import SampleData from "./SampleData"
 import ReactPaginate from 'react-paginate';
 import "./Product.css"
+import axios from 'axios';
 
-// import Footer from "./components/Footer/Footer";
-const Products = () => {
-  // let {imgUrl, title, description, price,  quanitity } = SampleData;
+const Products = () => { 
+   
   const [products, setProducts] = useState(SampleData)
   const [pageNumber, setPageNumber] = useState(0);
-  const productPerPage = 4;
+  const productPerPage = 3;
   const pageVisited = pageNumber * productPerPage;
   
+  const url = "http://localhost:5000/api/product/allProducts";
+ 
+  async function getProducts(){
+    try { 
+    let res = await axios.get(url);
+    setProducts(res.data)
+}   catch (error) {
+    console.log(error);
+    }
+} 
+ getProducts(); 
+
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
@@ -38,8 +50,12 @@ const Products = () => {
       <div
         style={{
           display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
           flexWrap: "wrap",
-          padding: "0rem 5rem 0 15rem",
+          marginLeft: "6rem"
         }}
       >
         <LandingImage
@@ -58,12 +74,11 @@ const Products = () => {
           src={LandingImage2}
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
         />
-      </div>
-
-      <Button
+         
+         <Button
         style={{
           fontSize: "12px",
-          margin: "0 0 1rem 44rem",
+          // margin: "0 0 1rem 44rem",
           height: "41px",
           width: "140px",
           borderRadius: "25px",
@@ -73,6 +88,10 @@ const Products = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          position: "relative",
+          top: "35%",
+          right: "42%"
+
         }}
       >
         <p style={{ marginLeft: "20px", textTransform: "none" }}>More</p>
@@ -99,6 +118,9 @@ const Products = () => {
           /> */}
         </div>
       </Button>
+      </div>
+
+      
        <Video src={Video1}/>
         <About/>
         <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
@@ -115,6 +137,8 @@ const Products = () => {
         })}
          </div>
       {/* <TestProduct title={title} description={description} price={price} quanitity={quanitity} /> */}
+       
+
       <ReactPaginate 
        previousLabel={"previous"}
        nextLabel={"next"}
@@ -126,6 +150,7 @@ const Products = () => {
        disabledClassName='paginationDisabled'
        activeClassName='paginatonActive'
       />
+   
     </div>
   )
 }
