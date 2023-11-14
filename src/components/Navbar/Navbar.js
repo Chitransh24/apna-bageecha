@@ -147,26 +147,29 @@ function Navbar() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "Nunito",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            LOGO
+            Logo
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 3 }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
+                style={{
+                  height: "80px",
                   color: "#black",
                   display: "block",
                   fontFamily: "Nunito",
+                  fontSize: "1rem",
+                  fontWeight: "500" ,
                   marginLeft: ".5rem",
+                  textTransform: "none" ,
                 }}
               >
                 {page}
@@ -183,6 +186,7 @@ function Navbar() {
                   borderRadius: ".8rem",
                   marginRight: "1.5rem",
                   fontSize: "0.8rem",
+                  fontFamily: "Nunito",
                   ":hover": { backgroundColor: "black" },
                 }}
               >
