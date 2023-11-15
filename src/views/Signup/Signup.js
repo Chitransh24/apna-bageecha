@@ -74,8 +74,7 @@ const Signup = () => {
           });
         };
         notify();
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        localStorage.setItem('token',JSON.stringify(data.token))
+        // localStorage.setItem("userInfo", JSON.stringify(data));
         // setPicLoading(false);
         navigate("/login");
       } catch (error) {
