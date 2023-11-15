@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, ButtonGroup, IconButton } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function App(props) {
-
-  let { imgUrl, title, description, price, quanitity } = props;
-
+  let { imgUrl, title, description, price, quantity, key } = props;
+  const navigate = useNavigate();
+  
+  const [finalAmount, setFinalAmount] = useState(price);
+  const [itemQuantity, setItemQuantity] = useState(quantity);
+  const token = JSON.parse(localStorage.getItem("token"));
+  console.log(token);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+    mode:"cors"
+  };
+  const decrement = () => {
+    if (itemQuantity <= 1) {
+      setItemQuantity(1);
+      setFinalAmount(price);
+    } else if (itemQuantity > 1) {
+      setItemQuantity(itemQuantity - 1);
+      setFinalAmount(finalAmount - price);
+    }
+  };
+  const increment = () => {
+    setItemQuantity(itemQuantity + 1);
+    setFinalAmount(finalAmount + price);
+  };
+  const checkout = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/payment/checkout", JSON.stringify({
+        items:[{
+          id:key,
+          quantity:itemQuantity,
+          price:finalAmount,
+          name:title
+        }],
+      }),config);
+      res.json();
+      navigate("/home")
+    } catch (error) {
+      throw new Error(error)
+    }
+  };
   return (
     <div
       style={{
@@ -53,6 +95,7 @@ function App(props) {
           style={{ display: "flex", margin: "0.7rem 0 0 1.5rem" }}
         >
           <Button
+            // TODO - to add payment functionality
             style={{
               fontSize: "12px",
               marginRight: "5px",
@@ -87,15 +130,9 @@ function App(props) {
               textTransform: "none",
             }}
           >
-            <Button style={{ border: "none", borderRadius: "10px" }}>
-              {" "}
-              &#43;{" "}
-            </Button>
-            <p>{quanitity}</p>
-            <Button style={{ width: "30px", borderRadius: "10px" }}>
-              {" "}
-              &#8722;{" "}
-            </Button>
+            <Button style={{ border: "none", borderRadius: "10px" }} onClick={decrement}>&#8722;</Button>
+            <p>{itemQuantity ? itemQuantity : quantity}</p>
+            <Button style={{ width: "30px", borderRadius: "10px" }} onClick={increment}>&#43;</Button>
           </ButtonGroup>
           <IconButton
             id="heart"
@@ -140,4 +177,3 @@ function App(props) {
 }
 
 export default App;
-

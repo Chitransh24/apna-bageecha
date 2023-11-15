@@ -13,9 +13,7 @@ import Pricing from "./views/Pricing/Pricing";
 
 function App() {
   return (
-    <LandingView
-
-    >
+    <LandingView>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
