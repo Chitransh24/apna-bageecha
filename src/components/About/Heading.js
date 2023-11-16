@@ -6,7 +6,7 @@ function Heading() {
         <div
         style={{
           height: "300px",
-          width: "1530px",
+          width: "100vw",
           backgroundColor: "#618264",
           color: "#dbdbdb",
           textAlign: "center",

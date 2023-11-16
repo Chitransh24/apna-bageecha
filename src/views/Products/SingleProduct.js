@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Button, ButtonGroup, IconButton } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SingleProduct(props) {
   let { imgUrl, title, description, price, quantity, key } = props;
@@ -66,7 +66,7 @@ function SingleProduct(props) {
   return (
     <div
       style={{
-        margin: "7rem 0 0 36rem",
+        margin: "7rem 0 0 0rem",
         width: "325px",
         borderRadius: "35px",
         height: "349px",
@@ -82,6 +82,7 @@ function SingleProduct(props) {
           borderTopRightRadius: "35px",
           borderTopLeftRadius: "35px",
         }}
+        src={imgUrl}
         src={imgUrl}
         alt=""
       />
@@ -109,6 +110,7 @@ function SingleProduct(props) {
           style={{ display: "flex", margin: "0.7rem 0 0 1.5rem" }}
         >
           <Button
+            // TODO - to add payment functionality
             style={{
               fontSize: "12px",
               marginRight: "5px",
