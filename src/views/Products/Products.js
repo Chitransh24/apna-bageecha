@@ -22,7 +22,7 @@ import { Box } from "@mui/system";
 import AbModal from "../../components/AbModal/AbModal";
 import AddProduct from "./AddProduct";
 import axios from "axios";
-import ReactPaginate from "react-paginate";
+// import ReactPaginate from "react-paginate";
 import "./Product.css";
 
 // import Footer from "./components/Footer/Footer";

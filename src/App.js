@@ -8,6 +8,7 @@ import Signup from "./views/Signup/Signup";
 import Home from "./views/Home/Home";
 import Products from "./views/Products/Products";
 import Pricing from "./views/Pricing/Pricing";
+import Contact from "./views/Contact/Contact";
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/pricing" element={<Pricing/>} />
         <Route path="/product" element={<Products />} />
+        <Route path="/contact" element={<Contact />}></Route>
       </Routes>
     </LandingView>
   );
