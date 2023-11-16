@@ -40,7 +40,7 @@ function ContactForm() {
       {
         if(validateInputs())
         {
-            
+            console.log(data)
         }
       }
   return (
