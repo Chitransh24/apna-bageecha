@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 
 import {
   AppBar,
@@ -9,37 +8,27 @@ import {
   Typography,
   Menu,
   Container,
-  Button,
   Tooltip,
   MenuItem,
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import { NotificationsNone } from "@mui/icons-material";
-import AbButton from "../AbButton/AbButton";
 import { Link } from "react-router-dom";
+import ResponsiveBtns from "./ResponsiveBtns";
 
 const pages = [
-  "Home",
-  "Our Services",
-  "Plant & Pricing",
-  "Blogs",
-  "Resources",
-  "Product",
-  "Contact",
+  "home",
+  "our Services",
+  "plant & Pricing",
+  "blogs",
+  "resources",
+  "product",
+  "contact",
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
-  const [active, setActive] = useState(0);
-  const [authActive, setAuthActive] = useState(0);
-  const handleActive = (index) => {
-    setActive(index);
-  };
-  const handleAuthActive = (index) => {
-    setAuthActive(index);
-  };
-  console.log(authActive, "auth");
+
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -47,9 +36,9 @@ function Navbar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -83,7 +72,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Logo
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -118,7 +107,19 @@ function Navbar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography sx={{ color: "#618264", textAlign: "center" }}>
-                    {page}
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        color: "#618264",
+                        marginLeft: "15px",
+                        textTransform: "capitalize",
+                        fontFamily: "Nunito",
+                        fontWeight: 500,
+                      }}
+                      to={`/${page}`}
+                    >
+                      {page}
+                    </Link>
                   </Typography>
                 </MenuItem>
               ))}
@@ -144,7 +145,8 @@ function Navbar() {
             component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 2,
+              mr: 0,
+              ml: 0,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "Nunito",
@@ -158,42 +160,42 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 3 }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+              // <Button
+              //   key={page}
+              //   onClick={handleCloseNavMenu}
+              //   style={{
+              //     height: "80px",
+              //     color: "#black",
+              //     display: "block",
+              //     fontFamily: "Nunito",
+              //     fontSize: "1rem",
+              //     fontWeight: "500" ,
+              //     marginLeft: ".5rem",
+              //     textTransform: "none" ,
+              //   }}
+              // >
+              <Link
                 style={{
-                  height: "80px",
-                  color: "#black",
-                  display: "block",
+                  textDecoration: "none",
+                  color: "#618264",
+                  marginLeft: "15px",
+                  textTransform: "capitalize",
                   fontFamily: "Nunito",
-                  fontSize: "1rem",
-                  fontWeight: "500" ,
-                  marginLeft: ".5rem",
-                  textTransform: "none" ,
+                  fontWeight: 500,
                 }}
+                to={`/${page}`}
               >
                 {page}
-              </Button>
+              </Link>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <Button
-                sx={{
-                  backgroundColor: "#618264",
-                  color: "#fff",
-                  borderRadius: ".8rem",
-                  marginRight: "1.5rem",
-                  fontSize: "0.8rem",
-                  fontFamily: "Nunito",
-                  ":hover": { backgroundColor: "black" },
-                }}
-              >
-                Upgrade now
-              </Button>
-              <IconButton
-                sx={{
+              <ResponsiveBtns>
+                {/* <IconButton
+              className="icon-btn"
+                    sx={{
                   background: "#618264",
                   p: -2,
                   color: "#fff",
@@ -243,7 +245,8 @@ function Navbar() {
                   text="Signin"
                   color="light"
                 />
-              </Link>
+              </Link> */}
+              </ResponsiveBtns>
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
