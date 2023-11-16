@@ -14,9 +14,7 @@ import Contact from "./views/Contact/Contact";
 
 function App() {
   return (
-    <LandingView
-
-    >
+    <LandingView>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login />} />

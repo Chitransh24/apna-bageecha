@@ -42,7 +42,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/api/user/login",
+        "http://localhost:5000/api/user/login",
         { email, password },
         config
       );
@@ -55,7 +55,7 @@ const Login = () => {
       // setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/chats");
+      navigate("/product");
     } catch (error) {
       const notify = () => {
         toast.error("Error Occures", {
@@ -79,9 +79,8 @@ const Login = () => {
     >
       <h1 style={{ fontFamily: "Nunito" }}>Log in</h1>
       <FormControl>
-        <AbInput placeholder="Email or mobile number" required={true} />
-        <AbInput placeholder="Username" />
-        <AbInput placeholder="Password" required={true} />
+        <AbInput placeholder="Email or mobile number" required={true} onChange = {(e)=>{setEmail(e.target.value)}} />
+        <AbInput placeholder="Password" required={true} onChange = {(e)=>{setPassword(e.target.value)}} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
         <FormControlLabel
           onClick={() => {
