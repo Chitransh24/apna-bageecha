@@ -5,20 +5,21 @@ import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function App(props) {
+function SingleProduct(props) {
   let { imgUrl, title, description, price, quantity, key } = props;
+  const [apiData, setApiData] = useState({});
   const navigate = useNavigate();
-  
+  console.log(quantity);
   const [finalAmount, setFinalAmount] = useState(price);
   const [itemQuantity, setItemQuantity] = useState(quantity);
-  const token = JSON.parse(localStorage.getItem("token"));
-  console.log(token);
+  const token = JSON.parse(localStorage.getItem(["userinfo"]?.token));
+  // console.log(token);
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
     },
-    mode:"cors"
+    // mode: "cors",
   };
   const decrement = () => {
     if (itemQuantity <= 1) {
@@ -35,18 +36,31 @@ function App(props) {
   };
   const checkout = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/payment/checkout", JSON.stringify({
-        items:[{
-          id:key,
-          quantity:itemQuantity,
-          price:finalAmount,
-          name:title
-        }],
-      }),config);
-      res.json();
-      navigate("/home")
+      const response = await axios.post(
+        "http://localhost:5000/api/payment/checkout",
+        {
+          items: [
+            {
+              id: 1,
+              quantity: itemQuantity,
+              price: finalAmount,
+              name: title,
+            },
+          ],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // You can add other Axios configuration options here if needed
+        }
+      );
+
+      // Access response data using response.data
+      console.log(response.data);
+      window.location = response.data.url;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   };
   return (
@@ -68,6 +82,7 @@ function App(props) {
           borderTopRightRadius: "35px",
           borderTopLeftRadius: "35px",
         }}
+        src={imgUrl}
         src={imgUrl}
         alt=""
       />
@@ -110,8 +125,9 @@ function App(props) {
               alignItems: "center",
               textTransform: "none",
             }}
+            onClick={checkout}
           >
-            Buy &#8377;{price}
+            Buy &#8377;{finalAmount ? finalAmount : price}
           </Button>
           <ButtonGroup
             variant="contained"
@@ -130,9 +146,19 @@ function App(props) {
               textTransform: "none",
             }}
           >
-            <Button style={{ border: "none", borderRadius: "10px" }} onClick={decrement}>&#8722;</Button>
+            <Button
+              style={{ border: "none", borderRadius: "10px" }}
+              onClick={decrement}
+            >
+              &#8722;
+            </Button>
             <p>{itemQuantity ? itemQuantity : quantity}</p>
-            <Button style={{ width: "30px", borderRadius: "10px" }} onClick={increment}>&#43;</Button>
+            <Button
+              style={{ width: "30px", borderRadius: "10px" }}
+              onClick={increment}
+            >
+              &#43;
+            </Button>
           </ButtonGroup>
           <IconButton
             id="heart"
@@ -176,4 +202,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default SingleProduct;
