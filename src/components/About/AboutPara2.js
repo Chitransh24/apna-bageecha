@@ -1,5 +1,5 @@
 import React from "react";
-import LandingImage from "../LandingImage/LandingImage"
+import LandingImage from "../../components/LandingImage/LandingImage"
 
 function AboutPara2({src}) {
   return (

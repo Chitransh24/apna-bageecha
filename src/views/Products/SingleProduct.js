@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, ButtonGroup, IconButton } from "@mui/material";
+import React from "react";
+import { Button, ButtonGroup, IconButton, Grid, Typography, Box, CardMedia } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -64,8 +64,11 @@ function SingleProduct(props) {
     }
   };
   return (
-    <div
-      style={{
+
+    <Grid container spacing={1}>  
+    <Grid  item xs={"200px"} sm={6} md={4} lg={3}>   
+    <Box
+      sx={{
         margin: "7rem 0 0 0rem",
         width: "325px",
         borderRadius: "35px",
@@ -73,8 +76,11 @@ function SingleProduct(props) {
         backgroundColor: "#e4e4e4",
       }}
     >
-      <img
-        style={{
+       
+   <Grid  item xs={12} sm={6} md={4} lg={3}>
+       <CardMedia                                            
+      
+        sx={{
           height: "170px",
           width: "325px",
           backgroundSize: "cover",
@@ -82,18 +88,20 @@ function SingleProduct(props) {
           borderTopRightRadius: "35px",
           borderTopLeftRadius: "35px",
         }}
-        src={imgUrl}
-        src={imgUrl}
+        image={imgUrl}
         alt=""
       />
-      <div id="productDetail" style={{ position: "relative" }}>
-        <h3 style={{ color: "#618264", margin: "0.5rem 0 0 1.5rem" }}>
+  </Grid>
+
+      <Box id="productDetail" sx={{ position: "relative" }}>
+      <Grid item xs={12} sm={6} md={4}>
+        <Typography sx={{ color: "#618264", margin: "0.5rem 0 0 1.5rem", fontFamily: "Nunito", fontWeight: 500, fontSize: "1.3rem" }}>
           {" "}
           {title}
-        </h3>
+        </Typography>
 
-        <p
-          style={{
+        <Typography
+          sx={{
             fontSize: "12px",
             textAlign: "left",
             height: "70px",
@@ -104,11 +112,12 @@ function SingleProduct(props) {
           {" "}
           {description}
           Lorem ipsum dolor sit amet consectetur adipisicing Ullam consequuntur
-        </p>
-        <div
+        </Typography>
+        <Box
           id="buttons"
-          style={{ display: "flex", margin: "0.7rem 0 0 1.5rem" }}
+          sx={{ display: "flex", margin: "0.7rem 0 0 1.5rem" }}
         >
+
           <Button
             // TODO - to add payment functionality
             style={{
@@ -124,16 +133,18 @@ function SingleProduct(props) {
               justifyContent: "center",
               alignItems: "center",
               textTransform: "none",
+              ":hover": { backgroundColor: "#618264" },
             }}
             onClick={checkout}
           >
             Buy &#8377;{finalAmount ? finalAmount : price}
           </Button>
+   
           <ButtonGroup
             variant="contained"
             size="small"
             aria-label="outlined primary button group"
-            style={{
+            sx={{
               fontSize: "12px",
               height: "37px",
               borderRadius: "9px",
@@ -146,6 +157,7 @@ function SingleProduct(props) {
               textTransform: "none",
             }}
           >
+
             <Button
               style={{ border: "none", borderRadius: "10px" }}
               onClick={decrement}
@@ -161,8 +173,9 @@ function SingleProduct(props) {
             </Button>
           </ButtonGroup>
           <IconButton
+           variant="contained"
             id="heart"
-            style={{
+            sx={{
               height: "37px",
               width: "40px",
               marginLeft: "8px",
@@ -173,13 +186,14 @@ function SingleProduct(props) {
               justifyContent: "center",
               alignItems: "center",
               color: "white",
+              ":hover": { backgroundColor: "#618264" },
             }}
           >
             <FontAwesomeIcon icon={faHeart} />
           </IconButton>
           <IconButton
             id="info"
-            style={{
+            sx={{
               height: "37px",
               width: "40px",
               marginLeft: "10px",
@@ -192,13 +206,20 @@ function SingleProduct(props) {
               justifyContent: "center",
               alignItems: "center",
               color: "white",
+              ":hover": { backgroundColor: "#618264" },              
             }}
           >
             <FontAwesomeIcon icon={faInfo} />
           </IconButton>
-        </div>
-      </div>
-    </div>
+        </Box>
+  
+      </Grid>
+      </Box>
+    
+    </Box>
+    </Grid>    
+    </Grid>
+ 
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 // import Button from "@mui/material/Button";
 // import AbButton from "./components/AbButton/AbButton";
 // import bgtop from "./assets/bgtop.png";
@@ -29,8 +30,21 @@ import "./Product.css";
 const Products = () => {
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
-  const productPerPage = 3;
+  const productPerPage = 4;
   const pageVisited = pageNumber * productPerPage;
+
+//   const url = "http://localhost:5000/api/product/allProducts";
+
+//   async function getProducts() {
+//     try {
+//       let res = await axios.get(url);
+//       setProducts(res.data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+//   getProducts();
+
   const [products, setProducts] = useState([]);
   let { imgUrl, title, description, price, quantity } = SampleData[0];
   const config = {
@@ -52,10 +66,12 @@ const Products = () => {
     apiCall();
   }, []);
   console.log(products)
+  
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
   };
+
   return (
     <div>
       <div
@@ -128,29 +144,75 @@ const Products = () => {
           /> */}
           </div>
         </Button>
+
+      </div>
+
+      <Video src={Video1} />
+      <About />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+      <Grid container spacing={1}>
+      
+        {products
+          .slice(pageVisited, pageVisited + productPerPage)
+          .map((product) => {
+            return (
+              <>
+                <Grid  item xs={12} sm={6} md={4} lg={3}>
+                <SingleProduct
+                  src={product.imgUrl}
+                  title={product.title}
+                  description={product.description}
+                  price={product.price}
+                  quanitity={product.quanitity}
+                />
+                </Grid>
+              </>
+            );
+          })}
+          </Grid>
+      </Box>
+
+      <ReactPaginate
+        previousLabel={"previous"}
+        nextLabel={"next"}
+        pageCount={pageCount}
+        onPageChange={pageChange}
+        containerClassName="paginationBtns"
+        previousLinkClassName="previousBtn"
+        nextLinkClassName="nextBtn"
+        disabledClassName="paginationDisabled"
+        activeClassName="paginatonActive"
+      />
         {/* <Video src={Video1} /> */}
         {/* <About /> */}
-        <div style={{ textAlign: "right", margin: "5px" }}>
-          <AbButton
-            variant="contained"
-            onClick={() => setOpen(true)}
-            text="Add Products"
-          />
-        </div>
-        <AbModal open={open}>
-          <AddProduct setOpen={setOpen} />
-        </AbModal>
-        {products.map((product) => (
-          <SingleProduct
-            src={product.image}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-            quantity={product.quantity}
-            imgUrl={product.imgUrl}
-            key={product._id}
-          />
-        ))}
+//         <div style={{ textAlign: "right", margin: "5px" }}>
+//           <AbButton
+//             variant="contained"
+//             onClick={() => setOpen(true)}
+//             text="Add Products"
+//           />
+//         </div>
+//         <AbModal open={open}>
+//           <AddProduct setOpen={setOpen} />
+//         </AbModal>
+//         {products.map((product) => (
+//           <SingleProduct
+//             src={product.image}
+//             title={product.title}
+//             description={product.description}
+//             price={product.price}
+//             quantity={product.quantity}
+//             imgUrl={product.imgUrl}
+//             key={product._id}
+//           />
+//         ))}
         {/* <ReactPaginate 
          previousLabel={"previous"}
          nextLabel={"next"}
@@ -177,6 +239,7 @@ const Products = () => {
         })}
          </div> */}
       {/* <TestProduct title={title} description={description} price={price} quantity={quantity} /> */}
+
     </div>
   );
 };
