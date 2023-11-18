@@ -21,7 +21,7 @@ function Contact() {
   useEffect(function sideEffect(){
     console.log("Form side effect")
   }, [])
-
+                          
   return (
     <div
       style={{
@@ -31,8 +31,8 @@ function Contact() {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-      }}
-    >
+      }}>
+
       <h1 style={{ fontFamily: "Nunito", fontWeight: 700 }}>GET IN TOUCH</h1>
       <p>24/7 We will answer your questions and problems </p>
       <FormControl>

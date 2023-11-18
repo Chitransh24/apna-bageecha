@@ -16,20 +16,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ResponsiveBtns from "./ResponsiveBtns";
 
-const pages = [
-  "home",
-  "our Services",
-  "plant & Pricing",
-  "blogs",
-  "resources",
-  "product",
-  "contact",
-];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
-
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -104,38 +93,109 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "#618264", textAlign: "center" }}>
-                    <Link
-                      style={{
-                        textDecoration: "none",
-                        color: "#618264",
-                        marginLeft: "15px",
-                        textTransform: "capitalize",
-                        fontFamily: "Nunito",
-                        fontWeight: 500,
-                      }}
-                      to={`/${page}`}
-                    >
-                      {page}
-                    </Link>
-                  </Typography>
-                </MenuItem>
-              ))}
-              {/* <Button
-                sx={{
-                  backgroundColor: "#618264",
-                  p: -1,
-                  color: "#fff",
-                  borderRadius: ".8rem",
-                  fontSize: "0.8rem",
-                  marginLeft: ".5rem",
-                  ":hover": { backgroundColor: "black" },
-                }}
-              >
-                Upgrade now
-              </Button> */}
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography
+                  sx={{
+                    color: "#618264",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    textAlign: "left",
+                  }}
+                >
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/home`}
+                  >
+                    home
+                  </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/ourservices`}
+                  >
+                    our services
+                  </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/pricing`}
+                  >
+                    plant & pricing
+                  </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/blogs`}
+                  >
+                    blogs
+                  </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/resources`}
+                  >
+                    resources
+                  </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/product`}
+                  >
+                    product
+                  </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/contact`}
+                  >
+                    contact
+                  </Link>
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -159,94 +219,102 @@ function Navbar() {
             Logo
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 3 }}>
-            {pages.map((page) => (
-              // <Button
-              //   key={page}
-              //   onClick={handleCloseNavMenu}
-              //   style={{
-              //     height: "80px",
-              //     color: "#black",
-              //     display: "block",
-              //     fontFamily: "Nunito",
-              //     fontSize: "1rem",
-              //     fontWeight: "500" ,
-              //     marginLeft: ".5rem",
-              //     textTransform: "none" ,
-              //   }}
-              // >
-              <Link
-                style={{
-                  textDecoration: "none",
-                  color: "#618264",
-                  marginLeft: "15px",
-                  textTransform: "capitalize",
-                  fontFamily: "Nunito",
-                  fontWeight: 500,
-                }}
-                to={`/${page}`}
-              >
-                {page}
-              </Link>
-            ))}
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/home`}
+            >
+              home
+            </Link>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/ourservices`}
+            >
+              our services
+            </Link>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/pricing`}
+            >
+              plant & pricing
+            </Link>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/blogs`}
+            >
+              blogs
+            </Link>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/resources`}
+            >
+              resources
+            </Link>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/product`}
+            >
+              product
+            </Link>
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/contact`}
+            >
+              contact
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <ResponsiveBtns>
-                {/* <IconButton
-              className="icon-btn"
-                    sx={{
-                  background: "#618264",
-                  p: -2,
-                  color: "#fff",
-                  ":hover": { backgroundColor: "black" },
-                }}
-              >
-                <NotificationsNone sx={{ p: 0 }} />
-              </IconButton>
-
-              <Link to="/login">
-                <AbButton
-                  sx={{
-                    color: authActive === 0 ? "#FFFFFF" : "#618264",
-                    backgroundColor: authActive === 0 ? "#618264" : "#D0E7D2",
-                    borderRadius: "15px",
-                    height: "2.5rem",
-                    textTransform: "none",
-                    fontSize: "16px",
-                    padding: "0px 1rem",
-                    position: "relative",
-                    left: "30px",
-                    zIndex: authActive ? "" : 9,
-                  }}
-                  variant="contained"
-                  onClick={() => {
-                    handleAuthActive(0);
-                  }}
-                  text="Login"
-                  color="light"
-                />
-              </Link>
-
-              <Link to="/signup">
-                <AbButton
-                  sx={{
-                    color: authActive === 1 ? "#FFFFFF" : "#618264",
-                    backgroundColor: authActive === 1 ? "#618264" : "#D0E7D2",
-                    borderRadius: "15px",
-                    height: "2.5rem",
-                    textTransform: "none",
-                    fontSize: "16px",
-                    padding: "0px 1rem",
-                    marginLeft: "1.1rem",
-                  }}
-                  variant="contained"
-                  onClick={() => handleAuthActive(1)}
-                  text="Signin"
-                  color="light"
-                />
-              </Link> */}
-              </ResponsiveBtns>
+              <ResponsiveBtns></ResponsiveBtns>
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}

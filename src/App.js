@@ -9,8 +9,7 @@ import Home from "./views/Home/Home";
 import Products from "./views/Products/Products";
 import Pricing from "./views/Pricing/Pricing";
 import Contact from "./views/Contact/Contact";
-
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
 
     >
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/home" element={<Home/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/pricing" element={<Pricing/>} />

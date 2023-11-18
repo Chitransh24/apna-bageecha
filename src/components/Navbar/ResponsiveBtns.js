@@ -1,14 +1,25 @@
 import React from "react";
+import Cookies from 'js-cookie';
 // import { styled } from '@emotion/styled'
 // import { styled } from '@mui/system';
 import styled from "@emotion/styled";
 import { Button, IconButton } from "@mui/material";
-import { NotificationsNone } from "@mui/icons-material";
+import { NotificationsNone, Person, ShoppingCart } from "@mui/icons-material";
 import AbButton from "../AbButton/AbButton";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ResponsiveBtns() {
+  
+  useEffect(() => {
+    const getCookies = () => {
+      const myCookies = Cookies.get('userinfo');
+      console.log("Cookies :", myCookies)
+    }
+    getCookies();
+  });
+
+
   const [active, setActive] = useState(0);
   const [authActive, setAuthActive] = useState(0);
   const handleActive = (index) => {
@@ -85,21 +96,10 @@ function ResponsiveBtns() {
 
   return (
     <ButtonWrapper style={{ display: "flex" }}>
-      <Button className="res-btn">Upgrade</Button>
-      <IconButton
-        className="icon-btn"
-        sx={{
-       
-          background: "#618264",
-          p: -2,
-          color: "#fff",
-          ":hover": { backgroundColor: "black" },
-        }}
-      >
-        <NotificationsNone className="notification" sx={{ p: 0 }} />
-      </IconButton>
+      {/* <Button className="res-btn">Upgrade</Button> */}
+   
 
-      <Link to="/login">
+      {/* <Link to="/login">
         <AbButton
           className="login"
           sx={{
@@ -140,7 +140,51 @@ function ResponsiveBtns() {
           text="Signin"
           color="light"
         />
-      </Link>
+      </Link> */}
+
+      <Button className="res-btn">Your plan</Button>
+
+      <IconButton
+        className="icon-btn"
+        sx={{
+       
+          background: "#618264",
+          p: -2,
+          color: "#fff",
+          marginRight: "10px",
+          ":hover": { backgroundColor: "black" },
+        }}
+      >
+        <NotificationsNone className="notification" sx={{ p: 0 }} />
+      </IconButton>
+
+      <IconButton
+        className="icon-btn"
+        sx={{
+       
+          background: "#618264",
+          p: -2,
+          color: "#fff",
+          marginRight: "10px",
+          ":hover": { backgroundColor: "black" },
+        }}
+      >
+        <Person className="notification" sx={{ p: 0 }} />
+      </IconButton>
+   
+      <IconButton
+        className="icon-btn"
+        sx={{
+       
+          background: "#618264",
+          p: -2,
+          color: "#fff",
+          ":hover": { backgroundColor: "black" },
+        }}
+      >
+        <ShoppingCart className="notification" sx={{ p: 0 }} />
+      </IconButton>
+
     </ButtonWrapper>
   );
 }
