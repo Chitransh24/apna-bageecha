@@ -13,9 +13,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
   return (
-    <LandingView
-
-    >
+    <LandingView>
       <Routes>
         <Route path="/home" element={<Home/>} />
         <Route path="/login" element={<Login />} />

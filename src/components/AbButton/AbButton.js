@@ -3,10 +3,9 @@ import React from "react";
 
 const AbButton = (props) => {
   const { text, variant, onClick, color, large } = props;
-  console.log(color);
   return (
     <Button
-    onClick={onclick}
+    onClick={onClick}
       sx={{
         borderRadius: "26px",
         textTransform: "none",

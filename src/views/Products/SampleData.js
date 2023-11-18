@@ -7,7 +7,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -19,7 +19,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae  .",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -31,7 +31,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -43,7 +43,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -55,7 +55,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -67,7 +67,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -79,7 +79,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -91,7 +91,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -103,7 +103,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -115,7 +115,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -127,7 +127,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -139,7 +139,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -151,7 +151,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -163,7 +163,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -175,7 +175,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -187,7 +187,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -199,7 +199,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -211,7 +211,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -223,7 +223,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -235,7 +235,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
   {
@@ -247,7 +247,7 @@
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, vitae.",
     price: 350,
-    quanitity: 1,
+    quantity: 1,
     isWishlisted: false,
   },
 ];

@@ -41,7 +41,7 @@ const Home = () => {
           <p className="legend" style={{width: "150px", textAlign: 'center'}}>Legend 3</p>
         </div>
       </Carousel>
-    </div>
+</div>
   );
 };
 

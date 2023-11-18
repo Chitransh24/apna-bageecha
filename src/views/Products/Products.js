@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 // import Button from "@mui/material/Button";
 // import AbButton from "./components/AbButton/AbButton";
 // import bgtop from "./assets/bgtop.png";
@@ -10,40 +11,66 @@ import LandingImage3 from "../../assets/LandingImage3.jpeg";
 // import Navbar from "./components/Navbar/Navbar";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Button, IconButton, Grid } from "@mui/material";
+import { Button, Fade, Modal, IconButton } from "@mui/material";
 import Video1 from "../../assets/Video.mp4";
 import Video from "../../components/VideoSection/Video";
 import About from "../../components/About/About";
 import SingleProduct from "./SingleProduct";
 import SampleData from "./SampleData";
+import AbButton from "../../components/AbButton/AbButton";
+import Backdrop from "@mui/material/Backdrop";
+import { Box } from "@mui/system";
+import AbModal from "../../components/AbModal/AbModal";
+import AddProduct from "./AddProduct";
+import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
-import axios from "axios";
-import { Box } from "@mui/system";
 
+// import Footer from "./components/Footer/Footer";
 const Products = () => {
-  const [products, setProducts] = useState(SampleData);
+  const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const productPerPage = 4;
   const pageVisited = pageNumber * productPerPage;
 
-  const url = "http://localhost:5000/api/product/allProducts";
+//   const url = "http://localhost:5000/api/product/allProducts";
 
-  async function getProducts() {
-    try {
-      let res = await axios.get(url);
-      setProducts(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  getProducts();
+//   async function getProducts() {
+//     try {
+//       let res = await axios.get(url);
+//       setProducts(res.data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+//   getProducts();
 
+  const [products, setProducts] = useState([]);
+  let { imgUrl, title, description, price, quantity } = SampleData[0];
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+  useEffect(() => {
+    const apiCall = async () => {
+      await axios
+        .get("http://localhost:5000/api/product/allProducts", config)
+        .then((res) => {
+          console.log(res)
+          if (res.data) {
+            setProducts(res.data);
+          }
+        });
+    };
+    apiCall();
+  }, []);
+  console.log(products)
+  
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
   };
-  // console.log(products[0].title)
 
   return (
     <div>
@@ -117,6 +144,7 @@ const Products = () => {
           /> */}
           </div>
         </Button>
+
       </div>
 
       <Video src={Video1} />
@@ -162,6 +190,56 @@ const Products = () => {
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
       />
+        {/* <Video src={Video1} /> */}
+        {/* <About /> */}
+//         <div style={{ textAlign: "right", margin: "5px" }}>
+//           <AbButton
+//             variant="contained"
+//             onClick={() => setOpen(true)}
+//             text="Add Products"
+//           />
+//         </div>
+//         <AbModal open={open}>
+//           <AddProduct setOpen={setOpen} />
+//         </AbModal>
+//         {products.map((product) => (
+//           <SingleProduct
+//             src={product.image}
+//             title={product.title}
+//             description={product.description}
+//             price={product.price}
+//             quantity={product.quantity}
+//             imgUrl={product.imgUrl}
+//             key={product._id}
+//           />
+//         ))}
+        {/* <ReactPaginate 
+         previousLabel={"previous"}
+         nextLabel={"next"}
+         pageCount={pageCount}
+         onPageChange={pageChange}
+         containerClassName="paginationBtns"
+         previousLinkClassName='previousBtn'
+         nextLinkClassName='nextBtn'
+         disabledClassName='paginationDisabled'
+         activeClassName='paginatonActive'
+        /> */}
+      </div>
+      {/* <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
+        {products
+        .slice(pageVisited, pageVisited + productPerPage)
+        .map((product) => {
+          return (
+            <>
+
+            <SingleProduct src={product.imgUrl} title={product.title} description={product.description} price={product.price} quantity={product.quantity} />
+
+            </>
+            );
+        })}
+         </div> */}
+      {/* <TestProduct title={title} description={description} price={price} quantity={quantity} /> */}
+
     </div>
   );
 };
