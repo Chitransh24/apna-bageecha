@@ -11,7 +11,7 @@ import LandingImage3 from "../../assets/LandingImage3.jpeg";
 // import Navbar from "./components/Navbar/Navbar";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Button, Fade, Modal, IconButton } from "@mui/material";
+import { Button, Fade, Modal, IconButton, Grid } from "@mui/material";
 import Video1 from "../../assets/Video.mp4";
 import Video from "../../components/VideoSection/Video";
 import About from "../../components/About/About";
@@ -33,40 +33,56 @@ const Products = () => {
   const productPerPage = 4;
   const pageVisited = pageNumber * productPerPage;
 
-//   const url = "http://localhost:5000/api/product/allProducts";
-
-//   async function getProducts() {
-//     try {
-//       let res = await axios.get(url);
-//       setProducts(res.data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-//   getProducts();
+  const token = localStorage.getItem("token");
 
   const [products, setProducts] = useState([]);
-  let { imgUrl, title, description, price, quantity } = SampleData[0];
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
+  const [display, setDisplay] = useState([]);
+
   useEffect(() => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
     const apiCall = async () => {
       await axios
         .get("http://localhost:5000/api/product/allProducts", config)
         .then((res) => {
-          console.log(res)
           if (res.data) {
-            setProducts(res.data);
+            setProducts(res.data.products);
           }
         });
     };
     apiCall();
   }, []);
-  console.log(products)
-  
+  useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    };
+    const apiCall = async () => {
+      await axios
+        .get("http://localhost:5000/api/user/getWishList", config)
+        .then((res) => {
+          if (res.data.wishItems) {
+            const productsWithWishList = products.map((product) => {
+              const isWishListed = res.data.wishItems.some(
+                (item) => item.product._id === product._id
+              );
+              return {
+                ...product,
+                isWishListed: isWishListed,
+              };
+            });
+            setDisplay(productsWithWishList);
+          }
+        });
+    };
+    apiCall();
+  }, [products]);
+
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
@@ -105,7 +121,6 @@ const Products = () => {
         <Button
           style={{
             fontSize: "12px",
-            // margin: "0 0 1rem 44rem",
             height: "41px",
             width: "140px",
             borderRadius: "25px",
@@ -144,11 +159,20 @@ const Products = () => {
           /> */}
           </div>
         </Button>
-
       </div>
 
       <Video src={Video1} />
       <About />
+      <AbModal open={open}>
+        <AddProduct setOpen={setOpen} />
+      </AbModal>
+      <div style={{ textAlign: "right", margin: "5px" }}>
+        <AbButton
+          variant="contained"
+          onClick={() => setOpen(true)}
+          text="Add Products"
+        />
+      </div>
       <Box
         sx={{
           display: "flex",
@@ -157,26 +181,27 @@ const Products = () => {
           flexWrap: "wrap",
         }}
       >
-      <Grid container spacing={1}>
-      
-        {products
-          .slice(pageVisited, pageVisited + productPerPage)
-          .map((product) => {
-            return (
-              <>
-                <Grid  item xs={12} sm={6} md={4} lg={3}>
-                <SingleProduct
-                  src={product.imgUrl}
-                  title={product.title}
-                  description={product.description}
-                  price={product.price}
-                  quanitity={product.quanitity}
-                />
-                </Grid>
-              </>
-            );
-          })}
-          </Grid>
+        <Grid container spacing={1}>
+          {display
+            .slice(pageVisited, pageVisited + productPerPage)
+            .map((product) => {
+              return (
+                <>
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
+                    <SingleProduct
+                      id={product._id}
+                      src={product.imgUrl}
+                      title={product.title}
+                      description={product.description}
+                      price={product.price}
+                      wish={product.isWishListed}
+                      quantity={product.quantity}
+                    />
+                  </Grid>
+                </>
+              );
+            })}
+        </Grid>
       </Box>
 
       <ReactPaginate
@@ -190,56 +215,8 @@ const Products = () => {
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
       />
-        {/* <Video src={Video1} /> */}
-        {/* <About /> */}
-//         <div style={{ textAlign: "right", margin: "5px" }}>
-//           <AbButton
-//             variant="contained"
-//             onClick={() => setOpen(true)}
-//             text="Add Products"
-//           />
-//         </div>
-//         <AbModal open={open}>
-//           <AddProduct setOpen={setOpen} />
-//         </AbModal>
-//         {products.map((product) => (
-//           <SingleProduct
-//             src={product.image}
-//             title={product.title}
-//             description={product.description}
-//             price={product.price}
-//             quantity={product.quantity}
-//             imgUrl={product.imgUrl}
-//             key={product._id}
-//           />
-//         ))}
-        {/* <ReactPaginate 
-         previousLabel={"previous"}
-         nextLabel={"next"}
-         pageCount={pageCount}
-         onPageChange={pageChange}
-         containerClassName="paginationBtns"
-         previousLinkClassName='previousBtn'
-         nextLinkClassName='nextBtn'
-         disabledClassName='paginationDisabled'
-         activeClassName='paginatonActive'
-        /> */}
-      </div>
-      {/* <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
-        {products
-        .slice(pageVisited, pageVisited + productPerPage)
-        .map((product) => {
-          return (
-            <>
-
-            <SingleProduct src={product.imgUrl} title={product.title} description={product.description} price={product.price} quantity={product.quantity} />
-
-            </>
-            );
-        })}
-         </div> */}
-      {/* <TestProduct title={title} description={description} price={price} quantity={quantity} /> */}
-
+      <Video src={Video1} />
+      <About />
     </div>
   );
 };

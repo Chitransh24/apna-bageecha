@@ -9,7 +9,7 @@ import Home from "./views/Home/Home";
 import Products from "./views/Products/Products";
 import Pricing from "./views/Pricing/Pricing";
 import Contact from "./views/Contact/Contact";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
   return (
