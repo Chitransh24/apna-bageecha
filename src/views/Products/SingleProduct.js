@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, ButtonGroup, IconButton, Grid, Typography, Box, CardMedia } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
@@ -95,7 +95,7 @@ function SingleProduct(props) {
 
       <Box id="productDetail" sx={{ position: "relative" }}>
       <Grid item xs={12} sm={6} md={4}>
-        <Typography sx={{ color: "#618264", margin: "0.5rem 0 0 1.5rem", fontFamily: "Nunito", fontWeight: 500, fontSize: "1.3rem" }}>
+        <Typography sx={{ color: "#618264", margin: "0.5rem 0 0 1.5rem", fontFamily: "Nunito", fontWeight: 500, fontSize: "1.3rem", width: "180px", }}>
           {" "}
           {title}
         </Typography>

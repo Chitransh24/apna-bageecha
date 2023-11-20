@@ -11,7 +11,7 @@ import LandingImage3 from "../../assets/LandingImage3.jpeg";
 // import Navbar from "./components/Navbar/Navbar";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Button, Fade, Modal, IconButton } from "@mui/material";
+import { Button, Fade, Modal, IconButton, Grid } from "@mui/material";
 import Video1 from "../../assets/Video.mp4";
 import Video from "../../components/VideoSection/Video";
 import About from "../../components/About/About";
@@ -21,7 +21,7 @@ import AbButton from "../../components/AbButton/AbButton";
 import Backdrop from "@mui/material/Backdrop";
 import { Box } from "@mui/system";
 import AbModal from "../../components/AbModal/AbModal";
-import AddProduct from "./AddProduct";
+import AddProduct from "./AddProduct";                                  
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
@@ -32,18 +32,6 @@ const Products = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const productPerPage = 4;
   const pageVisited = pageNumber * productPerPage;
-
-//   const url = "http://localhost:5000/api/product/allProducts";
-
-//   async function getProducts() {
-//     try {
-//       let res = await axios.get(url);
-//       setProducts(res.data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-//   getProducts();
 
   const [products, setProducts] = useState([]);
   let { imgUrl, title, description, price, quantity } = SampleData[0];
@@ -73,7 +61,7 @@ const Products = () => {
   };
 
   return (
-    <div>
+      <div>
       <div
         style={{
           display: "flex",
@@ -145,11 +133,11 @@ const Products = () => {
           </div>
         </Button>
 
-      </div>
-
+        </div>
+{/* 
       <Video src={Video1} />
-      <About />
-      <Box
+      <About /> */}
+      {/* <Box
         sx={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -189,31 +177,41 @@ const Products = () => {
         nextLinkClassName="nextBtn"
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
-      />
-        {/* <Video src={Video1} /> */}
-        {/* <About /> */}
-//         <div style={{ textAlign: "right", margin: "5px" }}>
-//           <AbButton
-//             variant="contained"
-//             onClick={() => setOpen(true)}
-//             text="Add Products"
-//           />
-//         </div>
-//         <AbModal open={open}>
-//           <AddProduct setOpen={setOpen} />
-//         </AbModal>
-//         {products.map((product) => (
-//           <SingleProduct
-//             src={product.image}
-//             title={product.title}
-//             description={product.description}
-//             price={product.price}
-//             quantity={product.quantity}
-//             imgUrl={product.imgUrl}
-//             key={product._id}
-//           />
-//         ))}
-        {/* <ReactPaginate 
+      /> */}
+        <Video src={Video1} />
+        <About />
+         <div style={{ textAlign: "right", margin: "5px" }}>
+          <AbButton
+            variant="contained"
+            onClick={() => setOpen(true)}
+            text="Add Products"
+          />
+        </div>
+         <AbModal open={open}>
+          <AddProduct setOpen={setOpen} />
+         </AbModal>
+      <div style={{display: "flex", justifyContent: "center", alignItems: "center"}} >
+
+      <Grid container spacing={1}>
+         {products
+         .slice(pageVisited, pageVisited + productPerPage)
+         .map((product) => (
+          <Grid  item xs={12} sm={6} md={4} lg={3}>
+            <SingleProduct
+            src={product.image}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+            quantity={product.quantity}
+            imgUrl={product.imgUrl}
+            key={product._id}
+          />
+          </Grid>
+        ))}
+        </Grid>
+
+        </div>
+        <ReactPaginate 
          previousLabel={"previous"}
          nextLabel={"next"}
          pageCount={pageCount}
@@ -223,8 +221,8 @@ const Products = () => {
          nextLinkClassName='nextBtn'
          disabledClassName='paginationDisabled'
          activeClassName='paginatonActive'
-        /> */}
-      </div>
+        />
+ 
       {/* <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
         {products
         .slice(pageVisited, pageVisited + productPerPage)
@@ -238,9 +236,9 @@ const Products = () => {
             );
         })}
          </div> */}
-      {/* <TestProduct title={title} description={description} price={price} quantity={quantity} /> */}
+  
+   </div>
 
-    </div>
   );
 };
 

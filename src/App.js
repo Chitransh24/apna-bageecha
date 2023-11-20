@@ -22,7 +22,7 @@ function App() {
         <Route path="/product" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-    </LandingView>
+   </LandingView> 
   );
 }
 
