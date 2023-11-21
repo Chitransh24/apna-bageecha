@@ -16,7 +16,7 @@ function Cart({ toggleCart, open }) {
   useEffect(() => {
     const apiCall = async () => {
       await axios
-        .get("http://localhost:5000/api/user/getCart", config)
+        .get("http://localhost:5000/api/product/getCart", config)
         .then((res) => {
           if (res.data.cartItems) {
             setCartItem(res.data.cartItems);

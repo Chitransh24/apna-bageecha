@@ -13,7 +13,7 @@ import AbButton from "../../components/AbButton/AbButton";
 import Backdrop from "@mui/material/Backdrop";
 import { Box } from "@mui/system";
 import AbModal from "../../components/AbModal/AbModal";
-import AddProduct from "./AddProduct";                                  
+import AddProduct from "./AddProduct";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
@@ -27,8 +27,9 @@ const Products = () => {
 
   const [products, setProducts] = useState([]);
   const [display, setDisplay] = useState([]);
-
+  
   useEffect(() => {
+
     const config = {
       headers: {
         "Content-type": "application/json",
@@ -36,8 +37,9 @@ const Products = () => {
     };
     const apiCall = async () => {
       await axios
-        .get("http://localhost:5000/api/product/allProducts", config)
+        .get("http://localhost:5000/api/product/products", config)
         .then((res) => {
+          console.log(res);
           if (res.data) {
             setProducts(res.data.products);
           }
@@ -54,7 +56,7 @@ const Products = () => {
     };
     const apiCall = async () => {
       await axios
-        .get("http://localhost:5000/api/user/getWishList", config)
+        .get("http://localhost:5000/api/product/getWishList", config)
         .then((res) => {
           if (res.data.wishItems) {
             const productsWithWishList = products.map((product) => {
@@ -66,12 +68,12 @@ const Products = () => {
                 isWishListed: isWishListed,
               };
             });
-            setDisplay(productsWithWishList);
+            // setDisplay(productsWithWishList);
           }
         });
     };
     apiCall();
-  }, [products,]);
+  }, [products]);
 
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
@@ -79,7 +81,7 @@ const Products = () => {
   };
 
   return (
-      <div>
+    <div style={{ width: "100vw", height: "100vh" }}>
       <div
         style={{
           display: "flex",
@@ -143,14 +145,12 @@ const Products = () => {
           ></div>
         </Button>
       </div>
-
-      <Video src={Video1} />
-      <About />
       <AbModal open={open}>
         <AddProduct setOpen={setOpen} />
       </AbModal>
       <div style={{ textAlign: "right", margin: "5px" }}>
         <AbButton
+          sx={{ zIndex: "9999" }}
           variant="contained"
           onClick={() => setOpen(true)}
           text="Add Products"
@@ -197,8 +197,8 @@ const Products = () => {
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
       /> 
-        <Video src={Video1} />
-        <About />
+        {/* <Video src={Video1} /> */}
+        {/* <About /> */}
          <div style={{ textAlign: "right", margin: "5px" }}>
           <AbButton
             variant="contained"
