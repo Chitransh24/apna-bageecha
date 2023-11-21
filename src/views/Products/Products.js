@@ -21,7 +21,7 @@ import AbButton from "../../components/AbButton/AbButton";
 import Backdrop from "@mui/material/Backdrop";
 import { Box } from "@mui/system";
 import AbModal from "../../components/AbModal/AbModal";
-import AddProduct from "./AddProduct";                                  
+import AddProduct from "./AddProduct";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
@@ -35,6 +35,8 @@ const Products = () => {
 
   const [products, setProducts] = useState([]);
   let { imgUrl, title, description, price, quantity } = SampleData[0];
+  const token = JSON.parse(localStorage.getItem(["userinfo"]?.token));
+
   const config = {
     headers: {
       "Content-type": "application/json",
@@ -43,9 +45,9 @@ const Products = () => {
   useEffect(() => {
     const apiCall = async () => {
       await axios
-        .get("http://localhost:5000/api/product/allProducts", config)
+        .get("http://localhost:5000/api/product/products", config)
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.data) {
             setProducts(res.data);
           }
@@ -53,15 +55,41 @@ const Products = () => {
     };
     apiCall();
   }, []);
-  console.log(products)
-  
+  useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    };
+    const apiCall = async () => {
+      await axios
+        .get("http://localhost:5000/api/product/getWishList", config)
+        .then((res) => {
+          if (res.data.wishItems) {
+            const productsWithWishList = products.map((product) => {
+              const isWishListed = res.data.wishItems.some(
+                (item) => item.product._id === product._id
+              );
+              return {
+                ...product,
+                isWishListed: isWishListed,
+              };
+            });
+            // setDisplay(productsWithWishList);
+          }
+        });
+    };
+    apiCall();
+  }, [products]);
+
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
   };
 
   return (
-      <div>
+    <div style={{ width: "100vw", height: "100vh" }}>
       <div
         style={{
           display: "flex",
@@ -132,113 +160,58 @@ const Products = () => {
           /> */}
           </div>
         </Button>
-
-        </div>
-{/* 
-      <Video src={Video1} />
-      <About /> */}
-      {/* <Box
-        sx={{
+      </div>
+      <AbModal open={open}>
+        <AddProduct setOpen={setOpen} />
+      </AbModal>
+      <div style={{ textAlign: "right", margin: "5px" }}>
+        <AbButton
+          sx={{ zIndex: "9999" }}
+          variant="contained"
+          onClick={() => setOpen(true)}
+          text="Add Products"
+        />
+      </div>
+      <div
+        style={{
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "center",
           flexWrap: "wrap",
         }}
       >
-      <Grid container spacing={1}>
-      
-        {products
-          .slice(pageVisited, pageVisited + productPerPage)
-          .map((product) => {
-            return (
-              <>
-                <Grid  item xs={12} sm={6} md={4} lg={3}>
-                <SingleProduct
-                  src={product.imgUrl}
-                  title={product.title}
-                  description={product.description}
-                  price={product.price}
-                  quanitity={product.quanitity}
-                />
-                </Grid>
-              </>
-            );
-          })}
-          </Grid>
-      </Box>
-
-      <ReactPaginate
-        previousLabel={"previous"}
-        nextLabel={"next"}
-        pageCount={pageCount}
-        onPageChange={pageChange}
-        containerClassName="paginationBtns"
-        previousLinkClassName="previousBtn"
-        nextLinkClassName="nextBtn"
-        disabledClassName="paginationDisabled"
-        activeClassName="paginatonActive"
-      /> */}
-        <Video src={Video1} />
-        <About />
-         <div style={{ textAlign: "right", margin: "5px" }}>
-          <AbButton
-            variant="contained"
-            onClick={() => setOpen(true)}
-            text="Add Products"
-          />
-        </div>
-         <AbModal open={open}>
-          <AddProduct setOpen={setOpen} />
-         </AbModal>
-      <div style={{display: "flex", justifyContent: "center", alignItems: "center"}} >
-
-      <Grid container spacing={1}>
-         {products
-         .slice(pageVisited, pageVisited + productPerPage)
-         .map((product) => (
-          <Grid  item xs={12} sm={6} md={4} lg={3}>
-            <SingleProduct
-            src={product.image}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-            quantity={product.quantity}
-            imgUrl={product.imgUrl}
-            key={product._id}
-          />
-          </Grid>
-        ))}
+        <Grid container spacing={1}>
+          {products
+            .slice(pageVisited, pageVisited + productPerPage)
+            .map((product) => {
+              return (
+                <>
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <SingleProduct
+                      src={product.imgUrl}
+                      title={product.title}
+                      description={product.description}
+                      price={product.price}
+                      quanitity={product.quanitity}
+                    />
+                  </Grid>
+                </>
+              );
+            })}
         </Grid>
-
-        </div>
-        <ReactPaginate 
-         previousLabel={"previous"}
-         nextLabel={"next"}
-         pageCount={pageCount}
-         onPageChange={pageChange}
-         containerClassName="paginationBtns"
-         previousLinkClassName='previousBtn'
-         nextLinkClassName='nextBtn'
-         disabledClassName='paginationDisabled'
-         activeClassName='paginatonActive'
+        <ReactPaginate
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          pageCount={pageCount}
+          onPageChange={pageChange}
+          containerClassName="paginationBtns"
+          previousLinkClassName="previousBtn"
+          nextLinkClassName="nextBtn"
+          disabledClassName="paginationDisabled"
+          activeClassName="paginatonActive"
         />
- 
-      {/* <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
-        {products
-        .slice(pageVisited, pageVisited + productPerPage)
-        .map((product) => {
-          return (
-            <>
-
-            <SingleProduct src={product.imgUrl} title={product.title} description={product.description} price={product.price} quantity={product.quantity} />
-
-            </>
-            );
-        })}
-         </div> */}
-  
-   </div>
-
+      </div>
+    </div>
   );
 };
 
