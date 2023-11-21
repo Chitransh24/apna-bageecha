@@ -9,8 +9,9 @@ import AbButton from "../AbButton/AbButton";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-function ResponsiveBtns() {
+function ResponsiveBtns({toggleCart}) {
   
+  console.log(toggleCart)
   useEffect(() => {
     const getCookies = () => {
       const myCookies = Cookies.get('userinfo');
@@ -180,9 +181,11 @@ function ResponsiveBtns() {
           p: -2,
           color: "#fff",
           ":hover": { backgroundColor: "black" },
+
         }}
+        onClick={toggleCart}
       >
-        <ShoppingCart className="notification" sx={{ p: 0 }} />
+        <ShoppingCart className="notification" sx={{ p: 0 }}  />
       </IconButton>
 
     </ButtonWrapper>

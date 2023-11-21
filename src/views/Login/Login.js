@@ -54,6 +54,7 @@ const Login = () => {
       notify();
       // setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("token",data.token)
       setLoading(false);
       navigate("/product");
     } catch (error) {
