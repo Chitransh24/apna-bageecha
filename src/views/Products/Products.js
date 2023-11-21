@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
-
-// import Button from "@mui/material/Button";
-// import AbButton from "./components/AbButton/AbButton";
-// import bgtop from "./assets/bgtop.png";
-// import bgbottom from "../../assets/bgbottom.png";
 import LandingImage from "../../components/LandingImage/LandingImage";
 import LandingImage1 from "../../assets/LandingImage1.jpeg";
 import LandingImage2 from "../../assets/LandingImage2.jpeg";
 import LandingImage3 from "../../assets/LandingImage3.jpeg";
-// import Navbar from "./components/Navbar/Navbar";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Button, Fade, Modal, IconButton, Grid } from "@mui/material";
 import Video1 from "../../assets/Video.mp4";
 import Video from "../../components/VideoSection/Video";
 import About from "../../components/About/About";
 import SingleProduct from "./SingleProduct";
-import SampleData from "./SampleData";
 import AbButton from "../../components/AbButton/AbButton";
 import Backdrop from "@mui/material/Backdrop";
 import { Box } from "@mui/system";
@@ -25,8 +16,6 @@ import AddProduct from "./AddProduct";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
-
-// import Footer from "./components/Footer/Footer";
 const Products = () => {
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
@@ -81,7 +70,7 @@ const Products = () => {
         });
     };
     apiCall();
-  }, [products]);
+  }, [products,]);
 
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
@@ -150,14 +139,7 @@ const Products = () => {
               position: "relative",
               left: "20%",
             }}
-          >
-            {/* <FontAwesomeIcon
-            style={{
-              fontSize: "10px",
-            }}
-            icon={faChevronRight}
-          /> */}
-          </div>
+          ></div>
         </Button>
       </div>
 
@@ -173,12 +155,11 @@ const Products = () => {
           text="Add Products"
         />
       </div>
-      <Box
-        sx={{
+      <div
+        style={{
           display: "flex",
-          justifyContent: "space-evenly",
+          justifyContent: "center",
           alignItems: "center",
-          flexWrap: "wrap",
         }}
       >
         <Grid container spacing={1}>
@@ -202,7 +183,7 @@ const Products = () => {
               );
             })}
         </Grid>
-      </Box>
+      </div>
 
       <ReactPaginate
         previousLabel={"previous"}
@@ -215,8 +196,6 @@ const Products = () => {
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
       />
-      <Video src={Video1} />
-      <About />
     </div>
   );
 };

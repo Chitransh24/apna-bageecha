@@ -66,6 +66,7 @@ function SingleProduct(props) {
       throw new Error(error);
     }
   };
+  
 
   const handleWish = async (id) => {
     try {
