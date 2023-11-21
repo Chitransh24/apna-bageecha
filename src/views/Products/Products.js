@@ -3,6 +3,7 @@ import LandingImage from "../../components/LandingImage/LandingImage";
 import LandingImage1 from "../../assets/LandingImage1.jpeg";
 import LandingImage2 from "../../assets/LandingImage2.jpeg";
 import LandingImage3 from "../../assets/LandingImage3.jpeg";
+
 import { Button, Fade, Modal, IconButton, Grid } from "@mui/material";
 import Video1 from "../../assets/Video.mp4";
 import Video from "../../components/VideoSection/Video";
@@ -12,7 +13,7 @@ import AbButton from "../../components/AbButton/AbButton";
 import Backdrop from "@mui/material/Backdrop";
 import { Box } from "@mui/system";
 import AbModal from "../../components/AbModal/AbModal";
-import AddProduct from "./AddProduct";
+import AddProduct from "./AddProduct";                                  
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
@@ -78,7 +79,7 @@ const Products = () => {
   };
 
   return (
-    <div>
+      <div>
       <div
         style={{
           display: "flex",
@@ -195,8 +196,68 @@ const Products = () => {
         nextLinkClassName="nextBtn"
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
-      />
-    </div>
+      /> 
+        <Video src={Video1} />
+        <About />
+         <div style={{ textAlign: "right", margin: "5px" }}>
+          <AbButton
+            variant="contained"
+            onClick={() => setOpen(true)}
+            text="Add Products"
+          />
+        </div>
+         <AbModal open={open}>
+          <AddProduct setOpen={setOpen} />
+         </AbModal>
+      <div style={{display: "flex", justifyContent: "center", alignItems: "center"}} >
+
+      <Grid container spacing={1}>
+         {products
+         .slice(pageVisited, pageVisited + productPerPage)
+         .map((product) => (
+          <Grid  item xs={12} sm={6} md={4} lg={3}>
+            <SingleProduct
+            src={product.image}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+            quantity={product.quantity}
+            imgUrl={product.imgUrl}
+            key={product._id}
+          />
+          </Grid>
+        ))}
+        </Grid>
+
+        </div>
+        <ReactPaginate 
+         previousLabel={"previous"}
+         nextLabel={"next"}
+         pageCount={pageCount}
+         onPageChange={pageChange}
+         containerClassName="paginationBtns"
+         previousLinkClassName='previousBtn'
+         nextLinkClassName='nextBtn'
+         disabledClassName='paginationDisabled'
+         activeClassName='paginatonActive'
+        />
+ 
+      {/* <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
+        {products
+        .slice(pageVisited, pageVisited + productPerPage)
+        .map((product) => {
+          return (
+            <>
+
+            <SingleProduct src={product.imgUrl} title={product.title} description={product.description} price={product.price} quantity={product.quantity} />
+
+            </>
+            );
+        })}
+         </div> */}
+  
+   </div>
+
   );
 };
 
