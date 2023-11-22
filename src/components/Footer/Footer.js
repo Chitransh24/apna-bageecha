@@ -15,6 +15,7 @@ const Footer = () => {
         gap:"26rem",
         position:"relative",
         bottom:"0px",
+        marginTop:"10rem"
       }}
     >
       <div style={{ display: "flex", flexDirection: "column" ,marginTop:"40px", width:"24%"}}>

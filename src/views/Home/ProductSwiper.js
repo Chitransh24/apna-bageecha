@@ -10,7 +10,7 @@ import styled from "@emotion/styled";
 import SingleProduct from "../Products/SingleProduct";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { SwiperProduct } from "./ProductSwiperStyle";
 function ProductSwiper() {
   const [products, setProducts] = useState([]);
 
@@ -35,21 +35,6 @@ function ProductSwiper() {
   const swiper = useSwiperSlide();
 
       // Styled container for the entire carousel
-      const SwiperProduct = styled.div`
-        width: 85rem;
-        height: 8+0vh; 
-        margin: auto;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #fff;
-      `;
-    const SwiperProduct = styled.div`
-    width: 85rem;
-    margin: auto;
-    height: 5rem;
-    padding: 20px;
-    border-radius: 10px;
-  `;
   const StyledArrowButton = styled.div`
     background-color: #007bff;
     color: #fff;

@@ -64,8 +64,6 @@ function SingleProduct(props) {
     }
   };
 
-  
-
   const handleWish = async (id) => {
     try {
       const response = await axios.patch(
@@ -73,7 +71,7 @@ function SingleProduct(props) {
         {},
         {
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
             "Content-type": "application/json",
           },
         }
@@ -92,7 +90,7 @@ function SingleProduct(props) {
     }
   };
   const handleCart = async (id) => {
-    alert(id)
+    alert(id);
     try {
       const response = await axios.post(
         `http://localhost:5000/api/user/addToCart/${id}`,
@@ -154,7 +152,7 @@ function SingleProduct(props) {
                   fontFamily: "Nunito",
                   fontWeight: 500,
                   fontSize: "1.3rem",
-//                   width: "220px",
+                  //                   width: "220px",
                 }}
               >
                 {" "}
@@ -186,7 +184,7 @@ function SingleProduct(props) {
                     marginRight: "5px",
                     height: "37px",
                     width: "6rem",
-//                     width: "100px",
+                    //                     width: "100px",
                     borderRadius: "10px",
                     backgroundColor: "#618264",
                     border: "none",
@@ -272,7 +270,6 @@ function SingleProduct(props) {
                     ":hover": { backgroundColor: "#618264" },
                   }}
                 >
-
                   <FontAwesomeIcon
                     icon={faCartPlus}
                     onClick={() => handleCart(id)}
@@ -296,9 +293,13 @@ function SingleProduct(props) {
                     ":hover": { backgroundColor: "#618264" },
                   }}
                 >
-                  <FontAwesomeIcon icon={faInfo}  onClick={()=>{
-                    alert(id)
-                    navigate(`/productDetails/:${id}`)}}/>
+                  <FontAwesomeIcon
+                    icon={faInfo}
+                    onClick={() => {
+                      alert(id);
+                      navigate(`/productDetails/${id}`);
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Grid>

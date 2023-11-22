@@ -13,7 +13,7 @@ function ProductDetails() {
         };
         const apiCall = async () => {
           await axios
-            .get(`http://localhost:5000/api/product/getProduct/:${id}`, config)
+            .post(`http://localhost:5000/api/product/getProduct/${id}`, config)
             .then((res) => {
               console.log(res.data.product)
             });
