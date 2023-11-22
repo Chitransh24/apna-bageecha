@@ -58,7 +58,7 @@ const Products = () => {
     };
     const apiCall = async () => {
       await axios
-        .get("http://localhost:5000/api/product/getWishList", config)
+        .get("http://localhost:5000/api/user/getWishList", config)
         .then((res) => {
           if (res.data.wishItems) {
             const productsWithWishList = products.map((product) => {

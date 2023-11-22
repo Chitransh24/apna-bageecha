@@ -73,7 +73,7 @@ function SingleProduct(props) {
         {},
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
             "Content-type": "application/json",
           },
         }
