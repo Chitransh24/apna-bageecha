@@ -6,7 +6,7 @@ import ProductSwiper from "./ProductSwiper";
 
 const Home = () => {
   return (
-    <div>
+    <div style={{minHeight: "100vh",  width: "100vw"}}>
     <HomeCarousel/>
      <ProductSwiper/>
      </div>

@@ -27,9 +27,6 @@ function SingleProduct(props) {
   const decrement = () => {
     if (itemQuantity <= 1) {
       setItemQuantity(1);
-      setFinalAmount(price);
-    } else if (itemQuantity > 1) {
-      setItemQuantity(itemQuantity - 1);
       setFinalAmount(finalAmount - price);
     }
   };
@@ -66,6 +63,7 @@ function SingleProduct(props) {
       throw new Error(error);
     }
   };
+
   
 
   const handleWish = async (id) => {
@@ -122,7 +120,7 @@ function SingleProduct(props) {
   return (
     <Grid container spacing={1}>
       <ToastContainer />
-      <Grid item xs={"200px"} sm={6} md={4} lg={3}>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
         <Box
           sx={{
             margin: "7rem 0 0 0rem",
@@ -156,6 +154,7 @@ function SingleProduct(props) {
                   fontFamily: "Nunito",
                   fontWeight: 500,
                   fontSize: "1.3rem",
+//                   width: "220px",
                 }}
               >
                 {" "}
@@ -186,7 +185,8 @@ function SingleProduct(props) {
                     fontSize: "12px",
                     marginRight: "5px",
                     height: "37px",
-                    width: "100px",
+                    width: "6rem",
+//                     width: "100px",
                     borderRadius: "10px",
                     backgroundColor: "#618264",
                     border: "none",
@@ -272,12 +272,12 @@ function SingleProduct(props) {
                     ":hover": { backgroundColor: "#618264" },
                   }}
                 >
+
                   <FontAwesomeIcon
                     icon={faCartPlus}
                     onClick={() => handleCart(id)}
                   />
                 </IconButton>
-
                 <IconButton
                   id="info"
                   sx={{
