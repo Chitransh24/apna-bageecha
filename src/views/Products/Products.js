@@ -22,26 +22,60 @@ const Products = () => {
   const productPerPage = 4;
   const pageVisited = pageNumber * productPerPage;
 
+  const token = localStorage.getItem("token");
+
   const [products, setProducts] = useState([]);
   const config = {
     headers: {
       "Content-type": "application/json",
     },
   };
+  const [display, setDisplay] = useState([]);
   useEffect(() => {
+    const config = {
+      headers: {
+      },
+    };
     const apiCall = async () => {
       await axios
-        .get("http://localhost:5000/api/product/allProducts", config)
+        .get("http://localhost:5000/api/product/products", config)
         .then((res) => {
           console.log(res);
           if (res.data) {
-            setProducts(res.data);
+            setProducts(res.data.products);
           }
         });
     };
     apiCall();
   }, []);
-  console.log(products);
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    };
+    const apiCall = async () => {
+      await axios
+        .get("http://localhost:5000/api/product/getWishList", config)
+        .then((res) => {
+          if (res.data.wishItems) {
+            const productsWithWishList = products.map((product) => {
+              const isWishListed = res.data.wishItems.some(
+                (item) => item.product._id === product._id
+              );
+              return {
+                ...product,
+                isWishListed: isWishListed,
+              };
+            });
+            setDisplay(productsWithWishList);
+          }
+        });
+    };
+    apiCall();
+  }, [products, display]);
 
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
@@ -49,7 +83,8 @@ const Products = () => {
   };
 
   return (
-    <div>
+
+    <div style={{ width: "100vw", height: "100vh" }}>
       <div
         style={{
           display: "flex",
@@ -109,20 +144,15 @@ const Products = () => {
               fontWeight: "100",
               position: "relative",
               left: "20%",
-            }}
-          > 
-            {/* <FontAwesomeIcon
-            style={{ 
-              fontSize: "10px",  
-            }} 
-          icon={faChevronRight}
-          /> */}
-          </div>
+            }}></div>
         </Button>
       </div>
-
+      <AbModal open={open}>
+        <AddProduct setOpen={setOpen} />
+      </AbModal>
       <div style={{ textAlign: "right", margin: "5px" }}>
         <AbButton
+          sx={{ zIndex: "9999" }}
           variant="contained"
           onClick={() => setOpen(true)}
           text="Add Products"
@@ -157,6 +187,31 @@ const Products = () => {
             ))}
         </Grid>
       </div>
+        }}
+      >
+        <Grid container spacing={1}>
+          {display
+            .slice(pageVisited, pageVisited + productPerPage)
+            .map((product) => {
+              return (
+                <>
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
+                    <SingleProduct
+                      id={product._id}
+                      src={product.imgUrl}
+                      title={product.title}
+                      description={product.description}
+                      price={product.price}
+                      wish={product.isWishListed}
+                      quantity={product.quantity}
+                    />
+                  </Grid>
+                </>
+              );
+            })}
+        </Grid>
+      </div>
+
       <ReactPaginate
         previousLabel={"previous"}
         nextLabel={"next"}
@@ -168,6 +223,16 @@ const Products = () => {
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
       />
+
+      {/* <Video src={Video1} /> */}
+      {/* <About /> */}
+      <div style={{ textAlign: "right", margin: "5px" }}>
+        <AbButton
+          variant="contained"
+          onClick={() => setOpen(true)}
+          text="Add Products"
+        />
+      </div>
     </div>
   );
 };

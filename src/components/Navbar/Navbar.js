@@ -15,13 +15,17 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ResponsiveBtns from "./ResponsiveBtns";
+import Cart from "../../views/Cart/Cart";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const [open,setOpen]=React.useState(false)
+  const toggleCart = () => {
+    setOpen(!open);
+  }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -337,10 +341,11 @@ function Navbar() {
                     About Us
            </Link>
           </Box>
-
+          {/* cart items field */}
+          {open && <Cart toggleCart={toggleCart} open={open}/>}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <ResponsiveBtns></ResponsiveBtns>
+              <ResponsiveBtns toggleCart={toggleCart}></ResponsiveBtns>
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}

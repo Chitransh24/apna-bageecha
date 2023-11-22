@@ -11,6 +11,8 @@ import Pricing from "./views/Pricing/Pricing";
 import Contact from "./views/Contact/Contact";
 import AboutUs from "./views/AboutUs/AboutUs";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import ProductDetails from "./views/Products/ProductDetails";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
         <Route path="/product" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/productDetails/:id" element={<ProductDetails />} />
       </Routes>
    </LandingView> 
   );
