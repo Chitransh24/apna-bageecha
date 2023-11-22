@@ -27,9 +27,8 @@ const Products = () => {
 
   const [products, setProducts] = useState([]);
   const [display, setDisplay] = useState([]);
-  
-  useEffect(() => {
 
+  useEffect(() => {
     const config = {
       headers: {
         "Content-type": "application/json",
@@ -68,12 +67,12 @@ const Products = () => {
                 isWishListed: isWishListed,
               };
             });
-            // setDisplay(productsWithWishList);
+            setDisplay(productsWithWishList);
           }
         });
     };
     apiCall();
-  }, [products]);
+  }, [products, display]);
 
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
@@ -196,27 +195,33 @@ const Products = () => {
         nextLinkClassName="nextBtn"
         disabledClassName="paginationDisabled"
         activeClassName="paginatonActive"
-      /> 
-        {/* <Video src={Video1} /> */}
-        {/* <About /> */}
-         <div style={{ textAlign: "right", margin: "5px" }}>
-          <AbButton
-            variant="contained"
-            onClick={() => setOpen(true)}
-            text="Add Products"
-          />
-        </div>
-         <AbModal open={open}>
-          <AddProduct setOpen={setOpen} />
-         </AbModal>
-      <div style={{display: "flex", justifyContent: "center", alignItems: "center"}} >
-
-      <Grid container spacing={1}>
+      />
+      {/* <Video src={Video1} /> */}
+      {/* <About /> */}
+      <div style={{ textAlign: "right", margin: "5px" }}>
+        <AbButton
+          variant="contained"
+          onClick={() => setOpen(true)}
+          text="Add Products"
+        />
+      </div>
+      <AbModal open={open}>
+        <AddProduct setOpen={setOpen} />
+      </AbModal>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {/* <Grid container spacing={1}>
          {products
          .slice(pageVisited, pageVisited + productPerPage)
          .map((product) => (
           <Grid  item xs={12} sm={6} md={4} lg={3}>
             <SingleProduct
+            id={product._id}
             src={product.image}
             title={product.title}
             description={product.description}
@@ -240,9 +245,9 @@ const Products = () => {
          nextLinkClassName='nextBtn'
          disabledClassName='paginationDisabled'
          activeClassName='paginatonActive'
-        />
- 
-      {/* <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
+        /> */}
+
+        {/* <div style={{display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
         {products
         .slice(pageVisited, pageVisited + productPerPage)
         .map((product) => {
@@ -255,9 +260,8 @@ const Products = () => {
             );
         })}
          </div> */}
-  
-   </div>
-
+      </div>
+    </div>
   );
 };
 
