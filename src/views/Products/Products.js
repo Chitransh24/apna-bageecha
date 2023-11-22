@@ -16,7 +16,7 @@ import AbModal from "../../components/AbModal/AbModal";
 import AddProduct from "./AddProduct";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-import "./Product.css";
+// import "./Product.css";
 const Products = () => {
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
