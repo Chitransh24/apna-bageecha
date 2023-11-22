@@ -11,7 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 function SingleProduct(props) {
@@ -94,6 +94,7 @@ function SingleProduct(props) {
     }
   };
   const handleCart = async (id) => {
+    alert(id)
     try {
       const response = await axios.post(
         `http://localhost:5000/api/user/addToCart/${id}`,
@@ -295,7 +296,9 @@ function SingleProduct(props) {
                     ":hover": { backgroundColor: "#618264" },
                   }}
                 >
-                  <FontAwesomeIcon icon={faInfo} />
+                  <FontAwesomeIcon icon={faInfo}  onClick={()=>{
+                    alert(id)
+                    navigate(`/productDetails/:${id}`)}}/>
                 </IconButton>
               </Box>
             </Grid>
