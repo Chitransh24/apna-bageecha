@@ -198,6 +198,19 @@ function Navbar() {
                   >
                     contact
                   </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/aboutus`}
+                  >
+                    About Us
+                  </Link>
                 </Typography>
               </MenuItem>
             </Menu>
@@ -314,6 +327,19 @@ function Navbar() {
             >
               contact
             </Link>
+            <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#618264",
+                      marginLeft: "15px",
+                      textTransform: "capitalize",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                    }}
+                    to={`/aboutus`}
+                  >
+                    About Us
+           </Link>
           </Box>
           {/* cart items field */}
           {open && <Cart toggleCart={toggleCart} open={open}/>}
