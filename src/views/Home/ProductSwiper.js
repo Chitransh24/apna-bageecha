@@ -38,31 +38,13 @@ function ProductSwiper() {
       // Styled container for the entire carousel
       const SwiperProduct = styled.div`
         width: 85rem;
+        height: 8+0vh; 
         margin: auto;
-        height: 5rem;
         padding: 20px;
         border-radius: 10px;
-      `;
-      const StyledArrowButton = styled.div`
-      background-color: #007bff;
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    
-      &:hover {
-        background-color: #0056b3;
-      }
-    `;
-
-      // Styled slide content
-      const SwiperSingleProduct = styled.div`
-        /* text-align: center;
-        padding: 20px;
         background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
       `;
+  
       
 
   return (
@@ -82,8 +64,7 @@ function ProductSwiper() {
 <Grid container spacing={1}>
          {products.map((product) => (
           <Grid  item xs={12} sm={6} md={4} lg={3}>
-       <SwiperSlide> 
-        <SwiperSingleProduct>
+       <SwiperSlide>  
          <SingleProduct
             src={product.image}
             title={product.title}
@@ -93,8 +74,6 @@ function ProductSwiper() {
             imgUrl={product.imgUrl}
             key={product._id}
           />
-       
-      </SwiperSingleProduct>
           </SwiperSlide>  
           </Grid>
         ))} 

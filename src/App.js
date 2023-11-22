@@ -9,6 +9,7 @@ import Home from "./views/Home/Home";
 import Products from "./views/Products/Products";
 import Pricing from "./views/Pricing/Pricing";
 import Contact from "./views/Contact/Contact";
+import AboutUs from "./views/AboutUs/AboutUs";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/pricing" element={<Pricing/>} />
         <Route path="/product" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
    </LandingView> 
   );

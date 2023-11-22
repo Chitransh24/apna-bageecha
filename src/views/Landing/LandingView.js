@@ -11,7 +11,7 @@ const LandingView = ({ children }) => {
     >
       <Navbar />
 
-      <div style={{flexGrow:"1", height:"100vh"}}>
+      <div style={{flexGrow:"1", height:"100vh", flex: 1}}>
         <img
           style={{ position: "fixed", top: "0", right: "0", zIndex: "-999" }}
           src={bgtop}

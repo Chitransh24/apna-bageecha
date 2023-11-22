@@ -1,5 +1,6 @@
 import React from 'react'
 import { Carousel } from "react-responsive-carousel";
+import LandingImage from "../../assets/LandingImage1.jpeg"
 
 function HomeCarousel() {
   return (
@@ -18,7 +19,7 @@ function HomeCarousel() {
       <div style={{ display: "flex" }}>
         <img 
          style={{height: "35rem"}}
-         alt="" src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1700092800&semt=ais" />
+         alt="Carousal" src={LandingImage}/>
     {/* <p className="legend">Legend 1</p> */}
         
       </div>
