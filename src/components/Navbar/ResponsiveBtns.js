@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import styled from "@emotion/styled";
 import { Button, IconButton } from "@mui/material";
 import { NotificationsNone, Person, ShoppingCart } from "@mui/icons-material";
-import AbButton from "../AbButton/AbButton";
+import AbButton from "../AbButton/AbButton"
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -14,7 +14,7 @@ function ResponsiveBtns({toggleCart}) {
   console.log(toggleCart)
   useEffect(() => {
     const getCookies = () => {
-      const myCookies = Cookies.get('userinfo');
+      const myCookies = JSON.parse(localStorage.getItem("userInfo"));
       console.log("Cookies :", myCookies)
     }
     getCookies();
