@@ -14,7 +14,7 @@ import "./Product.css";
 const Products = () => {
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
-  const productPerPage = 4;
+  const productPerPage = 8;
   const pageVisited = pageNumber * productPerPage;
 
   const token = localStorage.getItem("token");
@@ -85,12 +85,22 @@ const Products = () => {
         height: "100vh",
       }}
     >
-    
+       <AbModal open={open}>
+        <AddProduct setOpen={setOpen} />
+      </AbModal>
+       <div style={{ textAlign: "right", margin: "5px" }}>
+       <AbButton
+          sx={{ zIndex: "9999" }}
+          variant="contained"
+        onClick={() => setOpen(true)}
+        text="Add Products"
+        />
+      </div>
       <div
         style={{
           display: "flex",
-          backgroundColor: "red",
-          marginBottom: "3rem",
+          // backgroundColor: "red",
+          margin: "0  0 1rem 5rem",
         }}
       >
         <Grid container spacing={1} sx={{ marginBottom: "4rem" }}>

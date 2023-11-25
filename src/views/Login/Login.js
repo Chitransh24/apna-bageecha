@@ -1,23 +1,35 @@
-  import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AbInput from "../../components/AbInput/AbInput";
 import { useNavigate } from "react-router-dom";
 import AbButton from "../../components/AbButton/AbButton";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Box, FormControl, FormControlLabel } from "@mui/material";
+import { Box, Button, FormControl, FormControlLabel, Modal } from "@mui/material";
 import AbCheckbox from "../../components/AbCheckbox/AbCheckbox";
 
 const Login = () => {
+  const [passwordReset, setPasswordReset] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  })
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     let isAuth = JSON.parse(localStorage.getItem("userInfo"));
+    console.log(isAuth);
     if (isAuth && isAuth !== null) {
       navigate("/");
     }
   }, []);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  // const [oldPassword, setOldpassword] = useState();
+  // const [newPassword, setNewpassword] = useState();
+  // const [confirmNewPassword, setConfirmNewpassword] = useState();
   const [loading, setLoading] = useState(false);
   const [remember, setRemember] = useState(false);
 
@@ -54,7 +66,7 @@ const Login = () => {
       notify();
       // setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
-      localStorage.setItem("token",data.token)
+      localStorage.setItem("token", data.token);
       setLoading(false);
       navigate("/product");
     } catch (error) {
@@ -66,6 +78,24 @@ const Login = () => {
       notify();
       setLoading(false);
     }
+  };
+
+  let handleInputChange = (event) => {
+    setPasswordReset((currData) => {
+      return { ...currData, [event.target.name]: event.target.value };
+    });
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
   };
 
   return (
@@ -80,27 +110,78 @@ const Login = () => {
     >
       <h1 style={{ fontFamily: "Nunito" }}>Log in</h1>
       <FormControl>
-        <AbInput placeholder="Email or mobile number" required={true} onChange = {(e)=>{setEmail(e.target.value)}} />
-        <AbInput placeholder="Password" required={true} onChange = {(e)=>{setPassword(e.target.value)}} />
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <FormControlLabel
-          onClick={() => {
-            setRemember(!true);
+        <AbInput
+          placeholder="Email or mobile number"
+          required={true}
+          onChange={(e) => {
+            setEmail(e.target.value);
           }}
-          sx={{ margin: "0.5rem " }}
-          control={<AbCheckbox />}
-          label={
-            <Box component="div" sx={{ color: "#618264" }}>
-              remember me
+        />
+        <AbInput
+          placeholder="Password"
+          required={true}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <FormControlLabel
+            onClick={() => {
+              setRemember(!true);
+            }}
+            sx={{ margin: "0.5rem " }}
+            control={<AbCheckbox />}
+            label={
+              <Box component="div" sx={{ color: "#618264" }}>
+                remember me
+              </Box>
+            }
+          />
+          <AbButton
+            onClick={handleOpen}
+            variant="text"
+            text="forget password?"
+            sx={{ fontSize: "1rem", textTransform: "none" }}
+          />
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+            <h2>Forget Password</h2>
+              <FormControl>
+           
+                <AbInput
+                  name="oldPassword"
+                  value={passwordReset.oldPassword}
+                  placeholder="Enter old password"
+                  required={true}
+                  onChange={handleInputChange}
+                />
+                <AbInput
+                  name="newPassword"
+                  value={passwordReset.newPassword}
+                  placeholder="Enter new password"
+                  required={true}
+                  onChange={handleInputChange}
+                />
+                <AbInput
+                  name="confirmNewPassword"
+                  value={passwordReset.confirmNewPassword}
+                  placeholder="Confirm new password"
+                  required={true}
+                  onChange={handleInputChange}
+                />
+                <Button
+                variant="contained"
+                sx={{width: '8rem', borderRadius: "25px", margin: "1rem 0 0 8rem"}}
+                >Confirm</Button>
+              </FormControl>
             </Box>
-          }
-        />
-        <AbButton
-          variant="text"
-          text="forget password?"
-          sx={{ fontSize: "1rem", textTransform: "none" }}
-        />
-      </div>
+          </Modal>
+        </div>
         <AbButton
           type="contained"
           onClick={submitHandler}
@@ -112,5 +193,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

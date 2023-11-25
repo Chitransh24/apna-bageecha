@@ -121,8 +121,8 @@ function SingleProduct(props) {
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Box
           sx={{
-            margin: "7rem 0 0 0rem",
             width: "325px",
+            margin: "0 0 1rem",
             borderRadius: "35px",
             height: "349px",
             backgroundColor: "#e4e4e4",
@@ -152,7 +152,7 @@ function SingleProduct(props) {
                   fontFamily: "Nunito",
                   fontWeight: 500,
                   fontSize: "1.3rem",
-                  //                   width: "220px",
+                  width: "220px",
                 }}
               >
                 {" "}
@@ -280,7 +280,6 @@ function SingleProduct(props) {
                   sx={{
                     height: "37px",
                     width: "40px",
-                    marginLeft: "10px",
                     position: "relative",
                     bottom: "7rem",
                     borderRadius: "10px",

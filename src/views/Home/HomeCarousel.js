@@ -19,7 +19,7 @@ function HomeCarousel() {
     >
       <div style={{ display: "flex" }}>
         <img 
-         style={{height: "35rem"}}
+         style={{height: "35rem", objectFit: "cover"}}
          alt="Carousal" src={LandingImage}/>
 
     {/* <p className="legend">Legend 1</p> */}
@@ -27,7 +27,7 @@ function HomeCarousel() {
       </div>
       <div>
         <img 
-          style={{height: "35rem"}}
+          style={{height: "35rem", objectFit: "cover"}}
           alt=""
           src="https://imgs.search.brave.com/OISyPorU8hQALbUnRjqpNcqrEzV8OV9os39bw_oNisM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9iZWF1dGlmdWwt/bmF0dXJlLW1vdW50/YWluLXNjZW5lcnkt/d2l0aC1mbG93ZXJz/LWZyZWUtcGhvdG8u/anBnP3c9NjAwJnF1/YWxpdHk9ODA"
         />
@@ -35,7 +35,7 @@ function HomeCarousel() {
       </div>
       <div style={{textAlign: "center"}}>
         <img
-          style={{height: "35rem"}}
+          style={{height: "35rem", objectFit: "cover", backgroundSize: 'center' }}
           alt=""
           src="https://imgs.search.brave.com/OISyPorU8hQALbUnRjqpNcqrEzV8OV9os39bw_oNisM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9iZWF1dGlmdWwt/bmF0dXJlLW1vdW50/YWluLXNjZW5lcnkt/d2l0aC1mbG93ZXJz/LWZyZWUtcGhvdG8u/anBnP3c9NjAwJnF1/YWxpdHk9ODA"
         />
