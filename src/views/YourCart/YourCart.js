@@ -3,7 +3,7 @@ import YourCartDetails from "./YourCartDetails";
 import src from "../../assets/LandingImage3.jpeg";
 import { Box } from "@mui/system";
 import { Button, TextField } from "@mui/material";
-import AbButton from "../../components/AbButton/AbButton";
+import AbTextfield from "../../components/AbTextfield/AbTextfield";
 
 function YourCart() {
   return (
@@ -62,13 +62,6 @@ function YourCart() {
         quantity={1}
         total={"350.00"}
       />
-      <YourCartDetails
-        src={src}
-        title={"Flowerm seed"}
-        price={"350.00"}
-        quantity={1}
-        total={"350.00"}
-      />
       <Box
         sx={{
           display: "flex",
@@ -85,23 +78,24 @@ function YourCart() {
           </span>
         </span>
 
-        <TextField
-          sx={{ margin: "1rem 0 0 20rem", width: "25rem" }}
+        <AbTextfield
           id="outlined-multiline-flexible"
+          variant="filled"
           label="Shipping"
-          variant="filled"
+          sx={{ position: "relative", left: "10rem", width: "25rem" }}
         />
-        <TextField
-          sx={{ margin: "1rem 0 0 20rem", width: "25rem" }}
+
+        <AbTextfield
           id="outlined-multiline-flexible"
+          variant="filled"
           label="Address"
-          variant="filled"
+          sx={{ position: "relative", left: "10rem", width: "25rem" }}
         />
-        <TextField
-          sx={{ margin: "1rem 0 0 8.3rem" }}
+        <AbTextfield
           id="outlined-multiline-flexible"
-          label="Coupan code"
           variant="filled"
+          label="Coupon code"
+          sx={{ position: "relative", left: "3.4rem", width: "12rem" }}
         />
         <span style={{ margin: "1rem 0 0 4.5rem" }}>
           <b>Grand Total :</b>{" "}
