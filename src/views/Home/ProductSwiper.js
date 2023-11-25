@@ -32,63 +32,8 @@ function ProductSwiper() {
     apiCall();
   }, []);
 
-  const swiper = useSwiperSlide();
 
-      // Styled container for the entire carousel
-  const StyledArrowButton = styled.div`
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
 
-    &:hover {
-      background-color: #0056b3;
-    }
-  `;
-
-  // Styled slide content
-  const SwiperSingleProduct = styled.div`
-    /* text-align: center;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  `;
-
-      
-
-//   return (
-//     <SwiperProduct>
-//     <Swiper
-//     spaceBetween={10}
-//     slidesPerView={4}
-//     navigation={true}
-//     // pagination={{ clickable: true }}
-//     scrollbar={{ draggable: true }}
-//     modules={[Pagination, Navigation]}
-//     onSlideChange={() => console.log('slide change')}
-//     onSwiper={(swiper) => console.log(swiper)}
-//     css={{  }}
-//   >
-
-// <Grid container spacing={1}>
-//          {products.map((product) => (
-//           <Grid  item xs={12} sm={6} md={4} lg={3}>
-//        <SwiperSlide>  
-//          <SingleProduct
-//             src={product.image}
-//             title={product.title}
-//             description={product.description}
-//             price={product.price}
-//             quantity={product.quantity}
-//             imgUrl={product.imgUrl}
-//             key={product._id}
-//           />
-//           </SwiperSlide>  
-//           </Grid>
-//         ))} 
-//   // Styled container for the entire carousel
 
   return (
     <SwiperProduct>
@@ -107,7 +52,7 @@ function ProductSwiper() {
           {products.map((product) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <SwiperSlide>
-                <SwiperSingleProduct>
+             
                   <SingleProduct
                     src={product.image}
                     title={product.title}
@@ -117,7 +62,6 @@ function ProductSwiper() {
                     imgUrl={product.imgUrl}
                     key={product._id}
                   />
-                </SwiperSingleProduct>
               </SwiperSlide>
             </Grid>
           ))}

@@ -62,13 +62,6 @@ function YourCart() {
         quantity={1}
         total={"350.00"}
       />
-      <YourCartDetails
-        src={src}
-        title={"Flowerm seed"}
-        price={"350.00"}
-        quantity={1}
-        total={"350.00"}
-      />
       <Box
         sx={{
           display: "flex",
@@ -85,12 +78,6 @@ function YourCart() {
           </span>
         </span>
 
-        {/* <TextField
-          sx={{ margin: "1rem 0 0 20rem", width: "25rem" }}
-          id="outlined-multiline-flexible"
-          label="Shipping"
-          variant="filled"
-        /> */}
         <AbTextfield
           id="outlined-multiline-flexible"
           variant="filled"

@@ -10,15 +10,18 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function ResponsiveBtns({toggleCart}) {
-  
+ const [items, setItems] = useState()
+
+useEffect(() => {
+  const items = JSON.parse(localStorage.getItem('userInfo'));
+  // console.log("Agya", items)
+  if (items) {
+   setItems(items);
+  }
+}, []);
+  console.log("Ayan:", items)
   console.log(toggleCart)
-  useEffect(() => {
-    const getCookies = () => {
-      const myCookies = JSON.parse(localStorage.getItem("userInfo"));
-      console.log("Cookies :", myCookies)
-    }
-    getCookies();
-  });
+
 
 
   const [active, setActive] = useState(0);
@@ -33,12 +36,12 @@ function ResponsiveBtns({toggleCart}) {
 
   const ButtonWrapper = styled.section`
     .res-btn {
-      width: "8.2rem";
-      height: "2rem";
+      width: "8.5rem";
+      height: "2.2rem";
       background-color: #618264;
       color: #fff;
       border-radius: .7rem;
-      margin-right: 1.5rem;
+      margin-right: .5rem;
       font-size: 0.8rem;
       font-family: "Nunito";
     }
@@ -97,99 +100,103 @@ function ResponsiveBtns({toggleCart}) {
 
   return (
     <ButtonWrapper style={{ display: "flex" }}>
-      {/* <Button className="res-btn">Upgrade</Button> */}
-   
-
-      {/* <Link to="/login">
-        <AbButton
-          className="login"
-          sx={{
-            color: authActive === 0 ? "#FFFFFF" : "#618264",
-            backgroundColor: authActive === 0 ? "#618264" : "#D0E7D2",
-            borderRadius: "15px",
-            height: "2.5rem",
-            textTransform: "none",
-            fontSize: "16px",
-            padding: "0px 1rem",
-            position: "relative",
-            left: "30px",
-            zIndex: authActive ? "" : 9,
-          }}
-          variant="contained"
-          onClick={() => {
-            handleAuthActive(0);
-          }}
-          text="Login"
-          color="light"
-        />
-      </Link>
-
-      <Link to="/signup">
-        <AbButton
-        className="signup"
-          sx={{
-            color: authActive === 1 ? "#FFFFFF" : "#618264",
-            backgroundColor: authActive === 1 ? "#618264" : "#D0E7D2",
-            borderRadius: "15px",
-            height: "2.5rem",
-            textTransform: "none",
-            fontSize: "16px",
-            marginLeft: "1.1rem",
-          }}
-          variant="contained"
-          onClick={() => handleAuthActive(1)}
-          text="Signin"
-          color="light"
-        />
-      </Link> */}
-
+      { items ?
+      <>
+            
       <Button className="res-btn">Your plan</Button>
-
-      <IconButton
-        className="icon-btn"
-        sx={{
-       
-          background: "#618264",
-          p: -2,
-          color: "#fff",
-          marginRight: "10px",
-          ":hover": { backgroundColor: "black" },
-        }}
-      >
-        <NotificationsNone className="notification" sx={{ p: 0 }} />
-      </IconButton>
-
-      <IconButton
-        className="icon-btn"
-        sx={{
-       
-          background: "#618264",
-          p: -2,
-          color: "#fff",
-          marginRight: "10px",
-          ":hover": { backgroundColor: "black" },
-        }}
-      >
-        <Person className="notification" sx={{ p: 0 }} />
-      </IconButton>
    
-      <IconButton
-        className="icon-btn"
-        sx={{
-       
-          background: "#618264",
-          p: -2,
-          color: "#fff",
-          ":hover": { backgroundColor: "black" },
+   <IconButton
+     className="icon-btn"
+     sx={{
+    
+       background: "#618264",
+       p: -2,
+       color: "#fff",
+       marginRight: "10px",
+       ":hover": { backgroundColor: "black" },
+     }}
+   >
+     <NotificationsNone className="notification" sx={{ p: 0 }} />
+   </IconButton>
+   
+   <IconButton
+     className="icon-btn"
+     sx={{
+    
+       background: "#618264",
+       p: -2,
+       color: "#fff",
+       marginRight: "10px",
+       ":hover": { backgroundColor: "black" },
+     }}
+   >
+     <Person className="notification" sx={{ p: 0 }} />
+   </IconButton>
+   
+   <IconButton
+     className="icon-btn"
+     sx={{
+    
+       background: "#618264",
+       p: -2,
+       color: "#fff",
+       ":hover": { backgroundColor: "black" },
+   
+     }}
+     onClick={toggleCart}
+   >
+     <ShoppingCart className="notification" sx={{ p: 0 }}  />
+   </IconButton>
+         
+         </>
+    : 
+    <> <Button className="res-btn">Upgrade</Button> 
+    <Link to="/login">
+     <AbButton
+       className="login"
+       sx={{
+         color: authActive === 0 ? "#FFFFFF" : "#618264",
+         backgroundColor: authActive === 0 ? "#618264" : "#D0E7D2",
+         borderRadius: "15px",
+         height: "2.5rem",
+         textTransform: "none",
+         fontSize: "16px",
+         padding: "0px 1rem",
+         position: "relative",
+         left: "30px",
+         zIndex: authActive ? "" : 9,
+       }}
+       variant="contained"
+       onClick={() => {
+         handleAuthActive(0);
+       }}
+       text="Login"
+       color="light"
+     />
+   </Link>
 
-        }}
-        onClick={toggleCart}
-      >
-        <ShoppingCart className="notification" sx={{ p: 0 }}  />
-      </IconButton>
-
+   <Link to="/signup">
+     <AbButton
+     className="signup"
+       sx={{
+         color: authActive === 1 ? "#FFFFFF" : "#618264",
+         backgroundColor: authActive === 1 ? "#618264" : "#D0E7D2",
+         borderRadius: "15px",
+         height: "2.5rem",
+         textTransform: "none",
+         fontSize: "16px",
+         marginLeft: "1.1rem",
+       }}
+       variant="contained"
+       onClick={() => handleAuthActive(1)}
+       text="Signin"
+       color="light"
+     />
+   </Link> </> 
+}
     </ButtonWrapper>
   );
+
 }
 
 export default ResponsiveBtns;

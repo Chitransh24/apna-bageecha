@@ -85,22 +85,12 @@ const Products = () => {
         height: "100vh",
       }}
     >
-       <AbModal open={open}>
-        <AddProduct setOpen={setOpen} />
-      </AbModal>
-       <div style={{ textAlign: "right", margin: "5px" }}>
-       <AbButton
-          sx={{ zIndex: "9999" }}
-          variant="contained"
-        onClick={() => setOpen(true)}
-        text="Add Products"
-        />
-      </div>
+  
       <div
         style={{
           display: "flex",
           // backgroundColor: "red",
-          margin: "0  0 1rem 5rem",
+          margin: "4rem 0 1rem 5rem",
         }}
       >
         <Grid container spacing={1} sx={{ marginBottom: "4rem" }}>
