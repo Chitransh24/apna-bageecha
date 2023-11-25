@@ -69,7 +69,7 @@ const Products = () => {
         });
     };
     apiCall();
-  }, [products, display]);
+  }, [products]);
 
   let pageCount = Math.ceil(products.length / productPerPage);
   const pageChange = ({ selected }) => {
