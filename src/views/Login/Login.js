@@ -4,7 +4,13 @@ import { useNavigate } from "react-router-dom";
 import AbButton from "../../components/AbButton/AbButton";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Box, Button, FormControl, FormControlLabel, Modal } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  Modal,
+} from "@mui/material";
 import AbCheckbox from "../../components/AbCheckbox/AbCheckbox";
 
 const Login = () => {
@@ -12,7 +18,7 @@ const Login = () => {
     oldPassword: "",
     newPassword: "",
     confirmNewPassword: "",
-  })
+  });
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -87,15 +93,22 @@ const Login = () => {
   };
 
   const style = {
+    width: "30%",
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    // width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
+    // border: "2px solid #000",
+    boxShadow: "3px 3px 12px 0px rgba(0, 0, 0, 0.10);",
+    padding: "7rem 6rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "20px",
+    border: "0px solid",
   };
 
   return (
@@ -118,6 +131,7 @@ const Login = () => {
           }}
         />
         <AbInput
+          type="password"
           placeholder="Password"
           required={true}
           onChange={(e) => {
@@ -150,9 +164,8 @@ const Login = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-            <h2>Forget Password</h2>
+              <h2>Forget Password</h2>
               <FormControl>
-           
                 <AbInput
                   name="oldPassword"
                   value={passwordReset.oldPassword}
@@ -175,9 +188,15 @@ const Login = () => {
                   onChange={handleInputChange}
                 />
                 <Button
-                variant="contained"
-                sx={{width: '8rem', borderRadius: "25px", margin: "1rem 0 0 8rem"}}
-                >Confirm</Button>
+                  variant="contained"
+                  sx={{
+                    width: "8rem",
+                    borderRadius: "25px",
+                    margin: "1rem 0 0 8rem",
+                  }}
+                >
+                  Confirm
+                </Button>
               </FormControl>
             </Box>
           </Modal>

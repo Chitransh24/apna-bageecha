@@ -26,7 +26,7 @@ function App() {
         <Route path="/product" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/productDetails/:id" element={<ProductDetails />} />
+        <Route path="/productDetails/id" element={<ProductDetails />} />
         <Route path="/cart" element={<YourCart />} />
       </Routes>
    </LandingView> 

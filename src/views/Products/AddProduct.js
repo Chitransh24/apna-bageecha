@@ -145,7 +145,7 @@ function AddProduct({ setOpen }) {
 
         <AbButton
           type="contained"
-          Onclick = {()=> submitHandler}
+          onClick = {()=> submitHandler}
           text="Add Product"
           large={true}
         />
