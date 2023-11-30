@@ -3,7 +3,6 @@
 body{
     background-color: #F8F7F5;
 }
-
-.swiper-scrollbar {
-    border: "none"
-  }  
+::-webkit-scrollbar {
+    display: none;
+}
