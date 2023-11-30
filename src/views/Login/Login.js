@@ -6,6 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Box, Button, FormControl, FormControlLabel, Modal } from "@mui/material";
 import AbCheckbox from "../../components/AbCheckbox/AbCheckbox";
+import ForgetPassword from "../../components/ForgetPassword/ForgetPassword";
 
 const Login = () => {
   const [passwordReset, setPasswordReset] = useState({
@@ -15,7 +16,7 @@ const Login = () => {
   })
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => { return setOpen(false) };
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -143,44 +144,7 @@ const Login = () => {
             text="forget password?"
             sx={{ fontSize: "1rem", textTransform: "none" }}
           />
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-            <h2>Forget Password</h2>
-              <FormControl>
-           
-                <AbInput
-                  name="oldPassword"
-                  value={passwordReset.oldPassword}
-                  placeholder="Enter old password"
-                  required={true}
-                  onChange={handleInputChange}
-                />
-                <AbInput
-                  name="newPassword"
-                  value={passwordReset.newPassword}
-                  placeholder="Enter new password"
-                  required={true}
-                  onChange={handleInputChange}
-                />
-                <AbInput
-                  name="confirmNewPassword"
-                  value={passwordReset.confirmNewPassword}
-                  placeholder="Confirm new password"
-                  required={true}
-                  onChange={handleInputChange}
-                />
-                <Button
-                variant="contained"
-                sx={{width: '8rem', borderRadius: "25px", margin: "1rem 0 0 8rem"}}
-                >Confirm</Button>
-              </FormControl>
-            </Box>
-          </Modal>
+          <ForgetPassword open={open} handleClose={handleClose}/>
         </div>
         <AbButton
           type="contained"

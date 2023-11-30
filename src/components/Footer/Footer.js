@@ -4,20 +4,17 @@ const Footer = () => {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "30rem",
         backgroundColor: "#618264",
         display: "flex",
         justifyContent: "space-around",
         alignContent: "center",
         color:"#FFFFFF",
-        padding:"0px",
-        gap:"26rem",
-        position:"relative",
         bottom:"0px",
-        marginTop:"10rem"
+        marginTop:"2rem",
+        paddingInline:"20px"
       }}
     >
+       <div style={{display:"flex", justifyContent:"space-between"}}>
       <div style={{ display: "flex", flexDirection: "column" ,marginTop:"40px", width:"24%"}}>
         <h1 style={{fontWeight:"700"}}>Apna Bageecha</h1>
         <h4>
@@ -45,6 +42,7 @@ const Footer = () => {
         <p style={{lineHeight:"1px"}}>Sun: Holiday (Office Only)</p>
         <p style={{lineHeight:"1px"}}>Phone: XXXXX XXXXX</p>
         <p style={{lineHeight:"1px"}}>Email: loremipsum@mail.com</p>
+      </div>
       </div>
     </div>
   );

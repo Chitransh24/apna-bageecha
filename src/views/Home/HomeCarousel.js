@@ -12,7 +12,7 @@ function HomeCarousel() {
       centerMode={true}
       centerSlidePercentage={100}
       emulateTouch={true}
-      interval={3000}
+      interval={2000}
       showThumbs={false}
       useKeyboardArrows={true}
       showArrows={false}
