@@ -2,7 +2,8 @@
 
 body{
     background-color: #F8F7F5;
-}
+
 ::-webkit-scrollbar {
     display: none;
 }
+

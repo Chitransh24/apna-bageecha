@@ -17,14 +17,20 @@ const Home = () => {
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          textAlign: "center",
           alignItems: "center",
-          height: "100vh",
-          width: "100vw",
+          height: "100%",
+          width: "100%",
           flexWrap: "wrap",
-          marginLeft: "6rem",
         }}
       >
+          <div style={{padding: "40px 400px"}} >
+            <h1>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, harum.</h1>
+          
+          </div>
+          <div style={{display: "flex", padding:"60px 90px"}} >
         <LandingImage
           src={LandingImage1}
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
@@ -41,12 +47,14 @@ const Home = () => {
           src={LandingImage2}
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
         />
+       </div>
 
+       <div>
         <Button
           style={{
             fontSize: "12px",
-            height: "41px",
-            width: "140px",
+            padding:"8px 21px 8px 43px",
+            width:"100%",
             borderRadius: "25px",
             backgroundColor: "#618264",
             border: "none",
@@ -54,12 +62,9 @@ const Home = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            position: "relative",
-            top: "35%",
-            right: "42%",
           }}
         >
-          <p style={{ marginLeft: "20px", textTransform: "none" }}>More</p>
+          More
           <div
             style={{
               backgroundColor: "#ffffffe6",
@@ -67,15 +72,13 @@ const Home = () => {
               width: "32px",
               borderRadius: "50px",
               color: "black",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
               fontWeight: "100",
               position: "relative",
               left: "20%",
             }}
           ></div>
         </Button>
+        </div>
       </div>
       <ProductSwiper />
     </div>
