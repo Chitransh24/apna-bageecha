@@ -22,10 +22,10 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [open,setOpen]=React.useState(false)
+  const [open, setOpen] = React.useState(false);
   const toggleCart = () => {
     setOpen(!open);
-  }
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -49,24 +49,26 @@ function Navbar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 4,
-              ml: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "Nunito",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "black",
-              textDecoration: "none",
-            }}
-          >
-            Logo
-          </Typography>
+          <Link to={"/"}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 4,
+                ml: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "Nunito",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "black",
+                textDecoration: "none",
+              }}
+            >
+              Logo
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -120,7 +122,7 @@ function Navbar() {
                   >
                     home
                   </Link>
-                  <Link
+                  {/* <Link
                     style={{
                       textDecoration: "none",
                       color: "#618264",
@@ -132,7 +134,7 @@ function Navbar() {
                     to={`/ourservices`}
                   >
                     our services
-                  </Link>
+                  </Link> */}
                   <Link
                     style={{
                       textDecoration: "none",
@@ -146,7 +148,7 @@ function Navbar() {
                   >
                     plant & pricing
                   </Link>
-                  <Link
+                  {/* <Link
                     style={{
                       textDecoration: "none",
                       color: "#618264",
@@ -171,7 +173,7 @@ function Navbar() {
                     to={`/resources`}
                   >
                     resources
-                  </Link>
+                  </Link> */}
                   <Link
                     style={{
                       textDecoration: "none",
@@ -249,7 +251,7 @@ function Navbar() {
             >
               home
             </Link>
-            <Link
+            {/* <Link
               style={{
                 textDecoration: "none",
                 color: "#618264",
@@ -261,7 +263,7 @@ function Navbar() {
               to={`/ourservices`}
             >
               our services
-            </Link>
+            </Link> */}
             <Link
               style={{
                 textDecoration: "none",
@@ -275,7 +277,7 @@ function Navbar() {
             >
               plant & pricing
             </Link>
-            <Link
+            {/* <Link
               style={{
                 textDecoration: "none",
                 color: "#618264",
@@ -300,7 +302,7 @@ function Navbar() {
               to={`/resources`}
             >
               resources
-            </Link>
+            </Link> */}
             <Link
               style={{
                 textDecoration: "none",
@@ -328,21 +330,21 @@ function Navbar() {
               contact
             </Link>
             <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/aboutus`}
-                  >
-                    About Us
-           </Link>
+              style={{
+                textDecoration: "none",
+                color: "#618264",
+                marginLeft: "15px",
+                textTransform: "capitalize",
+                fontFamily: "Nunito",
+                fontWeight: 500,
+              }}
+              to={`/aboutus`}
+            >
+              About Us
+            </Link>
           </Box>
           {/* cart items field */}
-          {open && <Cart toggleCart={toggleCart} open={open}/>}
+          {open && <Cart toggleCart={toggleCart} open={open} />}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <ResponsiveBtns toggleCart={toggleCart}></ResponsiveBtns>

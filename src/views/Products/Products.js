@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Button, Fade, Modal, IconButton, Grid } from "@mui/material";
 
@@ -10,6 +11,7 @@ import AddProduct from "./AddProduct";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
+import AbInput from "../../components/AbInput/AbInput";
 
 const Products = () => {
   const [open, setOpen] = useState(false);
@@ -18,8 +20,10 @@ const Products = () => {
   const pageVisited = pageNumber * productPerPage;
 
   const token = localStorage.getItem("token");
-
+  const [activeCategory, setActiveCategory] = useState("");
   const [products, setProducts] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState("");
   const config = {
     headers: {
       "Content-type": "application/json",
@@ -69,13 +73,43 @@ const Products = () => {
         });
     };
     apiCall();
-  }, [products, display]);
+  }, [products]);
 
-  let pageCount = Math.ceil(products.length / productPerPage);
+  useEffect(() => {
+    if (search) {
+      let filtered = display.filter((item) => {
+        return item.title === search;
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Plants") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "plants";
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Fertilizers") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "fertilizer";
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Equipments") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "equipment";
+      });
+      setFilteredData(filtered);
+    }
+  }, [search, activeCategory]);
+
+  let pageCount = Math.ceil(
+    (filteredData.length > 0 ? filteredData.length : products.length) /
+      productPerPage
+  );
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
   };
-
+  console.log(filteredData, "---------------");
   return (
     <div
       style={{
@@ -85,16 +119,64 @@ const Products = () => {
         height: "100vh",
       }}
     >
-  
       <div
         style={{
           display: "flex",
           // backgroundColor: "red",
           margin: "4rem 0 1rem 5rem",
+          flexDirection: "column",
+          gap: "1rem",
         }}
       >
+        <div
+          style={{
+            display: "flex",
+            gap: "2rem",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <AbButton
+              text="Plants"
+              variant={activeCategory === "Plants" ? "contained" : "outline"}
+              color="primary"
+              onClick={() => setActiveCategory("Plants")}
+              large
+            />
+            <AbButton
+              text="Equipments"
+              variant={
+                activeCategory === "Equipments" ? "contained" : "outline"
+              }
+              color="primary"
+              onClick={() => setActiveCategory("Equipments")}
+              large
+            />
+            <AbButton
+              text="Fertilizers"
+              variant={
+                activeCategory === "Fertilizers" ? "contained" : "outline"
+              }
+              color="primary"
+              onClick={() => setActiveCategory("Fertilizers")}
+              large
+            />
+          </div>
+          <div style={{ marginRight: "5rem" }}>
+            <AbInput
+              type="text"
+              label="Search here"
+              placeholder="Search Here"
+              handleChange={(e) => {
+                setActiveCategory("");
+                setSearch(e.target.value);
+              }}
+              search
+            />
+          </div>
+        </div>
         <Grid container spacing={1} sx={{ marginBottom: "4rem" }}>
-          {display
+          {(filteredData.length > 0 ? filteredData : display)
             .slice(pageVisited, pageVisited + productPerPage)
             .map((product) => {
               return (
@@ -102,7 +184,7 @@ const Products = () => {
                   <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
                     <SingleProduct
                       id={product._id}
-                      src={product.imgUrl}
+                      src={product?.imgUrl}
                       title={product.title}
                       description={product.description}
                       price={product.price}
@@ -133,14 +215,14 @@ const Products = () => {
 
 export default Products;
 // admin wala part
-      // <AbModal open={open}>
-      //   <AddProduct setOpen={setOpen} />
-      // </AbModal>
-      // <div style={{ textAlign: "right", margin: "5px" }}>
-      //   <AbButton
-      //     sx={{ zIndex: "9999" }}
-      //     variant="contained"
-      //     onClick={() => setOpen(true)}
-      //     text="Add Products"
-      //   />
-      // </div>
+// <AbModal open={open}>
+//   <AddProduct setOpen={setOpen} />
+// </AbModal>
+// <div style={{ textAlign: "right", margin: "5px" }}>
+//   <AbButton
+//     sx={{ zIndex: "9999" }}
+//     variant="contained"
+//     onClick={() => setOpen(true)}
+//     text="Add Products"
+//   />
+// </div>
