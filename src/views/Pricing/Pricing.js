@@ -15,19 +15,26 @@ function Pricing() {
   ];
 
   return (
+    <>
+    
     <div style={{ height: "100vh", textAlign: "center" }}>
-      <h1 style={{ marginTop: "7rem", color: "#618264" }}>Our Pricing Plan</h1>
-      <p style={{ position: "relative", bottom: "2.7%" }}>
+    <div style={{padding:"76px"}}>
+      <h1 style={{color: "#618264", fontSize:"50px" }}>Our Pricing Plan</h1>
+      <p style={{}}>
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.kv
       </p>
+      </div>
       <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
       <Subscription title={"Basic"} color={"#618264"} backgroundColor={"#f2f2f2"} services1={services1}/>
       <Subscription title={"Premium"} color={"#f2f2f2"} backgroundColor={"#618264"} services1={services1}/>
       <Subscription title={"Delux"} color={"#618264"} backgroundColor={"#f2f2f2"} services1={services1}/>
       </div>
     </div>
+    
+    </>
   );
 }
+
 
 export default Pricing;

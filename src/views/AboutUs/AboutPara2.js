@@ -5,20 +5,15 @@ function AboutPara2({src}) {
   return (
     <div
       style={{
-        height: "525px",
-        // marginTop: "4rem",
         color: "#676767",
-        textAlign: "left",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
       }}
     >
-      <div style={{margin: "0 6rem 0 4rem" }}>
-        <h1 style={{ color: "#618264", fontSize: "3.5rem", }}>
+      <div style={{width:"76%",margin:"40px 0px 60px 100px"}}>
+        <h1 style={{ color: "#618264", fontSize: "4.5rem", }}>
           Why to Choose Us ?
         </h1>
-        <p style={{}}>
+        <p style={{color: "#676767", fontSize:"22px", fontWeight:"400"}}>
           We at Apna Bageecha are more than just a service; we're your committed
           collaborator in designing a flourishing, exquisite garden. Come along
           for the ride as we go green and let's develop together.
@@ -39,7 +34,9 @@ function AboutPara2({src}) {
           will improve the productivity and health of your garden.
         </p>
       </div>
+      <div style={{margin:"10rem 5rem 0 5rem"}}>
       <LandingImage src={src}/>
+      </div>
     </div>
   );
 }
