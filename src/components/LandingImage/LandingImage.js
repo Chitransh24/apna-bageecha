@@ -7,13 +7,15 @@ const App = ({ src, desc }) => {
       <img
         style={{
           borderRadius: "5.5rem",
+          height: "450px",
+          width: "320px",
           height: "67vh",
           width: "20vw",
         }}
         src={src}
         alt="landingimage1"
       />
-      <p style={{ width: "230px", margin: "0 0 2rem 0.8rem" }}>{desc}</p>
+      <span style={{display: "block", width: "auto", margin:"auto", paddingTop:"14px"}}>{desc}</span>
     </div>
   );
 };

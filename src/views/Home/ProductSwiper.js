@@ -42,7 +42,6 @@ function ProductSwiper() {
         slidesPerView={4}
         navigation={true}
         // pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
         modules={[Pagination, Navigation]}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}

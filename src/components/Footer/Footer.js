@@ -39,7 +39,7 @@ const Footer = () => {
         <p style={{lineHeight:"1px"}}>Phone: XXXXX XXXXX</p>
         <p style={{lineHeight:"1px"}}>Email: loremipsum@mail.com</p>
       </div>
-    </div>
+      </div>
   );
 };
 
