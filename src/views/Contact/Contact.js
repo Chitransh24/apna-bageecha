@@ -2,6 +2,7 @@ import { Button, FormControl, Input, TextareaAutosize } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import AbInput from "../../components/AbInput/AbInput";
 import AbButton from "../../components/AbButton/AbButton";
+import LandingImage1 from "../../assets/LandingImage1.jpeg"
 
 function Contact() {
   let [formData, setFormData] = useState({
@@ -18,25 +19,28 @@ function Contact() {
     });
   };
 
-  useEffect(function sideEffect(){
+  useEffect(function sideEffect() {
     console.log("Form side effect")
   }, [])
-                          
+
   return (
+    <>
+    <div style={{display:"flex",  fontFamily: "Nunito"}}>
+    <div style={{width:"45%"}}>
+      <img src={LandingImage1} style={{width:"100%", height:"100%"}}></img>
+    </div>
     <div
       style={{
-        height: "100vh",
         backgroundColor: "#f0f0f0",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         flexDirection: "column",
+        padding:"40px 90px 60px 90px",
+        width: "65%"
       }}>
 
-      <h1 style={{ fontFamily: "Nunito", fontWeight: 700 }}>GET IN TOUCH</h1>
-      <p>24/7 We will answer your questions and problems </p>
-      <FormControl>
-        <div style={{ display: "flex" }}>
+      <h1 style={{ fontFamily: "Nunito", fontWeight: "1000", letterSpacing:"2px"}}>GET IN TOUCH</h1>
+      <p style={{paddingBottom:"50px"}}>24/7 We will answer your questions and problems </p>
+      <FormControl sx={{display:"flex", gap:"27px"}}>
+        <div style={{ display: "flex", gap:"20px"}}>
           <input
             id="firstname"
             name="firstName"
@@ -44,15 +48,11 @@ function Contact() {
             value={formData.firstName}
             onChange={handleInputChange}
             style={{
-              width: "18.5rem",
-              height: '3rem',
-              color: "black",
-              marginRight: "10px",
               borderRadius: "25px",
               backgroundColor: "#e3e3e3",
-              border: "1px solid black",
-              textAlign: "center",
-              marginBottom: "10px"
+              border: "none",
+              padding: "20px",
+              width: "50%"
             }}
           />
           <input
@@ -62,15 +62,11 @@ function Contact() {
             value={formData.lastName}
             onChange={handleInputChange}
             style={{
-              width: "13rem",
-              height: "3rem",
-              color: "black",
-              marginRight: "10px",
               borderRadius: "25px",
               backgroundColor: "#e3e3e3",
-              border: "1px solid black",
-              textAlign: "center",
-              marginBottom: "10px"
+              padding: "20px",
+              width: "50%",
+              border: "none"
             }}
           />
         </div>
@@ -80,17 +76,12 @@ function Contact() {
           placeholder="Email"
           value={formData.email}
           onChange={handleInputChange}
-          style={{        
-          // width: "18.5rem",
-          height: '3rem',
-          color: "black",
-          marginRight: "10px",
-          borderRadius: "25px",
-          backgroundColor: "#e3e3e3",
-          border: "1px solid black",
-          textAlign: "center",
-          marginBottom: "10px"
-        }}
+          style={{
+            borderRadius: "25px",
+            backgroundColor: "#e3e3e3",
+            padding: "20px",
+            border: "none"
+          }}
         />
         <input
           id="phonenumber"
@@ -98,16 +89,11 @@ function Contact() {
           placeholder="Phone number"
           value={formData.phoneNumber}
           onChange={handleInputChange}
-          style={{        
-            // width: "18.5rem",
-            height: '3rem',
-            color: "black",
-            marginRight: "10px",
+          style={{
             borderRadius: "25px",
             backgroundColor: "#e3e3e3",
-            border: "1px solid black",
-            textAlign: "center",
-            marginBottom: "10px"
+            padding: "20px",
+            border: "none"
           }}
         />
 
@@ -120,20 +106,19 @@ function Contact() {
           cols="70"
           rows="10"
           style={{
-            borderRadius: "3rem",
+            borderRadius: "25px",
             backgroundColor: "#e3e3e3",
-            textAlign: "center",
-            fontFamily: "Nunito",
-            // border: "none",
-            color: "black",
-            marginBottom: "5%",
+            padding: "20px",
+            border: "none",
+            resize:"none",
+            fontFamily: "Nunito"
           }}
         ></textarea>
-        <AbButton type="contained" text="Sign in" large={true}>
-          Submit
-        </AbButton>
+        <AbButton type="contained" text="SEND" large={true}/>
       </FormControl>
     </div>
+    </div>
+    </>
   );
 }
 

@@ -5,26 +5,17 @@ function Heading() {
 
         <div
         style={{
-          height: "300px",
-          width: "100vw",
           backgroundColor: "#618264",
           color: "#dbdbdb",
           textAlign: "center",
           fontSize: "2rem",
-          position: "relative",
-          bottom: "2.6rem",
         }}
       >
-        <h1 style={{ position: "relative", top: "2rem" }}>
-          Welcome to <b style={{ color: "#fff" }}>Apna Bageecha</b>, Your <br />{" "}
-          Ideal Kitchen Garden Compainion!
-        </h1>
-        <hr
-          style={{ width: "900px", height: "2px", backgroundColor: "#fff" }}
-        />
-        <p style={{ position: "relative", bottom: "1rem" }}>
-         Where Home Grown Godness Thrives 🌱🌿
-        </p>
+        <div style={{padding:"30px", display:"flex", flexDirection:"column", color:"white"}}>
+           <span style={{ margin:"0",fontSize:"100px",fontWeight:"1000"}}>APNA</span>
+           <span style={{ margin:"0",fontSize:"100px",position: "relative",top: "-41px",fontWeight:"1000"}}>BAGEECHA</span>
+           <span style={{position: "relative",top: "-41px", fontSize:"1.5rem", fontWeight:"400"}}>"where homegrown goodness thrives!"</span>
+        </div>
       </div>
     
   )

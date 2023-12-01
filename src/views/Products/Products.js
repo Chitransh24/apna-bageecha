@@ -123,7 +123,6 @@ const Products = () => {
         style={{
           display: "flex",
           // backgroundColor: "red",
-          margin: "4rem 0 1rem 5rem",
           flexDirection: "column",
           gap: "1rem",
         }}
@@ -175,6 +174,7 @@ const Products = () => {
             />
           </div>
         </div>
+
         <Grid container spacing={1} sx={{ marginBottom: "4rem" }}>
           {(filteredData.length > 0 ? filteredData : display)
             .slice(pageVisited, pageVisited + productPerPage)
@@ -196,7 +196,9 @@ const Products = () => {
               );
             })}
         </Grid>
-      </div>
+        
+        </div>
+     
       <ReactPaginate
         previousLabel={"previous"}
         nextLabel={"next"}
@@ -209,7 +211,6 @@ const Products = () => {
         activeClassName="paginatonActive"
       />
     </div>
-    // </div>
   );
 };
 

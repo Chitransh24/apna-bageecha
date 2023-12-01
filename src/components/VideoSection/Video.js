@@ -4,12 +4,7 @@ function Video({ src }) {
   return (
     <div
       style={{
-        height: "100vh",                                                                                                                  
-        width: "100vw",
-        backgroundColor: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+
       }}                          
     >
       {/* <video style={{ height: "650px", Width: "400px", borderRadius: "60px",  }}  src={src}></video> */}
@@ -17,7 +12,7 @@ function Video({ src }) {
         loop
         muted
         autoPlay
-        style={{ height: "650px", Width: "400px", borderRadius: "60px" }}
+        style={{ width:"100%" }}
       >
         <source src={src} type="video/mp4" />
       </video>
