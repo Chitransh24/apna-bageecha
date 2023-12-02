@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
-  ButtonGroup,
   IconButton,
   Grid,
   Typography,
   Box,
   CardMedia,
 } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import axios from "axios";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Favorite from "@mui/icons-material/Favorite";
 
 function SingleProduct(props) {
   // console.log(props);
   const { src, title, description, price, quantity, id, wish } = props;
-  const [apiData, setApiData] = useState({});
   const navigate = useNavigate();
   const [finalAmount, setFinalAmount] = useState(price);
   const [itemQuantity, setItemQuantity] = useState(quantity);
@@ -190,11 +187,12 @@ function SingleProduct(props) {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      color: wish ? "red" : "white",
+                      color: "white",
                       ":hover": { backgroundColor: "#618264" },
                     }}
                   >
-                    <FontAwesomeIcon icon={faHeart} />
+                    { wish ?  <Favorite/> : <FavoriteBorderIcon/>}
+              
                   </IconButton>
                 </div>
               </div>
