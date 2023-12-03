@@ -7,7 +7,6 @@ function AbTextfield(props) {
     <TextField
       sx={{
       width:large ? "25rem" :"",
-
     }}
       label={label ? label : ""}
       variant={variant ? variant : "filled"}
