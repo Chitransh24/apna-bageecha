@@ -11,8 +11,16 @@ import SingleProduct from "../Products/SingleProduct";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SwiperProduct } from "./ProductSwiperStyle";
+import AbButton from "../../components/AbButton/AbButton";
+import { useNavigate, useNavigation } from "react-router-dom";
+const token = localStorage.getItem("token");
+
 function ProductSwiper() {
   const [products, setProducts] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const [display, setDisplay] = useState([]);
+  const navigate = useNavigate();
 
   const config = {
     headers: {
@@ -32,10 +40,104 @@ function ProductSwiper() {
     apiCall();
   }, []);
 
+  useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    };
+    const apiCall = async () => {
+      await axios
+        .get("http://localhost:5000/api/user/getWishList", config)
+        .then((res) => {
+          if (res.data.wishItems) {
+            const productsWithWishList = products.map((product) => {
+              const isWishListed = res.data.wishItems.some(
+                (item) => item.product._id === product._id
+              );
+              return {
+                ...product,
+                isWishListed: isWishListed,
+              };
+            });
+            setDisplay(productsWithWishList);
+          }
+        });
+    };
+    apiCall();
+  }, [products]);
 
+  useEffect(() => {
+    if (activeCategory === "Plants") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "plants";
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Fertilizers") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "fertilizer";
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Equipments") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "equipment";
+      });
+      setFilteredData(filtered);
+    }
+  }, [activeCategory]);
 
-
+console.log(filteredData)
   return (
+    <>
+    <h1>Popular in Gardening Products</h1>
+       <div
+          style={{
+            display: "flex",
+            gap: "2rem",
+            justifyContent: "space-between",
+          }}
+        >
+         
+          <div>
+            <AbButton
+              text="Plants"
+              variant={activeCategory === "Plants" ? "contained" : "outline"}
+              color="primary"
+              onClick={() => setActiveCategory("Plants")}
+              large
+            />
+            <AbButton
+              text="Equipments"
+              variant={
+                activeCategory === "Equipments" ? "contained" : "outline"
+              }
+              color="primary"
+              onClick={() => setActiveCategory("Equipments")}
+              large
+            />
+            <AbButton
+              text="Fertilizers"
+              variant={
+                activeCategory === "Fertilizers" ? "contained" : "outline"
+              }
+              color="primary"
+              onClick={() => setActiveCategory("Fertilizers")}
+              large
+            />
+          </div>
+          <div style={{ marginRight: "5rem" }}>
+           <AbButton
+           text="See all"
+           variant="contained"
+           large
+           onClick={() => navigate(`/product`)}
+           />
+           
+          </div>
+        </div>
     <SwiperProduct>
       <Swiper
         spaceBetween={10}
@@ -47,8 +149,11 @@ function ProductSwiper() {
         onSwiper={(swiper) => console.log(swiper)}
         css={{}}
       >
+      
         <Grid container spacing={1}>
-          {products.map((product) => (
+        {(filteredData.length > 0 ? filteredData : display)
+            .map((product) => {
+              return (
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <SwiperSlide>
              
@@ -58,15 +163,18 @@ function ProductSwiper() {
                     description={product.description}
                     price={product.price}
                     quantity={product.quantity}
+                    wish={product.isWishListed}
                     imgUrl={product.imgUrl}
                     key={product._id}
                   />
               </SwiperSlide>
             </Grid>
-          ))}
+              );
+              })}
         </Grid>
       </Swiper>
     </SwiperProduct>
+    </>
   );
 }
 

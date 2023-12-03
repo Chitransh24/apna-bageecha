@@ -158,8 +158,7 @@ const Login = () => {
             text="forget password?"
             sx={{ fontSize: "1rem", textTransform: "none" }}
           />
-
-          <ForgetPassword open={open} handleClose={handleClose}/>
+           <ForgetPassword open={open} handleClose={handleClose}/>
         </div>
         <AbButton
           type="contained"
