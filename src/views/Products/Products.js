@@ -13,6 +13,7 @@ import ReactPaginate from "react-paginate";
 import "./Product.css";
 import AbInput from "../../components/AbInput/AbInput";
 
+
 const Products = () => {
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
@@ -74,7 +75,7 @@ const Products = () => {
     };
     apiCall();
   }, [products]);
-
+  console.log("Kalashnikavo ",display)
   useEffect(() => {
     if (search) {
       let filtered = display.filter((item) => {
