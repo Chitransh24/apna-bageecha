@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Button, Fade, Modal, IconButton, Grid } from "@mui/material";
+import { Button, Fade, Modal, IconButton, Grid, InputAdornment } from "@mui/material";
 
 import SingleProduct from "./SingleProduct";
 import AbButton from "../../components/AbButton/AbButton";
@@ -163,7 +163,7 @@ const Products = () => {
             />
           </div>
           <div style={{ marginRight: "5rem" }}>
-            <AbInput
+          <AbInput
               type="text"
               label="Search here"
               placeholder="Search Here"

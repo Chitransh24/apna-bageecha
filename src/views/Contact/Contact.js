@@ -27,7 +27,7 @@ function Contact() {
     <>
     <div style={{display:"flex",  fontFamily: "Nunito"}}>
     <div style={{width:"45%"}}>
-      <img src={LandingImage1} style={{width:"100%", height:"100%"}}></img>
+      <img src={LandingImage1} alt="ConTactImage" style={{width:"100%", height:"100%"}}></img>
     </div>
     <div
       style={{

@@ -11,6 +11,7 @@ const AbButton = (props) => {
         textTransform: "none",
         backgroundColor: color? color :"",
         height:large ? "3.5rem" :"",
+        fontFamily: "Nunito"
       }}
       variant={variant ? variant : "contained"}
       {...props}
