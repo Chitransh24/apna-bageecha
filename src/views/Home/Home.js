@@ -80,7 +80,6 @@ const Home = () => {
         </Button>
         </div>
       </div>
-
       <ProductSwiper/> 
     </div>
   );

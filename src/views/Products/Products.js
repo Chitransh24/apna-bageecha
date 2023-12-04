@@ -139,7 +139,7 @@ const Products = () => {
           <div style={{display:"flex", alignItems:"center", gap:"16px", height:"70%"}}>
             <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Plants"
-              variant={activeCategory === "Plants" ? "contained" : "outline"}
+              variant={activeCategory === "Plants" ? "contained" : "outlined"}
               color="primary"
               onClick={() => setActiveCategory("Plants")}
               large
@@ -147,7 +147,7 @@ const Products = () => {
             <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Equipments"
               variant={
-                activeCategory === "Equipments" ? "contained" : "outline"
+                activeCategory === "Equipments" ? "contained" : "outlined"
               }
               color="primary"
               onClick={() => setActiveCategory("Equipments")}
@@ -156,7 +156,7 @@ const Products = () => {
             <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Fertilizers"
               variant={
-                activeCategory === "Fertilizers" ? "contained" : "outline"
+                activeCategory === "Fertilizers" ? "contained" : "outlined"
               }
               color="primary"
               onClick={() => setActiveCategory("Fertilizers")}
