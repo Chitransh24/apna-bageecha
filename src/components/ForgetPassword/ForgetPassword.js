@@ -20,15 +20,13 @@ function ForgetPassword({open, handleClose}) {
       };
 
       const style = {
+        borderRadius:"23px",
         position: "absolute",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: 400,
         bgcolor: "background.paper",
-        border: "2px solid #000",
         boxShadow: 24,
-        p: 4,
       };
     
 
@@ -40,7 +38,9 @@ function ForgetPassword({open, handleClose}) {
     aria-describedby="modal-modal-description"
   >
     <Box sx={style}>
-    <h2>Forget Password</h2>
+      <div style={{padding:"5rem 9rem", borderRadius:"29px"}}>
+        <div>
+    <h2 style={{fontSize:"19px", fontWeight:"500", paddingLeft:"15px"}} >Forget Password ?</h2></div>
       <FormControl>
    
         <AbInput
@@ -66,10 +66,12 @@ function ForgetPassword({open, handleClose}) {
         />
         <Button
         variant="contained"
-        sx={{width: '8rem', borderRadius: "25px", margin: "1rem 0 0 8rem"}}
+        sx={{width: '8rem', borderRadius: "25px", margin: "auto",padding: "10px 16px"}}
         >Confirm</Button>
       </FormControl>
+      </div>
     </Box>
+   
   </Modal>
   )
 }

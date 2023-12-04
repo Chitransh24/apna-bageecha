@@ -120,11 +120,11 @@ const Signup = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        marginBottom: "10%",
+        margin: "11% 0%",
       }}
     >
-      <h1 style={{ fontFamily: "Nunito" }}>Log in</h1>
-      <FormControl>
+      <h1 style={{ fontFamily: "Nunito" , fontSize:"35px"}}>Sign Up</h1>
+      <FormControl sx={{gap:"8px", width:"519px"}}>
         <AbInput
           onChange={(e) => {
             setEmail(e.target.value);

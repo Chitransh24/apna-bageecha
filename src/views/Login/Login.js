@@ -119,11 +119,11 @@ const Login = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        marginBottom: "10%",
+        margin: "11% 0%",
       }}
     >
-      <h1 style={{ fontFamily: "Nunito" }}>Log in</h1>
-      <FormControl>
+      <h1 style={{ fontFamily: "Nunito", padding:"30px 0px", fontSize:"35px"}}>Log in</h1>
+      <FormControl sx={{gap:"8px", width:"519px"}}>
         <AbInput
           placeholder="Email or mobile number"
           required={true}

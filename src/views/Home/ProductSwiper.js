@@ -1,11 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide, useSwiperSlide } from "swiper/react";
 import { Grid } from "@mui/material";
-import "swiper/css";
+
 // import 'swiper/css/pagination';
 // import 'swiper/css/navigation';
-import "swiper/css/bundle";
-import { Navigation, Pagination } from "swiper/modules";
+
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import styled from "@emotion/styled";
 import SingleProduct from "../Products/SingleProduct";
 import axios from "axios";
@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import { SwiperProduct } from "./ProductSwiperStyle";
 import AbButton from "../../components/AbButton/AbButton";
 import { useNavigate, useNavigation } from "react-router-dom";
+import "swiper/css";
+import "swiper/css/bundle";
 const token = localStorage.getItem("token");
 
 function ProductSwiper() {
@@ -43,7 +45,7 @@ function ProductSwiper() {
   useEffect(() => {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,
         "Content-type": "application/json",
       },
     };
@@ -92,24 +94,25 @@ function ProductSwiper() {
 console.log(filteredData)
   return (
     <>
+    <div style={{paddingInline:"90px"}}>
     <h1>Popular in Gardening Products</h1>
        <div
           style={{
             display: "flex",
-            gap: "2rem",
+            gap: "3rem",
             justifyContent: "space-between",
           }}
         >
          
-          <div>
-            <AbButton
+          <div style={{display:"flex", alignItems:"center", gap:"16px", height:"70%"}}>
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Plants"
               variant={activeCategory === "Plants" ? "contained" : "outline"}
               color="primary"
               onClick={() => setActiveCategory("Plants")}
               large
             />
-            <AbButton
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Equipments"
               variant={
                 activeCategory === "Equipments" ? "contained" : "outline"
@@ -118,7 +121,7 @@ console.log(filteredData)
               onClick={() => setActiveCategory("Equipments")}
               large
             />
-            <AbButton
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Fertilizers"
               variant={
                 activeCategory === "Fertilizers" ? "contained" : "outline"
@@ -128,8 +131,8 @@ console.log(filteredData)
               large
             />
           </div>
-          <div style={{ marginRight: "5rem" }}>
-           <AbButton
+          <div style={{}}>
+           <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
            text="See all"
            variant="contained"
            large
@@ -138,13 +141,16 @@ console.log(filteredData)
            
           </div>
         </div>
+      
     <SwiperProduct>
       <Swiper
+      scrollbar={{ draggable: true }}
+        autoplay={true}
         spaceBetween={10}
         slidesPerView={4}
-        navigation={true}
+        // navigation={true}
         // pagination={{ clickable: true }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation,Scrollbar,Autoplay]}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
         css={{}}
@@ -158,14 +164,14 @@ console.log(filteredData)
               <SwiperSlide>
              
                   <SingleProduct
-                    src={product.image}
+                    src={product.imgUrl}
                     title={product.title}
                     description={product.description}
                     price={product.price}
                     quantity={product.quantity}
                     wish={product.isWishListed}
-                    imgUrl={product.imgUrl}
-                    key={product._id}
+                    // imgUrl={product.imgUrl}
+                    id={product._id}
                   />
               </SwiperSlide>
             </Grid>
@@ -174,6 +180,7 @@ console.log(filteredData)
         </Grid>
       </Swiper>
     </SwiperProduct>
+    </div>
     </>
   );
 }
