@@ -7,12 +7,12 @@ function YourCartDetails(props) {
     <div
       style={{
         display: "flex",
-        justifyContent: "space-evenly",
+        justifyContent: "space-between",
         alignItems: "center",
-        marginTop: "3.5rem",
         color: "#121212",
       }}
     >
+      <div style={{alignItems:"center", display:"flex", gap:"50px"}}>
       <img
         src={src}
         alt=""
@@ -21,16 +21,17 @@ function YourCartDetails(props) {
           height: "7rem",
           borderRadius: "1rem",
           position: "relative",
-          right: "6%",
         }}
       />
-      <b style={{ position: "relative", right: "15%" }}>
+      <b style={{}}>
         {" "}
         <span>{title}</span>
       </b>
-      <b style={{ position: "relative", right: "11%" }}>
+      </div>
+      <b style={{ position: "relative", right: "9%" }}>
         <span>&#8377;{price}</span>
       </b>
+      
       <ButtonGroup
         variant="contained"
         size="small"
@@ -47,16 +48,16 @@ function YourCartDetails(props) {
           border: "none",
           textTransform: "none",
           position: "relative",
-          right: "7.3%",
+          right: "4%",
         }}
       >
-        <Button style={{ border: "none", borderRadius: "10px" }}>
+        <Button style={{ border: "none", borderRadius: "10px",}}>
           &#8722;
         </Button>
         <p>{quantity}</p>
         <Button style={{ width: "30px", borderRadius: "10px" }}>&#43;</Button>
       </ButtonGroup>
-      <b style={{ position: "relative", right: "4%" }}>
+      <b style={{ position: "relative" }}>
         <span>&#8377;{total}</span>
       </b>
     </div>

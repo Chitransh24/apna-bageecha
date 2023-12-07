@@ -112,15 +112,16 @@ function SingleProduct(props) {
   };
 
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={0}>
       <ToastContainer />
       <Grid item xs={12} sm={6} md={4} lg={3}>
+        
         <Box
           sx={{
-            width: "24rem",
+            width: "21rem",
             margin: "0 0 1rem",
             borderRadius: "35px",
-            height: "22rem",
+            height: "21rem",
             backgroundColor: "#e4e4e4",
             cursor: "pointer",
           }}
@@ -128,8 +129,8 @@ function SingleProduct(props) {
           <Grid item xs={12} sm={6} md={4} lg={3}>
             <CardMedia
               sx={{
-                height: "14.375rem",
-                width: "24rem",
+                height: "12.375rem",
+                width: "21rem",
                 backgroundSize: "cover",
                 objectFit: "cover",
                 borderTopRightRadius: "35px",
@@ -172,7 +173,7 @@ function SingleProduct(props) {
                       : "Lorem ipsum dolor sit amet consectetur adipisicing Ullam consequuntur"}
                   </Typography>
                 </div>
-                <div style={{ marginTop: "10px", marginLeft: "4.5rem" }}>
+                <div style={{ marginTop: "10px", marginLeft: "1.5rem" }}>
                   <IconButton
                     onClick={() => handleWish(id)}
                     variant="contained"
