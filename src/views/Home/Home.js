@@ -7,6 +7,7 @@ import LandingImage1 from "../../assets/LandingImage1.jpeg";
 import LandingImage2 from "../../assets/LandingImage2.jpeg";
 import LandingImage3 from "../../assets/LandingImage3.jpeg";
 import { Button } from "@mui/material";
+import NewArrivals from "./NewArrivals";
 // import Video1 from "../../assets/Video.mp4";
 // import Video from "../../components/VideoSection/Video";
 
@@ -80,6 +81,7 @@ const Home = () => {
         </Button>
         </div>
       </div>
+      <NewArrivals/>
       <ProductSwiper />
     </div>
   );
