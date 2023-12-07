@@ -18,6 +18,7 @@ const AbButton = (props) => {
           backgroundColor: '#618264 !important',
         },
 
+        fontFamily: "Nunito"
       }}
       variant={variant ? variant : "contained"}
       {...props}
