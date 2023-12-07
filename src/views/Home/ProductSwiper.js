@@ -15,6 +15,7 @@ import AbButton from "../../components/AbButton/AbButton";
 import { useNavigate, useNavigation } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/bundle";
+import { hover } from "@testing-library/user-event/dist/hover";
 const token = localStorage.getItem("token");
 
 function ProductSwiper() {
@@ -91,28 +92,58 @@ function ProductSwiper() {
     }
   }, [activeCategory]);
 
-console.log(filteredData)
+  console.log(filteredData)
   return (
     <>
-    <div style={{paddingInline:"90px"}}>
-    <h1>Popular in Gardening Products</h1>
-       <div
+      <div style={{ paddingInline: "90px" }}>
+        <h1>Popular in Gardening Products</h1>
+        <div
           style={{
             display: "flex",
             gap: "3rem",
             justifyContent: "space-between",
+            marginBlock: "48px 8px",
           }}
         >
-         
-          <div style={{display:"flex", alignItems:"center", gap:"16px", height:"70%"}}>
-            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+
+          <div style={{ display: "flex", alignItems: "center", gap: "16px", height: "70%" }}>
+            <AbButton sx={{
+              padding: "9px 83px",
+              backgroundColor: "#fff",
+              border: "2px solid #618264",
+              borderRadius: "39px",
+              textTransform: "none",
+              height: "100%",
+              color:"#111",
+              '&:hover': {
+                backgroundColor: '#618264',
+                color:"#fff"
+              },
+              '&:focus': {
+                backgroundColor: '#618264',
+                color:"#fff"
+              },
+            }}
               text="Plants"
               variant={activeCategory === "Plants" ? "contained" : "outline"}
               color="primary"
               onClick={() => setActiveCategory("Plants")}
               large
             />
-            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+            <AbButton sx={{
+              padding: "9px 83px", backgroundColor: "#DBDBDB", borderRadius: "39px", textTransform: "none", height: "100%",
+               '&:hover': {
+                backgroundColor: '#618264',
+                color:"#fff"
+              },
+              '&:focus': {
+                backgroundColor: '#618264',
+                color:"#fff"
+                
+              },
+              backgroundColor: "#fff",
+              border: "2px solid #618264",
+            }}
               text="Equipments"
               variant={
                 activeCategory === "Equipments" ? "contained" : "outline"
@@ -121,7 +152,16 @@ console.log(filteredData)
               onClick={() => setActiveCategory("Equipments")}
               large
             />
-            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+            <AbButton sx={{ padding: "9px 83px", backgroundColor: "#DBDBDB", borderRadius: "39px", textTransform: "none", height: "100%",  '&:hover': {
+                backgroundColor: '#618264',
+                color:"#fff"  
+              },
+              '&:focus': {
+                backgroundColor: '#618264',
+                color:"#fff"
+              },
+              backgroundColor: "#fff",
+              border: "2px solid #618264", }}
               text="Fertilizers"
               variant={
                 activeCategory === "Fertilizers" ? "contained" : "outline"
@@ -132,55 +172,57 @@ console.log(filteredData)
             />
           </div>
           <div style={{}}>
-           <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
-           text="See all"
-           variant="contained"
-           large
-           onClick={() => navigate(`/product`)}
-           />
-           
+            <AbButton sx={{ padding: "9px 83px", backgroundColor: "#618264", borderRadius: "39px", textTransform: "none", height: "100%" 
+            
+          }}
+              text="See all"
+              variant="contained"
+              large
+              onClick={() => navigate(`/product`)}
+            />
+
           </div>
         </div>
-      
-    <SwiperProduct>
-      <Swiper
-      scrollbar={{ draggable: true }}
-        autoplay={true}
-        spaceBetween={10}
-        slidesPerView={4}
-        // navigation={true}
-        // pagination={{ clickable: true }}
-        modules={[Pagination, Navigation,Scrollbar,Autoplay]}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-        css={{}}
-      >
-      
-        <Grid container spacing={1}>
-        {(filteredData.length > 0 ? filteredData : display)
-            .map((product) => {
-              return (
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-              <SwiperSlide>
-             
-                  <SingleProduct
-                    src={product.imgUrl}
-                    title={product.title}
-                    description={product.description}
-                    price={product.price}
-                    quantity={product.quantity}
-                    wish={product.isWishListed}
-                    // imgUrl={product.imgUrl}
-                    id={product._id}
-                  />
-              </SwiperSlide>
+
+        <SwiperProduct>
+          <Swiper
+            scrollbar={{ draggable: true }}
+            autoplay={true}
+            spaceBetween={10}
+            slidesPerView={4}
+            // navigation={true}
+            // pagination={{ clickable: true }}
+            modules={[Pagination, Navigation, Scrollbar, Autoplay]}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+            css={{}}
+          >
+
+            <Grid container spacing={1}>
+              {(filteredData.length > 0 ? filteredData : display)
+                .map((product) => {
+                  return (
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                      <SwiperSlide>
+
+                        <SingleProduct
+                          src={product.imgUrl}
+                          title={product.title}
+                          description={product.description}
+                          price={product.price}
+                          quantity={product.quantity}
+                          wish={product.isWishListed}
+                          // imgUrl={product.imgUrl}
+                          id={product._id}
+                        />
+                      </SwiperSlide>
+                    </Grid>
+                  );
+                })}
             </Grid>
-              );
-              })}
-        </Grid>
-      </Swiper>
-    </SwiperProduct>
-    </div>
+          </Swiper>
+        </SwiperProduct>
+      </div>
     </>
   );
 }

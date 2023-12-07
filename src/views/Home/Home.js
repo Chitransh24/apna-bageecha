@@ -1,7 +1,7 @@
 import React from "react";
 import HomeCarousel from "./HomeCarousel";
 import ProductSwiper from "./ProductSwiper";
-
+import banner1 from "../../assets/banner 1.jpg"
 import LandingImage from "../../components/LandingImage/LandingImage";
 import LandingImage1 from "../../assets/LandingImage1.jpeg";
 import LandingImage2 from "../../assets/LandingImage2.jpeg";
@@ -13,7 +13,7 @@ import { Button } from "@mui/material";
 const Home = () => {
   return (
     <div style={{ minHeight: "100vh", width: "100vw" }}>
-      <HomeCarousel />
+      <HomeCarousel src={banner1} />
       <div
         style={{
           display: "flex",
@@ -78,8 +78,11 @@ const Home = () => {
             }}
           ></div>
         </Button>
+        
         </div>
       </div>
+
+      <div style={{marginTop:"120px", backgroundColor:"#CDCDCD", height:"1px"}}></div> 
       <ProductSwiper/> 
     </div>
   );

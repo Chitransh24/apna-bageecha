@@ -11,6 +11,13 @@ const AbButton = (props) => {
         textTransform: "none",
         backgroundColor: color? color :"",
         height:large ? "3.5rem" :"",
+        '&:hover': {
+          backgroundColor: '#618264 !important',
+        },
+        '&:focus': {
+          backgroundColor: '#618264 !important',
+        },
+
       }}
       variant={variant ? variant : "contained"}
       {...props}

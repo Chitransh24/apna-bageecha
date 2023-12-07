@@ -36,8 +36,7 @@ useEffect(() => {
 
   const ButtonWrapper = styled.section`
     .res-btn {
-      width: "8.5rem";
-      height: "2.2rem";
+      padding-inline:30px;
       background-color: #618264;
       color: #fff;
       border-radius: .7rem;
@@ -157,7 +156,7 @@ useEffect(() => {
        sx={{
          color: authActive === 0 ? "#FFFFFF" : "#618264",
          backgroundColor: authActive === 0 ? "#618264" : "#D0E7D2",
-         borderRadius: "15px",
+         borderRadius: "0.7rem",
          height: "2.5rem",
          textTransform: "none",
          fontSize: "16px",
@@ -165,7 +164,7 @@ useEffect(() => {
          position: "relative",
          left: "30px",
          zIndex: authActive ? "" : 9,
-       }}
+        }}
        variant="contained"
        onClick={() => {
          handleAuthActive(0);
@@ -181,7 +180,7 @@ useEffect(() => {
        sx={{
          color: authActive === 1 ? "#FFFFFF" : "#618264",
          backgroundColor: authActive === 1 ? "#618264" : "#D0E7D2",
-         borderRadius: "15px",
+         borderRadius: "0.7rem",
          height: "2.5rem",
          textTransform: "none",
          fontSize: "16px",
