@@ -16,6 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ResponsiveBtns from "./ResponsiveBtns";
 import Cart from "../../views/Cart/Cart";
+import { BoxStyle, LinkStyle, Typography1Style } from "./HomeStyle";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -34,7 +35,6 @@ function Navbar() {
   // };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -50,27 +50,27 @@ function Navbar() {
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Link to={"/"}>
-            <Typography
+            {/* <Typography1Style
               variant="h6"
               noWrap
               component="a"
               href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 4,
-                ml: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "Nunito",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "black",
-                textDecoration: "none",
-              }}
+          // sx={{
+              //   mr: 4,
+              //   ml: 2,
+              //   display: { xs: "none", md: "flex" },
+              //   fontFamily: "Nunito",
+              //   fontWeight: 700,
+              //   letterSpacing: ".3rem",
+              //   color: "black",
+              //   textDecoration: "none",
+              // }}
             >
               Logo
-            </Typography>
+            </Typography1Style> */}
           </Link>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <BoxStyle sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -100,249 +100,32 @@ function Navbar() {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography
-                  sx={{
-                    color: "#618264",
-                    textAlign: "center",
-                    display: "flex",
-                    flexDirection: "column",
-                    textAlign: "left",
-                  }}
-                >
-                  <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/home`}
-                  >
-                    home
-                  </Link>
-                  {/* <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/ourservices`}
-                  >
-                    our services
-                  </Link> */}
-                  <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/pricing`}
-                  >
-                    plant & pricing
-                  </Link>
-                  {/* <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/blogs`}
-                  >
-                    blogs
-                  </Link>
-                  <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/resources`}
-                  >
-                    resources
-                  </Link> */}
-                  <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/product`}
-                  >
-                    product
-                  </Link>
-                  <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/contact`}
-                  >
-                    contact
-                  </Link>
-                  <Link
-                    style={{
-                      textDecoration: "none",
-                      color: "#618264",
-                      marginLeft: "15px",
-                      textTransform: "capitalize",
-                      fontFamily: "Nunito",
-                      fontWeight: 500,
-                    }}
-                    to={`/aboutus`}
-                  >
-                    About Us
-                  </Link>
-                </Typography>
+                <Typography1Style color="black" textAlign="left">
+                  <LinkStyle to={`/home`}>home</LinkStyle>
+                  <LinkStyle to={`/pricing`}>plant & pricing</LinkStyle>
+                  <LinkStyle to={`/product`}>product</LinkStyle>
+                  <LinkStyle to={`/contact`}>contact</LinkStyle>
+                  <LinkStyle to={`/aboutus`}>About Us</LinkStyle>
+                </Typography1Style>
               </MenuItem>
             </Menu>
-          </Box>
+          </BoxStyle>
 
-          <Typography
+          <Typography1Style
             variant="h5"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 0,
-              ml: 0,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "Nunito",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
           >
             Logo
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 3 }}>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/home`}
-            >
-              home
-            </Link>
-            {/* <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/ourservices`}
-            >
-              our services
-            </Link> */}
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/pricing`}
-            >
-              plant & pricing
-            </Link>
-            {/* <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/blogs`}
-            >
-              blogs
-            </Link>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/resources`}
-            >
-              resources
-            </Link> */}
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/product`}
-            >
-              product
-            </Link>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/contact`}
-            >
-              contact
-            </Link>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "#618264",
-                marginLeft: "15px",
-                textTransform: "capitalize",
-                fontFamily: "Nunito",
-                fontWeight: 500,
-              }}
-              to={`/aboutus`}
-            >
-              About Us
-            </Link>
-          </Box>
+          </Typography1Style>
+          <BoxStyle sx={{ display: { xs: "none", md: "flex" }, ml: 4 }}>
+            <LinkStyle to={`/home`}>home</LinkStyle>
+            <LinkStyle to={`/pricing`}>plant & pricing</LinkStyle>
+            <LinkStyle to={`/product`}>product</LinkStyle>
+            <LinkStyle to={`/contact`}>contact</LinkStyle>
+            <LinkStyle to={`/aboutus`}>About Us</LinkStyle>
+          </BoxStyle>
           {/* cart items field */}
           {open && <Cart toggleCart={toggleCart} open={open} />}
           <Box sx={{ flexGrow: 0 }}>
