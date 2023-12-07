@@ -36,7 +36,7 @@ const AbInput = (props) => {
     // />
     <StyledTextField
       // shadow={}
-      sx={{ textAlign: "center" }}
+      sx={{ textAlign: "left",}}
       name={name ? name : " "}
       required={required ? true : false}
       id="outlined-required"
@@ -52,13 +52,12 @@ const AbInput = (props) => {
       InputProps={{
         shrink: true,
         style: {
+          height:"100%",
           borderRadius: "3.3125rem",
           padding: "0rem 7rem",
-          boxShadow: search ? "none" : "1px 4px 14px 0px rgba(0, 0, 0, 0.15)",
-          border: "1px solid #618264",
           marginBottom: "0.66rem",
-          textAlign: "center",
-          background: search ? "white" : "",
+          textAlign: "left",
+          background: search ? "#DBDBDB" : "",
           //   margin:"0px auto"
         },
       }}

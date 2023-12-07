@@ -117,7 +117,6 @@ const Products = () => {
         display: "flex",
         flexDirection: "column",
         width: "100vw",
-        height: "100vh",
       }}
     >
       <div
@@ -133,39 +132,41 @@ const Products = () => {
             display: "flex",
             gap: "2rem",
             justifyContent: "space-between",
+            padding:"50px 20px",
+            
           }}
         >
-          <div>
-            <AbButton
+          <div style={{display:"flex", alignItems:"center", gap:"16px", height:"70%"}}>
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Plants"
-              variant={activeCategory === "Plants" ? "contained" : "outline"}
+              variant={activeCategory === "Plants" ? "contained" : "outlined"}
               color="primary"
               onClick={() => setActiveCategory("Plants")}
               large
             />
-            <AbButton
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Equipments"
               variant={
-                activeCategory === "Equipments" ? "contained" : "outline"
+                activeCategory === "Equipments" ? "contained" : "outlined"
               }
               color="primary"
               onClick={() => setActiveCategory("Equipments")}
               large
             />
-            <AbButton
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
               text="Fertilizers"
               variant={
-                activeCategory === "Fertilizers" ? "contained" : "outline"
+                activeCategory === "Fertilizers" ? "contained" : "outlined"
               }
               color="primary"
               onClick={() => setActiveCategory("Fertilizers")}
               large
             />
           </div>
-          <div style={{ marginRight: "5rem" }}>
-          <AbInput
+
+          <div style={{height:"70%"}}>
+            <AbInput
               type="text"
-              label="Search here"
               placeholder="Search Here"
               handleChange={(e) => {
                 setActiveCategory("");
@@ -176,7 +177,7 @@ const Products = () => {
           </div>
         </div>
 
-        <Grid container spacing={1} sx={{ marginBottom: "4rem" }}>
+        <Grid container spacing={0} sx={{ marginBottom: "4rem" }}>
           {(filteredData.length > 0 ? filteredData : display)
             .slice(pageVisited, pageVisited + productPerPage)
             .map((product) => {
