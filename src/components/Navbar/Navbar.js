@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import ResponsiveBtns from "./ResponsiveBtns";
 import Cart from "../../views/Cart/Cart";
-import { BoxStyle, LinkStyle, Typography1Style } from "./HomeStyle";
+import { BoxStyle, LinkStyle, Typography1Style } from "./NavbarStyles";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 

@@ -1,11 +1,7 @@
 import { Typography } from "@mui/material";
-import { styled } from "@mui/system";
-import { Box, Container } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Box, styled } from "@mui/system";
 
-
-
-export const BoxStyle = styled(Typography)(({ flexDirection, alignItems, marginBlock, justifyContent, width }) => ({
+export const BoxStyle = styled(Box)(({ flexDirection, alignItems, marginBlock, justifyContent, width }) => ({
     backgroundColor: "#618264",
     display: "flex",
     flexDirection: flexDirection ? flexDirection : "",
@@ -17,11 +13,11 @@ export const BoxStyle = styled(Typography)(({ flexDirection, alignItems, marginB
     width : width ? width : "",
  
 }));
-export const LiStyles = styled("li")(({ flexDirection, }) => ({
+export const LiStyles = styled("li")(({ theme }) => ({
     listStyle: "none",
     margin: "10px 40px 0px 0px",
 }));
-export const Pstyles = styled("p")(({ flexDirection, }) => ({
+export const Pstyles = styled("p")(({ theme }) => ({
     lineHeight: "1px"
 }));
 
