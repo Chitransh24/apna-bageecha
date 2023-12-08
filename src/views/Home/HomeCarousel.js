@@ -3,7 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import LandingImage from "../../assets/LandingImage1.jpeg"
 
 
-function HomeCarousel() {
+function HomeCarousel({src}) {
   return (
         
     <Carousel
@@ -20,7 +20,7 @@ function HomeCarousel() {
       <div style={{ display: "flex" }}>
         <img 
          style={{height: "35rem", objectFit: "cover"}}
-         alt="Carousal" src={LandingImage}/>
+         alt="Carousal" src={src}/>
 
     {/* <p className="legend">Legend 1</p> */}
         

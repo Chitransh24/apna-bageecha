@@ -1,7 +1,7 @@
 import React from "react";
 import HomeCarousel from "./HomeCarousel";
 import ProductSwiper from "./ProductSwiper";
-
+import banner1 from "../../assets/banner 1.jpg"
 import LandingImage from "../../components/LandingImage/LandingImage";
 import LandingImage1 from "../../assets/LandingImage1.jpeg";
 import LandingImage2 from "../../assets/LandingImage2.jpeg";
@@ -15,7 +15,7 @@ import { BoxStyle, ButtonStyles, MainBoxStyles } from "./HomeStyles";
 const Home = () => {
   return (
     <MainBoxStyles style={{ minHeight: "100vh", width: "100vw" }}>
-      <HomeCarousel />
+       <HomeCarousel src={banner1} />
       <BoxStyle flexDirection="column" height="100%" width="100%">
         <BoxStyle padding="40px 400px">
           <h1>

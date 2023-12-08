@@ -49,6 +49,7 @@ function ForgetPassword({open, handleClose}) {
           placeholder="Enter old password"
           required={true}
           onChange={handleInputChange}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
         <AbInput
           name="newPassword"
@@ -56,6 +57,7 @@ function ForgetPassword({open, handleClose}) {
           placeholder="Enter new password"
           required={true}
           onChange={handleInputChange}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
         <AbInput
           name="confirmNewPassword"
@@ -63,6 +65,7 @@ function ForgetPassword({open, handleClose}) {
           placeholder="Confirm new password"
           required={true}
           onChange={handleInputChange}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
         <Button
         variant="contained"

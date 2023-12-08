@@ -15,6 +15,7 @@ import AbButton from "../../components/AbButton/AbButton";
 import { useNavigate, useNavigation } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/bundle";
+import { hover } from "@testing-library/user-event/dist/hover";
 const token = localStorage.getItem("token");
 
 function ProductSwiper() {
@@ -101,6 +102,7 @@ function ProductSwiper() {
             display: "flex",
             gap: "3rem",
             justifyContent: "space-between",
+            marginBlock: "48px 8px",
           }}
         >
           <div
@@ -114,10 +116,20 @@ function ProductSwiper() {
             <AbButton
               sx={{
                 padding: "9px 83px",
-                backgroundColor: "#DBDBDB",
+                backgroundColor: "#fff",
+                border: "2px solid #618264",
                 borderRadius: "39px",
                 textTransform: "none",
                 height: "100%",
+                color: "#111",
+                "&:hover": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                "&:focus": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
               }}
               text="Plants"
               variant={activeCategory === "Plants" ? "contained" : "outline"}
@@ -128,10 +140,20 @@ function ProductSwiper() {
             <AbButton
               sx={{
                 padding: "9px 83px",
-                backgroundColor: "#DBDBDB",
+                backgroundColor: "#fff",
+                border: "2px solid #618264",
                 borderRadius: "39px",
                 textTransform: "none",
                 height: "100%",
+                color: "#111",
+                "&:hover": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                "&:focus": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
               }}
               text="Equipments"
               variant={
@@ -144,10 +166,20 @@ function ProductSwiper() {
             <AbButton
               sx={{
                 padding: "9px 83px",
-                backgroundColor: "#DBDBDB",
+                backgroundColor: "#fff",
+                border: "2px solid #618264",
                 borderRadius: "39px",
                 textTransform: "none",
                 height: "100%",
+                color: "#111",
+                "&:hover": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                "&:focus": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
               }}
               text="Fertilizers"
               variant={
@@ -162,7 +194,7 @@ function ProductSwiper() {
             <AbButton
               sx={{
                 padding: "9px 83px",
-                backgroundColor: "#DBDBDB",
+                backgroundColor: "##618264",
                 borderRadius: "39px",
                 textTransform: "none",
                 height: "100%",

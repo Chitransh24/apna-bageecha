@@ -130,6 +130,7 @@ const Login = () => {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
         <AbInput
           type="password"
@@ -138,6 +139,7 @@ const Login = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <FormControlLabel
