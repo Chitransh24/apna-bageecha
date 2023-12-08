@@ -23,7 +23,7 @@ const Home = () => {
             harum.
           </h1>
         </BoxStyle>
-        <BoxStyle padding="60px 90px">
+        <BoxStyle padding="60px 90px 60px 125px">
           <LandingImage
             src={LandingImage1}
             desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"

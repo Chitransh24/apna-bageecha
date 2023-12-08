@@ -1,24 +1,35 @@
-import React from 'react'
+import React from "react";
+import { BoxStyles, SpanStyles } from "./HeadingStyles";
 
 function Heading() {
   return (
-
-        <div
-        style={{
-          backgroundColor: "#618264",
-          color: "#dbdbdb",
-          textAlign: "center",
-          fontSize: "2rem",
-        }}
+    <BoxStyles
+      backgroundColor="#618264"
+      color="#dbdbdb"
+      textAlign="center"
+      fontSize="2rem"
+    >
+      <BoxStyles
+        padding="30px"
+        display="flex"
+        flexDirection="column"
+        color="white"
       >
-        <div style={{padding:"30px", display:"flex", flexDirection:"column", color:"white"}}>
-           <span style={{ margin:"0",fontSize:"100px",fontWeight:"1000"}}>APNA</span>
-           <span style={{ margin:"0",fontSize:"100px",position: "relative",top: "-41px",fontWeight:"1000"}}>BAGEECHA</span>
-           <span style={{position: "relative",top: "-41px", fontSize:"1.5rem", fontWeight:"400"}}>"where homegrown goodness thrives!"</span>
-        </div>
-      </div>
-    
-  )
+        <SpanStyles>APNA</SpanStyles>
+        <SpanStyles position="relative" top="-41px">
+          BAGEECHA
+        </SpanStyles>
+        <SpanStyles
+          position="relative"
+          top="-41px"
+          fontSize="1.5rem"
+          fontWeight="400"
+        >
+          "where homegrown goodness thrives!"
+        </SpanStyles>
+      </BoxStyles>
+    </BoxStyles>
+  );
 }
 
 export default Heading;
