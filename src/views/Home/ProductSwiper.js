@@ -46,7 +46,7 @@ function ProductSwiper() {
   useEffect(() => {
     const config = {
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-type": "application/json",
       },
     };
@@ -92,7 +92,7 @@ function ProductSwiper() {
     }
   }, [activeCategory]);
 
-  console.log(filteredData)
+  console.log(filteredData);
   return (
     <>
       <div style={{ paddingInline: "90px" }}>
@@ -105,45 +105,56 @@ function ProductSwiper() {
             marginBlock: "48px 8px",
           }}
         >
-
-          <div style={{ display: "flex", alignItems: "center", gap: "16px", height: "70%" }}>
-            <AbButton sx={{
-              padding: "9px 83px",
-              backgroundColor: "#fff",
-              border: "2px solid #618264",
-              borderRadius: "39px",
-              textTransform: "none",
-              height: "100%",
-              color:"#111",
-              '&:hover': {
-                backgroundColor: '#618264',
-                color:"#fff"
-              },
-              '&:focus': {
-                backgroundColor: '#618264',
-                color:"#fff"
-              },
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              height: "70%",
             }}
+          >
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor: "#fff",
+                border: "2px solid #618264",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+                color: "#111",
+                "&:hover": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                "&:focus": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+              }}
               text="Plants"
               variant={activeCategory === "Plants" ? "contained" : "outline"}
               color="primary"
               onClick={() => setActiveCategory("Plants")}
               large
             />
-            <AbButton sx={{
-              padding: "9px 83px", backgroundColor: "#DBDBDB", borderRadius: "39px", textTransform: "none", height: "100%",
-               '&:hover': {
-                backgroundColor: '#618264',
-                color:"#fff"
-              },
-              '&:focus': {
-                backgroundColor: '#618264',
-                color:"#fff"
-                
-              },
-              backgroundColor: "#fff",
-              border: "2px solid #618264",
-            }}
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor: "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+                "&:hover": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                "&:focus": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                backgroundColor: "#fff",
+                border: "2px solid #618264",
+              }}
               text="Equipments"
               variant={
                 activeCategory === "Equipments" ? "contained" : "outline"
@@ -152,16 +163,24 @@ function ProductSwiper() {
               onClick={() => setActiveCategory("Equipments")}
               large
             />
-            <AbButton sx={{ padding: "9px 83px", backgroundColor: "#DBDBDB", borderRadius: "39px", textTransform: "none", height: "100%",  '&:hover': {
-                backgroundColor: '#618264',
-                color:"#fff"  
-              },
-              '&:focus': {
-                backgroundColor: '#618264',
-                color:"#fff"
-              },
-              backgroundColor: "#fff",
-              border: "2px solid #618264", }}
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor: "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+                "&:hover": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                "&:focus": {
+                  backgroundColor: "#618264",
+                  color: "#fff",
+                },
+                backgroundColor: "#fff",
+                border: "2px solid #618264",
+              }}
               text="Fertilizers"
               variant={
                 activeCategory === "Fertilizers" ? "contained" : "outline"
@@ -172,15 +191,19 @@ function ProductSwiper() {
             />
           </div>
           <div style={{}}>
-            <AbButton sx={{ padding: "9px 83px", backgroundColor: "#618264", borderRadius: "39px", textTransform: "none", height: "100%" 
-            
-          }}
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor: "#618264",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+              }}
               text="See all"
               variant="contained"
               large
               onClick={() => navigate(`/product`)}
             />
-
           </div>
         </div>
 
@@ -197,14 +220,12 @@ function ProductSwiper() {
             onSwiper={(swiper) => console.log(swiper)}
             css={{}}
           >
-
             <Grid container spacing={1}>
-              {(filteredData.length > 0 ? filteredData : display)
-                .map((product) => {
+              {(filteredData.length > 0 ? filteredData : display).map(
+                (product) => {
                   return (
                     <Grid item xs={12} sm={6} md={4} lg={3}>
                       <SwiperSlide>
-
                         <SingleProduct
                           src={product.imgUrl}
                           title={product.title}
@@ -218,7 +239,8 @@ function ProductSwiper() {
                       </SwiperSlide>
                     </Grid>
                   );
-                })}
+                }
+              )}
             </Grid>
           </Swiper>
         </SwiperProduct>
