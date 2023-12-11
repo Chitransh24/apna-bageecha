@@ -9,12 +9,15 @@ import LandingImage3 from "../../assets/LandingImage3.jpeg";
 import { Button } from "@mui/material";
 // import Video1 from "../../assets/Video.mp4";
 // import Video from "../../components/VideoSection/Video";
-
+import bgtop from "../../assets/bgtop.png";
+import bgbottom from "../../assets/bgbottom.png";
+import "./Home.css"
 const Home = () => {
   return (
     <div style={{ minHeight: "100vh", width: "100vw" }}>
       <HomeCarousel src={banner1} />
       <div
+      className="bgImage"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -27,7 +30,7 @@ const Home = () => {
         }}
       >
           <div style={{padding: "40px 400px"}} >
-            <h1>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, harum.</h1>
+            <h1 style={{fontSize:"3rem"}}>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, harum.</h1>
           
           </div>
           <div style={{display: "flex", padding:"60px 90px"}} >
