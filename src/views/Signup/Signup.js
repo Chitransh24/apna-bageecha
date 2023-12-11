@@ -133,6 +133,7 @@ const Signup = () => {
           helperText={validationErrors.email}
           placeholder="Email or mobile number"
           required={true}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
 
         <AbInput
@@ -142,6 +143,7 @@ const Signup = () => {
           placeholder="Name"
           error={!!validationErrors.name}
           helperText={validationErrors.name}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
 
         <AbInput
@@ -152,6 +154,7 @@ const Signup = () => {
           required={true}
           error={!!validationErrors.password}
           helperText={validationErrors.password}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
 
         <AbInput
@@ -162,8 +165,9 @@ const Signup = () => {
           required={true}
           error={!!validationErrors.cpassword}
           helperText={validationErrors.cpassword}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
-
+  
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <FormControlLabel
             onClick={() => {
@@ -190,6 +194,7 @@ const Signup = () => {
           text="Sign in"
           large={true}
         />
+        
       </FormControl>
       <ToastContainer />
     </div>

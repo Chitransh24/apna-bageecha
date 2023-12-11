@@ -37,8 +37,7 @@ useEffect(()=>{
 },[items])
   const ButtonWrapper = styled.section`
     .res-btn {
-      width: "8.5rem";
-      height: "2.2rem";
+      padding-inline:30px;
       background-color: #618264;
       color: #fff;
       border-radius: 0.7rem;

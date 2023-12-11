@@ -5,7 +5,7 @@ import LandingImage2 from "../../assets/LandingImage2.jpeg"
 import LandingImage3 from "../../assets/LandingImage3.jpeg"
 
 
-function HomeCarousel() {
+function HomeCarousel({src}) {
   return (
         
     <Carousel
