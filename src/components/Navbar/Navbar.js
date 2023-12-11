@@ -101,7 +101,7 @@ function Navbar() {
             >
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography1Style color="black" textAlign="left">
-                  <LinkStyle to={`/home`}>home</LinkStyle>
+                  <LinkStyle to={`/`}>home</LinkStyle>
                   <LinkStyle to={`/pricing`}>plant & pricing</LinkStyle>
                   <LinkStyle to={`/product`}>product</LinkStyle>
                   <LinkStyle to={`/contact`}>contact</LinkStyle>
@@ -120,7 +120,7 @@ function Navbar() {
             Logo
           </Typography1Style>
           <BoxStyle sx={{ display: { xs: "none", md: "flex" }, ml: 4 }}>
-            <LinkStyle to={`/home`}>home</LinkStyle>
+            <LinkStyle to={`/`}>home</LinkStyle>
             <LinkStyle to={`/pricing`}>plant & pricing</LinkStyle>
             <LinkStyle to={`/product`}>product</LinkStyle>
             <LinkStyle to={`/contact`}>contact</LinkStyle>

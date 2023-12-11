@@ -1,5 +1,7 @@
 import React from "react";
 import Subscription from "./Subscription";
+import { BoxStyles, H1Styles } from "./PricingStyles";
+import { Typography } from "@mui/material";
 
 function Pricing() {
   let services1 = [
@@ -16,25 +18,37 @@ function Pricing() {
 
   return (
     <>
-    
-    <div style={{ height: "100vh", textAlign: "center" }}>
-    <div style={{padding:"76px"}}>
-      <h1 style={{color: "#618264", fontSize:"50px" }}>Our Pricing Plan</h1>
-      <p style={{}}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.kv
-      </p>
-      </div>
-      <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <Subscription title={"Basic"} color={"#618264"} backgroundColor={"#f2f2f2"} services1={services1}/>
-      <Subscription title={"Premium"} color={"#f2f2f2"} backgroundColor={"#618264"} services1={services1}/>
-      <Subscription title={"Delux"} color={"#618264"} backgroundColor={"#f2f2f2"} services1={services1}/>
-      </div>
-    </div>
-    
+      <BoxStyles height="100vh" textAlign>
+        <BoxStyles padding="76px">
+          <H1Styles>Our Pricing Plan</H1Styles>
+          <Typography>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.kv
+          </Typography>
+        </BoxStyles>
+        <BoxStyles display="flex" justifyContent="center" alignItems="center">
+          <Subscription
+            title={"Basic"}
+            color={"#618264"}
+            backgroundColor={"#f2f2f2"}
+            services1={services1}
+          />
+          <Subscription
+            title={"Premium"}
+            color={"#f2f2f2"}
+            backgroundColor={"#618264"}
+            services1={services1}
+          />
+          <Subscription
+            title={"Delux"}
+            color={"#618264"}
+            backgroundColor={"#f2f2f2"}
+            services1={services1}
+          />
+        </BoxStyles>
+      </BoxStyles>
     </>
   );
 }
-
 
 export default Pricing;
