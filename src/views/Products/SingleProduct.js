@@ -1,29 +1,23 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  ButtonGroup,
-  IconButton,
-  Grid,
-  Typography,
-  Box,
-  CardMedia,
-} from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faHeart, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { IconButton, Grid, Typography, Box, CardMedia } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import axios from "axios";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Favorite from "@mui/icons-material/Favorite";
 
 function SingleProduct(props) {
-  console.log(props);
-  let { imgUrl, title, description, price, quantity, id, wish } = props;
-  const [apiData, setApiData] = useState({});
+  // console.log(props);
+  const { src, title, description, price, quantity, id, wish } = props;
+  const [tempWish, setTempWish]= useState(wish);
   const navigate = useNavigate();
   const [finalAmount, setFinalAmount] = useState(price);
   const [itemQuantity, setItemQuantity] = useState(quantity);
-
   const token = localStorage.getItem("token");
-
+console.log(wish,"wsih")
+  useEffect(()=>{
+    setTempWish(wish)
+  },[wish])
   const decrement = () => {
     if (itemQuantity <= 1) {
       setItemQuantity(1);
@@ -79,14 +73,39 @@ function SingleProduct(props) {
       console.log(response);
       if (response.data.newUser) {
         const notify = () => {
-          toast.success("Product Addedd Successfully", {
+          toast.success("Product added to wishlist", {
             position: toast.POSITION.TOP_RIGHT,
           });
         };
         notify();
       }
     } catch (error) {
-      console.error("Error adding to cart:", error);
+      console.error("Error adding to wishlist:", error);
+    }
+  };
+  const handleRemoveWish = async (id) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/user/removeFromWishlist/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(response);
+      if (response.data.newUser) {
+        const notify = () => {
+          toast.success("Product removed from wishlist.", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        };
+        notify();
+      }
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
     }
   };
   const handleCart = async (id) => {
@@ -114,194 +133,93 @@ function SingleProduct(props) {
       console.error("Error adding to cart:", error);
     }
   };
-
+  const handleClick = (id) => {
+    !wish ? handleWish(id) : handleRemoveWish(id);
+  };
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={0}>
       <ToastContainer />
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Box
           sx={{
-            margin: "7rem 0 0 0rem",
-            width: "325px",
+            width: "21rem",
+            margin: "0 0 1rem",
             borderRadius: "35px",
-            height: "349px",
+            height: "21rem",
             backgroundColor: "#e4e4e4",
+            cursor: "pointer",
           }}
         >
           <Grid item xs={12} sm={6} md={4} lg={3}>
             <CardMedia
               sx={{
-                height: "170px",
-                width: "325px",
+                height: "12.375rem",
+                width: "21rem",
                 backgroundSize: "cover",
                 objectFit: "cover",
                 borderTopRightRadius: "35px",
                 borderTopLeftRadius: "35px",
               }}
-              image={imgUrl}
+              onClick={() => navigate(`/productDetails/${id}`)}
+              image={src}
               alt=""
             />
           </Grid>
 
           <Box id="productDetail" sx={{ position: "relative" }}>
             <Grid item xs={12} sm={6} md={4}>
-              <Typography
-                sx={{
-                  color: "#618264",
-                  margin: "0.5rem 0 0 1.5rem",
-                  fontFamily: "Nunito",
-                  fontWeight: 500,
-                  fontSize: "1.3rem",
-                  //                   width: "220px",
-                }}
-              >
-                {" "}
-                {title}
-              </Typography>
-
-              <Typography
-                sx={{
-                  fontSize: "12px",
-                  textAlign: "left",
-                  height: "70px",
-                  margin: "0.5rem 0 0 1.5rem",
-                  width: "220px",
-                }}
-              >
-                {" "}
-                {description}
-                Lorem ipsum dolor sit amet consectetur adipisicing Ullam
-                consequuntur
-              </Typography>
-              <Box
-                id="buttons"
-                sx={{ display: "flex", margin: "0.7rem 0 0 1.5rem" }}
-              >
-                <Button
-                  // TODO - to add payment functionality
-                  style={{
-                    fontSize: "12px",
-                    marginRight: "5px",
-                    height: "37px",
-                    width: "6rem",
-                    //                     width: "100px",
-                    borderRadius: "10px",
-                    backgroundColor: "#618264",
-                    border: "none",
-                    color: "#ffffff",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textTransform: "none",
-                    ":hover": { backgroundColor: "#618264" },
-                  }}
-                  onClick={checkout}
-                >
-                  Buy &#8377;{finalAmount ? finalAmount : price}
-                </Button>
-
-                <ButtonGroup
-                  variant="contained"
-                  size="small"
-                  aria-label="outlined primary button group"
-                  sx={{
-                    fontSize: "12px",
-                    height: "37px",
-                    borderRadius: "9px",
-                    backgroundColor: "#618264",
-                    color: "#ffffff",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    border: "none",
-                    textTransform: "none",
-                  }}
-                >
-                  <Button
-                    style={{ border: "none", borderRadius: "10px" }}
-                    onClick={decrement}
-                  >
-                    &#8722;
-                  </Button>
-                  <p>{itemQuantity ? itemQuantity : quantity}</p>
-                  <Button
-                    style={{ width: "30px", borderRadius: "10px" }}
-                    onClick={increment}
-                  >
-                    &#43;
-                  </Button>
-                </ButtonGroup>
-                <IconButton
-                  variant="contained"
-                  id="heart"
-                  sx={{
-                    height: "37px",
-                    width: "40px",
-                    marginLeft: "8px",
-                    borderRadius: "10px",
-                    backgroundColor: "#618264",
-                    fontSize: "16px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    color: wish ? "red" : "white",
-                    ":hover": { backgroundColor: "#618264" },
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    onClick={() => handleWish(id)}
-                  />
-                </IconButton>
-                <IconButton
-                  variant="contained"
-                  id="heart"
-                  sx={{
-                    height: "37px",
-                    width: "40px",
-                    marginLeft: "8px",
-                    borderRadius: "10px",
-                    backgroundColor: "#618264",
-                    fontSize: "16px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    color: "white",
-                    ":hover": { backgroundColor: "#618264" },
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faCartPlus}
-                    onClick={() => handleCart(id)}
-                  />
-                </IconButton>
-                <IconButton
-                  id="info"
-                  sx={{
-                    height: "37px",
-                    width: "40px",
-                    marginLeft: "10px",
-                    position: "relative",
-                    bottom: "7rem",
-                    borderRadius: "10px",
-                    backgroundColor: "#618264",
-                    fontSize: "16px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    color: "white",
-                    ":hover": { backgroundColor: "#618264" },
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faInfo}
-                    onClick={() => {
-                      alert(id);
-                      navigate(`/productDetails/${id}`);
+              <div style={{ display: "flex" }}>
+                <div>
+                  <Typography
+                    sx={{
+                      color: "#618264",
+                      margin: "0.5rem 0 0 1.5rem",
+                      fontFamily: "Nunito",
+                      fontWeight: 500,
+                      fontSize: "1.3rem",
+                      width: "220px",
                     }}
-                  />
-                </IconButton>
-              </Box>
+                  >
+                    {title ? title : "Title here"}
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      fontSize: "12px",
+                      textAlign: "left",
+                      height: "70px",
+                      margin: "0.5rem 0 0 1.5rem",
+                      width: "220px",
+                    }}
+                  >
+                    {description
+                      ? description
+                      : "Lorem ipsum dolor sit amet consectetur adipisicing Ullam consequuntur"}
+                  </Typography>
+                </div>
+                <div style={{ marginTop: "10px", marginLeft: "1.5rem" }}>
+                  <IconButton
+                    onClick={() => handleClick(id)}
+                    variant="contained"
+                    id="heart"
+                    sx={{
+                      height: "37px",
+                      width: "40px",
+                      marginLeft: "8px",
+                      borderRadius: "10px",
+                      backgroundColor: "#618264",
+                      fontSize: "16px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      color: "white",
+                      ":hover": { backgroundColor: "#618264" },
+                    }}
+                  >
+                    {tempWish ? <Favorite /> : <FavoriteBorderIcon />}
+                  </IconButton>
+                </div>
+              </div>
             </Grid>
           </Box>
         </Box>

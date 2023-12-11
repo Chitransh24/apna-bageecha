@@ -1,18 +1,28 @@
 import React from "react";
 import { Swiper, SwiperSlide, useSwiperSlide } from "swiper/react";
 import { Grid } from "@mui/material";
-import "swiper/css";
+
 // import 'swiper/css/pagination';
 // import 'swiper/css/navigation';
-import "swiper/css/bundle";
-import { Navigation, Pagination } from "swiper/modules";
+
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import styled from "@emotion/styled";
 import SingleProduct from "../Products/SingleProduct";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SwiperProduct } from "./ProductSwiperStyle";
+import AbButton from "../../components/AbButton/AbButton";
+import { useNavigate, useNavigation } from "react-router-dom";
+import "swiper/css";
+import "swiper/css/bundle";
+const token = localStorage.getItem("token");
+
 function ProductSwiper() {
   const [products, setProducts] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const [display, setDisplay] = useState([]);
+  const navigate = useNavigate();
 
   const config = {
     headers: {
@@ -32,98 +42,146 @@ function ProductSwiper() {
     apiCall();
   }, []);
 
-  const swiper = useSwiperSlide();
+  useEffect(() => {
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    };
+    const apiCall = async () => {
+      await axios
+        .get("http://localhost:5000/api/user/getWishList", config)
+        .then((res) => {
+          if (res.data.wishItems) {
+            const productsWithWishList = products.map((product) => {
+              const isWishListed = res.data.wishItems.some(
+                (item) => item.product._id === product._id
+              );
+              return {
+                ...product,
+                isWishListed: isWishListed,
+              };
+            });
+            setDisplay(productsWithWishList);
+          }
+        });
+    };
+    apiCall();
+  }, [products]);
 
-      // Styled container for the entire carousel
-  const StyledArrowButton = styled.div`
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #0056b3;
+  useEffect(() => {
+    if (activeCategory === "Plants") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "plants";
+      });
+      setFilteredData(filtered);
     }
-  `;
+    if (activeCategory === "Fertilizers") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "fertilizer";
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Equipments") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "equipment";
+      });
+      setFilteredData(filtered);
+    }
+  }, [activeCategory]);
 
-  // Styled slide content
-  const SwiperSingleProduct = styled.div`
-    /* text-align: center;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  `;
-
-      
-
-//   return (
-//     <SwiperProduct>
-//     <Swiper
-//     spaceBetween={10}
-//     slidesPerView={4}
-//     navigation={true}
-//     // pagination={{ clickable: true }}
-//     scrollbar={{ draggable: true }}
-//     modules={[Pagination, Navigation]}
-//     onSlideChange={() => console.log('slide change')}
-//     onSwiper={(swiper) => console.log(swiper)}
-//     css={{  }}
-//   >
-
-// <Grid container spacing={1}>
-//          {products.map((product) => (
-//           <Grid  item xs={12} sm={6} md={4} lg={3}>
-//        <SwiperSlide>  
-//          <SingleProduct
-//             src={product.image}
-//             title={product.title}
-//             description={product.description}
-//             price={product.price}
-//             quantity={product.quantity}
-//             imgUrl={product.imgUrl}
-//             key={product._id}
-//           />
-//           </SwiperSlide>  
-//           </Grid>
-//         ))} 
-//   // Styled container for the entire carousel
-
+console.log(filteredData)
   return (
+    <>
+    <div style={{paddingInline:"90px"}}>
+    <h1>Popular in Gardening Products</h1>
+       <div
+          style={{
+            display: "flex",
+            gap: "3rem",
+            justifyContent: "space-between",
+          }}
+        >
+         
+          <div style={{display:"flex", alignItems:"center", gap:"16px", height:"70%"}}>
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+              text="Plants"
+              variant={activeCategory === "Plants" ? "contained" : "outline"}
+              color="primary"
+              onClick={() => setActiveCategory("Plants")}
+              large
+            />
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+              text="Equipments"
+              variant={
+                activeCategory === "Equipments" ? "contained" : "outline"
+              }
+              color="primary"
+              onClick={() => setActiveCategory("Equipments")}
+              large
+            />
+            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+              text="Fertilizers"
+              variant={
+                activeCategory === "Fertilizers" ? "contained" : "outline"
+              }
+              color="primary"
+              onClick={() => setActiveCategory("Fertilizers")}
+              large
+            />
+          </div>
+          <div style={{}}>
+           <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+           text="See all"
+           variant="contained"
+           large
+           onClick={() => navigate(`/product`)}
+           />
+           
+          </div>
+        </div>
+      
     <SwiperProduct>
       <Swiper
+      scrollbar={{ draggable: true }}
+        autoplay={true}
         spaceBetween={10}
         slidesPerView={4}
-        navigation={true}
+        // navigation={true}
         // pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation,Scrollbar,Autoplay]}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
         css={{}}
       >
+      
         <Grid container spacing={1}>
-          {products.map((product) => (
+        {(filteredData.length > 0 ? filteredData : display)
+            .map((product) => {
+              return (
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <SwiperSlide>
-                <SwiperSingleProduct>
+             
                   <SingleProduct
-                    src={product.image}
+                    src={product.imgUrl}
                     title={product.title}
                     description={product.description}
                     price={product.price}
                     quantity={product.quantity}
-                    imgUrl={product.imgUrl}
-                    key={product._id}
+                    wish={product.isWishListed}
+                    // imgUrl={product.imgUrl}
+                    id={product._id}
                   />
-                </SwiperSingleProduct>
               </SwiperSlide>
             </Grid>
-          ))}
+              );
+              })}
         </Grid>
       </Swiper>
     </SwiperProduct>
+    </div>
+    </>
   );
 }
 

@@ -47,7 +47,7 @@ function AddProduct({ setOpen }) {
         console.log(token);
         const config = {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
             "Content-type": "application/json",
           },
         };
@@ -145,7 +145,7 @@ function AddProduct({ setOpen }) {
 
         <AbButton
           type="contained"
-          onClick={submitHandler}
+          onClick = {()=> submitHandler}
           text="Add Product"
           large={true}
         />

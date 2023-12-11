@@ -1,0 +1,13 @@
+.bgImage {
+  /* Set multiple background images with different positions */
+  background-image: 
+    url('../../assets/bgbottom.png'),
+    url('../../assets/bgtop.png');
+
+  /* Set background positions for each image */
+  background-position: left bottom, right top;
+
+  /* You can also set other background properties like repeat, size, etc. */
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, auto; /* Set the size as needed */
+}

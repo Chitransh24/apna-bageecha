@@ -3,8 +3,16 @@ import React, { useState } from "react";
 import { StyledTextField } from "./AbInputStyle";
 
 const AbInput = (props) => {
-  const { type, disabled, required, label, name, handleChange, placeholder } =
-    props;
+  const {
+    type,
+    disabled,
+    required,
+    label,
+    name,
+    handleChange,
+    placeholder,
+    search,
+  } = props;
 
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState("");
@@ -20,13 +28,14 @@ const AbInput = (props) => {
     validateInputs(value);
     handleChange(e);
   };
+  
   return (
     // <TextField
 
     // />
     <StyledTextField
       // shadow={}
-      sx={{ textAlign: "center" }}
+      sx={{ textAlign: "left",}}
       name={name ? name : " "}
       required={required ? true : false}
       id="outlined-required"
@@ -40,13 +49,14 @@ const AbInput = (props) => {
       helperText={helperText}
       //   sx={{ padding: "3rem", borderRadius: "100%" }}
       InputProps={{
+        shrink: true,
         style: {
+          height:search ? "2.9rem" : "100%",
           borderRadius: "3.3125rem",
           padding: "0rem 7rem",
-          boxShadow: "1px 4px 14px 0px rgba(0, 0, 0, 0.15)",
-          border: "1px solid #618264",
           marginBottom: "0.66rem",
-          textAlign: "center",
+          textAlign: "left",
+          background: search ? "#DBDBDB" : "",
           //   margin:"0px auto"
         },
       }}

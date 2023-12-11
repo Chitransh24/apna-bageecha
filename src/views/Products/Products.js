@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Button, Fade, Modal, IconButton, Grid } from "@mui/material";
 
@@ -10,16 +11,20 @@ import AddProduct from "./AddProduct";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
+import AbInput from "../../components/AbInput/AbInput";
+import BlockIcon from "@mui/icons-material/Block";
 
 const Products = () => {
   const [open, setOpen] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
-  const productPerPage = 4;
+  const productPerPage = 8;
   const pageVisited = pageNumber * productPerPage;
 
   const token = localStorage.getItem("token");
-
+  const [activeCategory, setActiveCategory] = useState("");
   const [products, setProducts] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState("");
   const config = {
     headers: {
       "Content-type": "application/json",
@@ -70,31 +75,161 @@ const Products = () => {
     };
     apiCall();
   }, [products]);
+  console.log("Kalashnikavo ", display);
+  useEffect(() => {
+    if (search) {
+      let filtered = display.filter((item) => {
+        return item.title === search;
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Plants") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "plants";
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Fertilizers") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "fertilizer";
+      });
+      setFilteredData(filtered);
+    }
+    if (activeCategory === "Equipments") {
+      let filtered = display.filter((item) => {
+        return item.category[0] === "equipment";
+      });
+      setFilteredData(filtered);
+    }
+  }, [search, activeCategory]);
 
-  let pageCount = Math.ceil(products.length / productPerPage);
+  let pageCount = Math.ceil(
+    (filteredData.length > 0 ? filteredData.length : products.length) /
+      productPerPage
+  );
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
   };
-
+  console.log(filteredData, "---------------");
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         width: "100vw",
-        height: "100vh",
       }}
     >
-    
       <div
         style={{
           display: "flex",
-          backgroundColor: "red",
-          marginBottom: "3rem",
+          // backgroundColor: "red",
+          flexDirection: "column",
+          gap: "1rem",
+          maxWidth: "100vw",
+          margin: "0px 0rem 0px 7rem",
+          // padding:"0px 2rem"
         }}
       >
-        <Grid container spacing={1} sx={{ marginBottom: "4rem" }}>
-          {display
+        <div
+          style={{
+            display: "flex",
+            gap: "2rem",
+            justifyContent: "space-between",
+            padding: "50px 20px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              height: "70%",
+            }}
+          >
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor:
+                  activeCategory === "Plants" ? "#618264" : "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+              }}
+              text="Plants"
+              variant={activeCategory === "Plants" ? "contained" : "outlined"}
+              // color="primary"
+              onClick={() => setActiveCategory("Plants")}
+              large
+            />
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor:
+                  activeCategory === "Equipments" ? "#618264" : "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+              }}
+              text="Equipments"
+              variant={
+                activeCategory === "Equipments" ? "contained" : "outlined"
+              }
+              // color="primary"
+              onClick={() => setActiveCategory("Equipments")}
+              large
+            />
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor:
+                  activeCategory === "Fertilizers" ? "#618264" : "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+              }}
+              text="Fertilizers"
+              variant={
+                activeCategory === "Fertilizers" ? "contained" : "outlined"
+              }
+              // color="primary"
+              onClick={() => setActiveCategory("Fertilizers")}
+              large
+            />
+            {activeCategory && (
+              <IconButton
+                sx={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                  borderRadius: "100%",
+                  background: "#DBDBDB",
+                }}
+              >
+                <BlockIcon
+                  onClick={() => {
+                    setFilteredData([]);
+                    setActiveCategory("");
+                  }}
+                  color="error"
+                />
+              </IconButton>
+            )}
+          </div>
+          <div style={{ height: "70%" }}>
+            <AbInput
+              type="text"
+              placeholder="Search Here"
+              handleChange={(e) => {
+                setActiveCategory("");
+                setSearch(e.target.value);
+              }}
+              search
+              sx={{ marginRight: "5rem" }}
+            />
+          </div>
+        </div>
+
+        <Grid container spacing={0} sx={{ marginBottom: "4rem" }}>
+          {(filteredData.length > 0 ? filteredData : display)
             .slice(pageVisited, pageVisited + productPerPage)
             .map((product) => {
               return (
@@ -102,7 +237,7 @@ const Products = () => {
                   <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
                     <SingleProduct
                       id={product._id}
-                      src={product.imgUrl}
+                      src={product?.imgUrl}
                       title={product.title}
                       description={product.description}
                       price={product.price}
@@ -115,6 +250,7 @@ const Products = () => {
             })}
         </Grid>
       </div>
+
       <ReactPaginate
         previousLabel={"previous"}
         nextLabel={"next"}
@@ -127,20 +263,19 @@ const Products = () => {
         activeClassName="paginatonActive"
       />
     </div>
-    // </div>
   );
 };
 
 export default Products;
 // admin wala part
-      // <AbModal open={open}>
-      //   <AddProduct setOpen={setOpen} />
-      // </AbModal>
-      // <div style={{ textAlign: "right", margin: "5px" }}>
-      //   <AbButton
-      //     sx={{ zIndex: "9999" }}
-      //     variant="contained"
-      //     onClick={() => setOpen(true)}
-      //     text="Add Products"
-      //   />
-      // </div>
+// <AbModal open={open}>
+//   <AddProduct setOpen={setOpen} />
+// </AbModal>
+// <div style={{ textAlign: "right", margin: "5px" }}>
+//   <AbButton
+//     sx={{ zIndex: "9999" }}
+//     variant="contained"
+//     onClick={() => setOpen(true)}
+//     text="Add Products"
+//   />
+// </div>

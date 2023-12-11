@@ -1,9 +1,7 @@
 import { styled } from "@mui/system";
 
 export const SwiperProduct = styled("div")({
-  width: "85rem",
-  margin: "auto",
-  height: "5rem",
-  padding: "20px",
+  paddingBlock: "90px",
   borderRadius: "10px",
+  border: "none",
 });
