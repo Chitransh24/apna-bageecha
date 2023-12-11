@@ -3,9 +3,13 @@ import HomeCarousel from "./HomeCarousel";
 import ProductSwiper from "./ProductSwiper";
 import banner1 from "../../assets/banner 1.jpg"
 import LandingImage from "../../components/LandingImage/LandingImage";
-import LandingImage1 from "../../assets/LandingImage1.jpeg";
-import LandingImage2 from "../../assets/LandingImage2.jpeg";
-import LandingImage3 from "../../assets/LandingImage3.jpeg";
+import LandingImage1 from "../../assets/Seeds.jpg";
+import LandingImage2 from "../../assets/Gardening Tools.jpg";
+import LandingImage3 from "../../assets/Soil and Fertizers.jpg";
+import LandingImage4 from "../../assets/pexels-cottonbro-studio-4503273.jpg";
+import WhyChoose1 from "../../assets/1-removebg-preview.png";
+import WhyChoose2 from "../../assets/2-removebg-preview.png";
+import WhyChoose3 from "../../assets/vecteezy_plant-root-icon-design-template_7634376-removebg-preview (2).png"
 import { Button } from "@mui/material";
 // import Video1 from "../../assets/Video.mp4";
 // import Video from "../../components/VideoSection/Video";
@@ -26,26 +30,26 @@ const Home = () => {
           flexWrap: "wrap",
         }}
       >
-          <div style={{padding: "40px 400px"}} >
-            <h1>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, harum.</h1>
+          <div style={{padding: "90px 400px 23px 400px"}} >
+            <div><h1 style={{fontSize: "40px",color: "rgb(97, 130, 100)"}}>Shop By Collection</h1></div>
           
           </div>
-          <div style={{display: "flex", padding:"60px 90px"}} >
+          <div style={{display: "flex", padding:"60px 90px", gap:"20px"}} >
         <LandingImage
           src={LandingImage1}
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
+          desc="Seeds"
         />
         <LandingImage
           src={LandingImage2}
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
+          desc="Gardening Tools"
         />
         <LandingImage
           src={LandingImage3}
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
+          desc="Fertilizers"
         />
         <LandingImage
-          src={LandingImage2}
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque"
+          src={LandingImage4}
+          desc="Plant Support"
         />
        </div>
 
@@ -83,7 +87,24 @@ const Home = () => {
       </div>
 
       <div style={{marginTop:"120px", backgroundColor:"#CDCDCD", height:"1px"}}></div> 
-      <ProductSwiper/> 
+      <ProductSwiper/>
+      <div>
+        <h1 style={{display:"flex", justifyContent:"center", fontWeight:"1000", fontSize:"40px", color:"#618264"}}>Why to Choose Us?</h1>
+        <div style={{display:"flex", alignItems:"center", padding:" 60px 90px", justifyContent:"space-between"}}>
+        <div style={{display:"flex", justifyItems:"center", flexDirection:"column", alignItems:"center"}}>
+          <img src={WhyChoose1} style={{width:"140px"}}></img>
+          <p style={{fontSize:"30px", fontWeight:"600", textAlign:"center"}}>Assurance of Quality,<br/>Green Excellence</p>
+        </div>
+        <div style={{display:"flex", justifyItems:"center", flexDirection:"column", alignItems:"center"}}>
+          <img src={WhyChoose2} style={{width:"240px"}}></img>
+          <p style={{fontSize:"30px", fontWeight:"600", textAlign:"center", paddingTop:"22px"}}>Expertise in Farming<br/> Essentials</p>
+        </div>
+        <div  style={{display:"flex", justifyItems:"center", flexDirection:"column", alignItems:"center"}}>
+        <img src={WhyChoose3} style={{width:"140px"}}></img>
+          <p style={{fontSize:"30px", fontWeight:"600", textAlign:"center", paddingBottom:"22px", marginTop:"8"}}>Your Agri-Companion,<br/> Always</p>
+        </div>
+        </div> 
+        </div>
     </div>
   );
 };

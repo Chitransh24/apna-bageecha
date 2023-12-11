@@ -11,11 +11,12 @@ const App = ({ src, desc }) => {
           width: "320px",
           height: "67vh",
           width: "20vw",
+          objectFit:"cover",
         }}
         src={src}
         alt="landingimage1"
       />
-      <span style={{display: "block", width: "auto", margin:"auto", paddingTop:"14px"}}>{desc}</span>
+      <span style={{display: "block", width: "auto", margin:"auto", paddingTop:"14px", fontSize:"30px", fontWeight:"600"}}>{desc}</span>
     </div>
   );
 };

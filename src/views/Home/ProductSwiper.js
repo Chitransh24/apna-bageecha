@@ -96,7 +96,7 @@ function ProductSwiper() {
   return (
     <>
       <div style={{ paddingInline: "90px" }}>
-        <h1>Popular in Gardening Products</h1>
+        <h1 style={{fontSize:"50px"}}>Popular</h1>
         <div
           style={{
             display: "flex",
