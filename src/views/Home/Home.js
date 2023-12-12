@@ -13,12 +13,15 @@ import WhyChoose3 from "../../assets/vecteezy_plant-root-icon-design-template_76
 import { Button } from "@mui/material";
 // import Video1 from "../../assets/Video.mp4";
 // import Video from "../../components/VideoSection/Video";
-
+import bgtop from "../../assets/bgtop.png";
+import bgbottom from "../../assets/bgbottom.png";
+import "./Home.css"
 const Home = () => {
   return (
     <div style={{ minHeight: "100vh", width: "100vw" }}>
       <HomeCarousel src={banner1} />
       <div
+      className="bgImage"
         style={{
           display: "flex",
           flexDirection: "column",
