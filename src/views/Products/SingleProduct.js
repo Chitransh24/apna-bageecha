@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  IconButton,
-  Grid,
-  Typography,
-  Box,
-  CardMedia,
-} from "@mui/material";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { IconButton, Grid, Typography, Box, CardMedia } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import axios from "axios";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -15,11 +9,15 @@ import Favorite from "@mui/icons-material/Favorite";
 function SingleProduct(props) {
   // console.log(props);
   const { src, title, description, price, quantity, id, wish } = props;
+  const [tempWish, setTempWish]= useState(wish);
   const navigate = useNavigate();
   const [finalAmount, setFinalAmount] = useState(price);
   const [itemQuantity, setItemQuantity] = useState(quantity);
   const token = localStorage.getItem("token");
-
+console.log(wish,"wsih")
+  useEffect(()=>{
+    setTempWish(wish)
+  },[wish])
   const decrement = () => {
     if (itemQuantity <= 1) {
       setItemQuantity(1);
@@ -75,14 +73,39 @@ function SingleProduct(props) {
       console.log(response);
       if (response.data.newUser) {
         const notify = () => {
-          toast.success("Product Addedd Successfully", {
+          toast.success("Product added to wishlist", {
             position: toast.POSITION.TOP_RIGHT,
           });
         };
         notify();
       }
     } catch (error) {
-      console.error("Error adding to cart:", error);
+      console.error("Error adding to wishlist:", error);
+    }
+  };
+  const handleRemoveWish = async (id) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/user/removeFromWishlist/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+        }
+      );
+      console.log(response);
+      if (response.data.newUser) {
+        const notify = () => {
+          toast.success("Product removed from wishlist.", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        };
+        notify();
+      }
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
     }
   };
   const handleCart = async (id) => {
@@ -110,12 +133,13 @@ function SingleProduct(props) {
       console.error("Error adding to cart:", error);
     }
   };
-
+  const handleClick = (id) => {
+    !wish ? handleWish(id) : handleRemoveWish(id);
+  };
   return (
     <Grid container spacing={0}>
       <ToastContainer />
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        
         <Box
           sx={{
             width: "21rem",
@@ -175,7 +199,7 @@ function SingleProduct(props) {
                 </div>
                 <div style={{ marginTop: "10px", marginLeft: "1.5rem" }}>
                   <IconButton
-                    onClick={() => handleWish(id)}
+                    onClick={() => handleClick(id)}
                     variant="contained"
                     id="heart"
                     sx={{
@@ -192,8 +216,7 @@ function SingleProduct(props) {
                       ":hover": { backgroundColor: "#618264" },
                     }}
                   >
-                    { wish ?  <Favorite/> : <FavoriteBorderIcon/>}
-              
+                    {tempWish ? <Favorite /> : <FavoriteBorderIcon />}
                   </IconButton>
                 </div>
               </div>

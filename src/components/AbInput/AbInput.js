@@ -52,7 +52,7 @@ const AbInput = (props) => {
       InputProps={{
         shrink: true,
         style: {
-          height:"100%",
+          height:search ? "2.9rem" : "100%",
           borderRadius: "3.3125rem",
           padding: "0rem 7rem",
           marginBottom: "0.66rem",

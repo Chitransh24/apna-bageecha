@@ -6,7 +6,8 @@ const App = ({ src, desc }) => {
   return (
     <Box>
       <CardMediaStyles image={src} alt="landingimage1" />
-      <TypographyStyles>{desc}</TypographyStyles>
+      <TypographyStyles>{desc}
+      </TypographyStyles>
     </Box>
   );
 };

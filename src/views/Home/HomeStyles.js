@@ -7,8 +7,9 @@ export const MainBoxStyles = styled(Box)({
     width: "100vw"
 });
 
-export const BoxStyle = styled(Box)(({ flexDirection, display, height, width, flexWrap, padding, backgroundColor, borderRadius, position, left }) => ({
+export const BoxStyle = styled(Box)(({ flexFlow, flexDirection, height, width, flexWrap, padding, backgroundColor, borderRadius, position, left }) => ({
     display: "flex",
+    flexFlow: flexFlow ? "column-wrap" : "" ,    
     flexDirection: flexDirection ? flexDirection : "",
     justifyContent: "space-between",
     textAlign: "center",
@@ -21,6 +22,7 @@ export const BoxStyle = styled(Box)(({ flexDirection, display, height, width, fl
     borderRadius: borderRadius ? borderRadius : "" ,
     position: position ? position : "",
     left: left ? left : "",
+    
 }));
 export const ButtonStyles = styled(Button)(({theme}) => ({
     fontSize: "12px",

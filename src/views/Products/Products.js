@@ -12,7 +12,7 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "./Product.css";
 import AbInput from "../../components/AbInput/AbInput";
-
+import BlockIcon from "@mui/icons-material/Block";
 
 const Products = () => {
   const [open, setOpen] = useState(false);
@@ -75,7 +75,7 @@ const Products = () => {
     };
     apiCall();
   }, [products]);
-  console.log("Kalashnikavo ",display)
+  console.log("Kalashnikavo ", display);
   useEffect(() => {
     if (search) {
       let filtered = display.filter((item) => {
@@ -125,6 +125,9 @@ const Products = () => {
           // backgroundColor: "red",
           flexDirection: "column",
           gap: "1rem",
+          maxWidth: "100vw",
+          margin: "0px 0rem 0px 7rem",
+          // padding:"0px 2rem"
         }}
       >
         <div
@@ -132,39 +135,86 @@ const Products = () => {
             display: "flex",
             gap: "2rem",
             justifyContent: "space-between",
-            padding:"50px 20px",
-            
+            padding: "50px 20px",
           }}
         >
-          <div style={{display:"flex", alignItems:"center", gap:"16px", height:"70%"}}>
-            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              height: "70%",
+            }}
+          >
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor:
+                  activeCategory === "Plants" ? "#618264" : "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+              }}
               text="Plants"
               variant={activeCategory === "Plants" ? "contained" : "outlined"}
-              color="primary"
+              // color="primary"
               onClick={() => setActiveCategory("Plants")}
               large
             />
-            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor:
+                  activeCategory === "Equipments" ? "#618264" : "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+              }}
               text="Equipments"
               variant={
                 activeCategory === "Equipments" ? "contained" : "outlined"
               }
-              color="primary"
+              // color="primary"
               onClick={() => setActiveCategory("Equipments")}
               large
             />
-            <AbButton sx={{padding:"9px 83px", backgroundColor:"#DBDBDB", borderRadius:"39px", textTransform:"none", height:"100%"}}
+            <AbButton
+              sx={{
+                padding: "9px 83px",
+                backgroundColor:
+                  activeCategory === "Fertilizers" ? "#618264" : "#DBDBDB",
+                borderRadius: "39px",
+                textTransform: "none",
+                height: "100%",
+              }}
               text="Fertilizers"
               variant={
                 activeCategory === "Fertilizers" ? "contained" : "outlined"
               }
-              color="primary"
+              // color="primary"
               onClick={() => setActiveCategory("Fertilizers")}
               large
             />
+            {activeCategory && (
+              <IconButton
+                sx={{
+                  width: "2.5rem",
+                  height: "2.5rem",
+                  borderRadius: "100%",
+                  background: "#DBDBDB",
+                }}
+              >
+                <BlockIcon
+                  onClick={() => {
+                    setFilteredData([]);
+                    setActiveCategory("");
+                  }}
+                  color="error"
+                />
+              </IconButton>
+            )}
           </div>
-
-          <div style={{height:"70%"}}>
+          <div style={{ height: "70%" }}>
             <AbInput
               type="text"
               placeholder="Search Here"
@@ -173,6 +223,7 @@ const Products = () => {
                 setSearch(e.target.value);
               }}
               search
+              sx={{ marginRight: "5rem" }}
             />
           </div>
         </div>
@@ -198,9 +249,8 @@ const Products = () => {
               );
             })}
         </Grid>
-        
-        </div>
-     
+      </div>
+
       <ReactPaginate
         previousLabel={"previous"}
         nextLabel={"next"}

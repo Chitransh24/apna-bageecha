@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { NotificationsNone, Person, ShoppingCart } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   ButtonWrapper,
@@ -12,7 +12,7 @@ import {
 
 function ResponsiveBtns({ toggleCart }) {
   const [items, setItems] = useState();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("userInfo"));
     // console.log("Agya", items)
@@ -20,8 +20,6 @@ function ResponsiveBtns({ toggleCart }) {
       setItems(items);
     }
   }, []);
-
-  console.log(toggleCart);
 
   const [active, setActive] = useState(0);
   const [authActive, setAuthActive] = useState(0);
@@ -31,8 +29,26 @@ function ResponsiveBtns({ toggleCart }) {
   const handleAuthActive = (index) => {
     setAuthActive(index);
   };
-  console.log(authActive, "auth");
 
+  useEffect(() => {}, [items]);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+  var logout = () => {
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   return (
     <ButtonWrapper style={{ display: "flex" }}>
       {items ? (

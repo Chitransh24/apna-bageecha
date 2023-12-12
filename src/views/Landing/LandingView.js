@@ -15,6 +15,7 @@ const LandingView = ({ children }) => {
         {children}
         <CardMediaStyles bottom="0" left="0" image={bgbottom} alt="" />
       </BoxStyle>
+
       <Footer />
     </BoxStyle>
   );
