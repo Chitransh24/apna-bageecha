@@ -32,7 +32,7 @@ function CartItems({ item }) {
         >
           <img
             src={item.product.imgUrl}
-            alt="product image"
+           alt="img"
             style={{ width: "150px", height: "200px" }}
           />
         </Link>

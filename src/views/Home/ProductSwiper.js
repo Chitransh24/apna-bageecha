@@ -1,16 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide, useSwiperSlide } from "swiper/react";
 import { Grid } from "@mui/material";
-
-// import 'swiper/css/pagination';
-// import 'swiper/css/navigation';
-
 import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import styled from "@emotion/styled";
 import SingleProduct from "../Products/SingleProduct";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { SwiperProduct } from "./ProductSwiperStyle";
+import { AbButtonStyles, BoxStyles, SwiperProduct } from "./ProductSwiperStyle";
 import AbButton from "../../components/AbButton/AbButton";
 import { useNavigate, useNavigation } from "react-router-dom";
 import "swiper/css";
@@ -95,66 +90,20 @@ function ProductSwiper() {
   console.log(filteredData);
   return (
     <>
-      <div style={{ paddingInline: "90px" }}>
-        <h1 style={{fontSize:"50px"}}>Popular</h1>
-        <div
-          style={{
-            display: "flex",
-            gap: "3rem",
-            justifyContent: "space-between",
-            marginBlock: "48px 8px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "16px",
-              height: "70%",
-            }}
-          >
-            <AbButton
-              sx={{
-                padding: "9px 83px",
-                backgroundColor: "#fff",
-                border: "2px solid #618264",
-                borderRadius: "39px",
-                textTransform: "none",
-                height: "100%",
-                color: "#111",
-                "&:hover": {
-                  backgroundColor: "#618264",
-                  color: "#fff",
-                },
-                "&:focus": {
-                  backgroundColor: "#618264",
-                  color: "#fff",
-                },
-              }}
+      <BoxStyles paddingInline="90px">
+        <h1>Popular in Gardening Products</h1>
+        <BoxStyles display="flex" gap="3rem" marginBlock="48px 8px">
+          <BoxStyles display="flex" alignItems="center" gap="16px" height="70%">
+            <AbButtonStyles
+              backgroundColor="fff"
               text="Plants"
               variant={activeCategory === "Plants" ? "contained" : "outline"}
               color="primary"
               onClick={() => setActiveCategory("Plants")}
               large
             />
-            <AbButton
-              sx={{
-                padding: "9px 83px",
-                backgroundColor: "#DBDBDB",
-                borderRadius: "39px",
-                textTransform: "none",
-                height: "100%",
-                "&:hover": {
-                  backgroundColor: "#618264",
-                  color: "#fff",
-                },
-                "&:focus": {
-                  backgroundColor: "#618264",
-                  color: "#fff",
-                },
-                backgroundColor: "#fff",
-                border: "2px solid #618264",
-              }}
+            <AbButtonStyles
+              backgroundColor="fff"
               text="Equipments"
               variant={
                 activeCategory === "Equipments" ? "contained" : "outline"
@@ -163,24 +112,8 @@ function ProductSwiper() {
               onClick={() => setActiveCategory("Equipments")}
               large
             />
-            <AbButton
-              sx={{
-                padding: "9px 83px",
-                backgroundColor: "#DBDBDB",
-                borderRadius: "39px",
-                textTransform: "none",
-                height: "100%",
-                "&:hover": {
-                  backgroundColor: "#618264",
-                  color: "#fff",
-                },
-                "&:focus": {
-                  backgroundColor: "#618264",
-                  color: "#fff",
-                },
-                backgroundColor: "#fff",
-                border: "2px solid #618264",
-              }}
+            <AbButtonStyles
+              backgroundColor="fff"
               text="Fertilizers"
               variant={
                 activeCategory === "Fertilizers" ? "contained" : "outline"
@@ -189,23 +122,16 @@ function ProductSwiper() {
               onClick={() => setActiveCategory("Fertilizers")}
               large
             />
-          </div>
+          </BoxStyles>
           <div style={{}}>
-            <AbButton
-              sx={{
-                padding: "9px 83px",
-                backgroundColor: "#618264",
-                borderRadius: "39px",
-                textTransform: "none",
-                height: "100%",
-              }}
+            <AbButtonStyles
               text="See all"
               variant="contained"
               large
               onClick={() => navigate(`/product`)}
             />
           </div>
-        </div>
+        </BoxStyles>
 
         <SwiperProduct>
           <Swiper
@@ -213,8 +139,6 @@ function ProductSwiper() {
             autoplay={true}
             spaceBetween={10}
             slidesPerView={4}
-            // navigation={true}
-            // pagination={{ clickable: true }}
             modules={[Pagination, Navigation, Scrollbar, Autoplay]}
             onSlideChange={() => console.log("slide change")}
             onSwiper={(swiper) => console.log(swiper)}
@@ -244,7 +168,7 @@ function ProductSwiper() {
             </Grid>
           </Swiper>
         </SwiperProduct>
-      </div>
+      </BoxStyles>
     </>
   );
 }

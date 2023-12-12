@@ -4,25 +4,17 @@ import { useNavigate } from "react-router-dom";
 import AbButton from "../../components/AbButton/AbButton";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  Modal,
-} from "@mui/material";
+import { Box, FormControl, FormControlLabel } from "@mui/material";
 import AbCheckbox from "../../components/AbCheckbox/AbCheckbox";
 import ForgetPassword from "../../components/ForgetPassword/ForgetPassword";
+import { BoxStyles, H1Styles } from "./LoginStyles";
 
 const Login = () => {
-  const [passwordReset, setPasswordReset] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmNewPassword: "",
-  });
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => { return setOpen(false) };
+  const handleClose = () => {
+    return setOpen(false);
+  };
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,9 +26,6 @@ const Login = () => {
   }, []);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  // const [oldPassword, setOldpassword] = useState();
-  // const [newPassword, setNewpassword] = useState();
-  // const [confirmNewPassword, setConfirmNewpassword] = useState();
   const [loading, setLoading] = useState(false);
   const [remember, setRemember] = useState(false);
 
@@ -87,50 +76,23 @@ const Login = () => {
     }
   };
 
-  let handleInputChange = (event) => {
-    setPasswordReset((currData) => {
-      return { ...currData, [event.target.name]: event.target.value };
-    });
-  };
-
-  const style = {
-    width: "30%",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    // width: 400,
-    bgcolor: "background.paper",
-    // border: "2px solid #000",
-    boxShadow: "3px 3px 12px 0px rgba(0, 0, 0, 0.10);",
-    padding: "7rem 6rem",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: "20px",
-    border: "0px solid",
-  };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        margin: "11% 0%",
-      }}
+    <BoxStyles
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      margin="11% 0%"
     >
-      <h1 style={{ fontFamily: "Nunito", padding:"30px 0px", fontSize:"35px"}}>Log in</h1>
-      <FormControl sx={{gap:"8px", width:"519px"}}>
+      <H1Styles>Log in</H1Styles>
+      <FormControl sx={{ gap: "8px", width: "519px" }}>
         <AbInput
           placeholder="Email or mobile number"
           required={true}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-          inputProps={{ style: { textAlign: 'center' } }}
+          inputProps={{ style: { textAlign: "center" } }}
         />
         <AbInput
           type="password"
@@ -139,9 +101,9 @@ const Login = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
-          inputProps={{ style: { textAlign: 'center' } }}
+          inputProps={{ style: { textAlign: "center" } }}
         />
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <BoxStyles justifyContent="space-between">
           <FormControlLabel
             onClick={() => {
               setRemember(!true);
@@ -160,8 +122,8 @@ const Login = () => {
             text="forget password?"
             sx={{ fontSize: "1rem", textTransform: "none" }}
           />
-           <ForgetPassword open={open} handleClose={handleClose}/>
-        </div>
+          <ForgetPassword open={open} handleClose={handleClose} />
+        </BoxStyles>
         <AbButton
           type="contained"
           onClick={submitHandler}
@@ -170,7 +132,7 @@ const Login = () => {
         />
       </FormControl>
       <ToastContainer />
-    </div>
+    </BoxStyles>
   );
 };
 export default Login;
