@@ -8,6 +8,7 @@ import AbButton from "../../components/AbButton/AbButton";
 import AbCheckbox from "../../components/AbCheckbox/AbCheckbox";
 import { Box } from "@mui/system";
 import { red } from "@mui/material/colors";
+import { BoxStyles, H1Styles } from "./SignupStyles";
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -112,19 +113,16 @@ const Signup = () => {
     }
   };
   return (
-    <div
-      style={{
-        maxWidth: "100vw",
-        minWidth: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        margin: "11% 0%",
-      }}
+    <BoxStyles
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      margin="11% 0%"
+      maxWidth="100vw"
+      minWidth="100vw"
     >
-      <h1 style={{ fontFamily: "Nunito" , fontSize:"35px"}}>Sign Up</h1>
-      <FormControl sx={{gap:"8px", width:"519px"}}>
+      <H1Styles>Sign Up</H1Styles>
+      <FormControl sx={{ gap: "8px", width: "519px" }}>
         <AbInput
           onChange={(e) => {
             setEmail(e.target.value);
@@ -133,7 +131,7 @@ const Signup = () => {
           helperText={validationErrors.email}
           placeholder="Email or mobile number"
           required={true}
-          inputProps={{ style: { textAlign: 'center' } }}
+          inputProps={{ style: { textAlign: "center" } }}
         />
 
         <AbInput
@@ -143,7 +141,7 @@ const Signup = () => {
           placeholder="Name"
           error={!!validationErrors.name}
           helperText={validationErrors.name}
-          inputProps={{ style: { textAlign: 'center' } }}
+          inputProps={{ style: { textAlign: "center" } }}
         />
 
         <AbInput
@@ -154,7 +152,7 @@ const Signup = () => {
           required={true}
           error={!!validationErrors.password}
           helperText={validationErrors.password}
-          inputProps={{ style: { textAlign: 'center' } }}
+          inputProps={{ style: { textAlign: "center" } }}
         />
 
         <AbInput
@@ -165,10 +163,10 @@ const Signup = () => {
           required={true}
           error={!!validationErrors.cpassword}
           helperText={validationErrors.cpassword}
-          inputProps={{ style: { textAlign: 'center' } }}
+          inputProps={{ style: { textAlign: "center" } }}
         />
-  
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+
+        <BoxStyles justifyContent="space-between">
           <FormControlLabel
             onClick={() => {
               setRemember(!true);
@@ -186,7 +184,7 @@ const Signup = () => {
             text="forget password?"
             sx={{ fontSize: "1rem", textTransform: "none" }}
           />
-        </div>
+        </BoxStyles>
 
         <AbButton
           type="contained"
@@ -194,10 +192,9 @@ const Signup = () => {
           text="Sign in"
           large={true}
         />
-        
       </FormControl>
       <ToastContainer />
-    </div>
+    </BoxStyles>
   );
 };
 
